@@ -14,12 +14,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.percorsoculturale.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mAuth = FirebaseAuth.getInstance();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -43,6 +47,14 @@ public class LoginActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
     @Override
