@@ -2,10 +2,14 @@ package com.example.percorsoculturale;
 
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -14,11 +18,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.percorsoculturale.databinding.ActivityMainBinding;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -54,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
+        //cambiare schermata poiché l'utente ha già effettuato l'accesso
     }
 
     @Override
@@ -77,6 +83,28 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void register(String email, String password){
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("REGISTRAZIONE ACCOUNT", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            //Aggiornare interfaccia, l'utente si è registrato con successo
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("REGISTRAZIONE ACCOUNT", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //Aggiornare interfaccia, il sistema non è riuscito a registrare l'utente
+                        }
+                    }
+                });
     }
 
     @Override
