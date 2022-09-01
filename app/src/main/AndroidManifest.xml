@@ -14,7 +14,12 @@
         android:theme="@style/Theme.PercorsoCulturale"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".RicercaPercorsiActivity"
+            android:exported="false"
+            android:label="@string/title_activity_ricerca_percorsi"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar">
