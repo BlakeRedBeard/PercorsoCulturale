@@ -1,5 +1,6 @@
 package com.example.percorsoculturale;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = "blake99@live.it";
                 String password = "password figa";
                 signIn(email, password);
+
             }
         });
     }
@@ -68,14 +70,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("REGISTRAZIONE ACCOUNT", "createUserWithEmail:success");
+                            Log.d("DEBUG", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginActivity.this, "Authentication success.",
                                     Toast.LENGTH_SHORT).show();
                             //Aggiornare interfaccia, l'utente si è registrato con successo
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("REGISTRAZIONE ACCOUNT", "createUserWithEmail:failure", task.getException());
+                            Log.w("DEBUG", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             //Aggiornare interfaccia, il sistema non è riuscito a registrare l'utente
@@ -93,13 +95,15 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d("Login account", user.getEmail());
+                            Log.d("DEBUG", user.getEmail());
                             Toast.makeText(LoginActivity.this, "Authentication success.",
                                     Toast.LENGTH_SHORT).show();
                             //Aggiornare interfaccia, l'utente ha effettuato l'accesso
+                            Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("Login account", "signInWithEmail:failure", task.getException());
+                            Log.w("DEBUG", "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             //Aggiornare l'interfaccia, autenticazione fallita (credenziali errate o errore di sistema)

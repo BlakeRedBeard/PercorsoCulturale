@@ -3,21 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/background.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/bottom_sheet.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/content_ricerca_percorsi.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/home.xml" value="0.12" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/signin.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/signup.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/home.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.25" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/signin.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>
