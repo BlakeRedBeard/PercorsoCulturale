@@ -17,6 +17,12 @@
             android:name=".RicercaPercorsiActivity"
             android:exported="false"
             android:label="@string/title_activity_ricerca_percorsi"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
+            />
+        <activity
+            android:name=".MostraPercorsiActivity"
+            android:exported="false"
+            android:label="@string/title_activity_mostra_percorsi"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
         <activity
             android:name=".LoginActivity"
@@ -29,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
