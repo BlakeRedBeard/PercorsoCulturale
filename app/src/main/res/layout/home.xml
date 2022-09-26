@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="#00FFFFFF"
+        app:elevation="0dp"
+
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+
+            app:menu="@menu/home_menu"
+            android:elevation="10dp"
+
+            app:title="AppPercorsi"
+            android:background="@drawable/background_border"/>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+<FrameLayout
+ android:id="@+id/bottoom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="330dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="@drawable/menu"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/bottom_sheet"/>
+
+</LinearLayout>
+
+</FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
