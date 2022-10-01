@@ -41,7 +41,7 @@ private Button dateButton;
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IscrivitiActivity.this, MainActivity.class));
+                startActivity(new Intent(IscrivitiActivity.this, LoginActivity.class));
             }
 
         });
