@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_background">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_metro_earth2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065" />
+
+
+    <Button
+        android:id="@+id/accediComeOspite"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:text="Accedi come ospite"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/color_primary"
+        app:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iscrivitiButton" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/linea_1"
+
+        android:drawableRight="@drawable/linea_1"
+        android:drawablePadding="16dp"
+
+        android:padding="5dp"
+        android:text="Oppure"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/loginButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="56dp"
+
+        android:layout_marginTop="20dp"
+        android:elevation="5dp"
+        android:text="Accedi"
+        android:textColor="@color/white"
+
+        android:textStyle="bold"
+        app:backgroundTint="@color/color_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/iscrivitiButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="52dp"
+
+        android:text="Iscriviti"
+        android:textColor="@color/color_primary"
+        android:textStyle="bold"
+        app:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:strokeColor="@color/color_primary" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="44dp"
+
+
+
+
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+
+
+        android:textColor="@color/color_primary"
+
+
+        app:hintTextColor="@color/color_primary"
+        app:boxBackgroundMode="outline"
+
+app:boxStrokeColor="@color/color_primary"
+
+         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperTextEnabled="true"
+        app:helperText="Inserisci la tua email "
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+app:boxStrokeWidth="0.8dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:padding="5dp"
+        android:text="Hai dimenticato la password?"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+      />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+
+        android:hint="Password"
+        android:inputType="textPassword"
+
+
+        android:textColor="@color/color_primary"
+
+
+        app:helperText="Inserisci la tua password"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+      app:boxStrokeWidth="0.8dp"
+        app:boxStrokeColor="@color/color_primary"
+        app:hintTextColor="@color/color_primary"
+        app:endIconDrawable="@drawable/occhio"
+        app:endIconCheckable="true"
+
+        app:endIconMode="password_toggle"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
