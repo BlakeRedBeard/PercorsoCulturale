@@ -35,6 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".IscrivitiActivity"
+            android:exported="false"
+            android:label="Iscriviti activity"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
     </application>
 
