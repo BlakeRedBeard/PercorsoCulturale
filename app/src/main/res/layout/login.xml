@@ -71,7 +71,7 @@
         android:textStyle="bold"
         app:backgroundTint="@color/color_primary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/cambiaPassword" />
 
     <Button
         android:id="@+id/iscrivitiButton"
@@ -86,42 +86,39 @@
         android:textStyle="bold"
         app:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/cambiaPassword"
         app:strokeColor="@color/color_primary" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextTextEmailAddress"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="90dp"
+
+
         android:layout_marginTop="44dp"
-
-
-
-
         android:hint="Email"
+
+
         android:inputType="textEmailAddress"
 
 
         android:textColor="@color/color_primary"
-
-
-        app:hintTextColor="@color/color_primary"
         app:boxBackgroundMode="outline"
 
-app:boxStrokeColor="@color/color_primary"
+        app:boxStrokeColor="@color/color_primary"
 
-         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperTextEnabled="true"
-        app:helperText="Inserisci la tua email "
+        app:boxStrokeWidth="0.8dp"
         app:counterEnabled="true"
         app:counterMaxLength="30"
-app:boxStrokeWidth="0.8dp"
+        app:helperText="Inserisci la tua email "
+        app:helperTextEnabled="true"
+        app:hintTextColor="@color/color_primary"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -133,7 +130,7 @@ app:boxStrokeWidth="0.8dp"
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/cambiaPassword"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="12dp"
@@ -185,8 +182,7 @@ app:boxStrokeWidth="0.8dp"
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

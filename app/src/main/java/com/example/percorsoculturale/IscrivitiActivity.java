@@ -4,29 +4,40 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class IscrivitiActivity extends AppCompatActivity {
-private Button mDatePickerBtn ;
-//Date picker
-private DatePickerDialog datePickerDialog;
-private Button dateButton;
+
+    private FirebaseAuth mAuth;
+    private Button mDatePickerBtn ;
+    //Date picker
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
         setContentView(R.layout.iscriviti); //classe R serve per istanziare risorse della cartella res
+
 
         //for date picker iscrizione
         initDatePicker();
@@ -123,5 +134,30 @@ private Button dateButton;
     public void openDatePicker(View view) {
 
         datePickerDialog.show();
+    }
+
+    //registrazione dell'utente a firebase
+    protected void signUp(String email, String password){
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("DEBUG", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(IscrivitiActivity.this, "Authentication success.",
+                                    Toast.LENGTH_SHORT).show();
+                            //Aggiornare interfaccia, l'utente si è registrato con successo
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("DEBUG", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(IscrivitiActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //Aggiornare interfaccia, il sistema non è riuscito a registrare l'utente
+                        }
+                    }
+                });
     }
 }
