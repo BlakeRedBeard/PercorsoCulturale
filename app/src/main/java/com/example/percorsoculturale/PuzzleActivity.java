@@ -1,6 +1,8 @@
 package com.example.percorsoculturale;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -18,7 +21,16 @@ import androidx.databinding.DataBindingUtil;
 import com.example.percorsoculturale.GestureDetectGridView;
 import com.example.percorsoculturale.tables.Attivita;
 import com.example.percorsoculturale.tables.Puzzle;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,9 +52,12 @@ public class PuzzleActivity extends AppCompatActivity {
     public static final String down = "down";
     public static final String left = "left";
     public static final String right = "right";
+    //Configurazione db
+    public static FirebaseStorage storage ;
 
 
-    static Puzzle puzzle1=new Puzzle(attivita,"puzzle");
+
+    static Puzzle puzzle1=new Puzzle(attivita,"Puzzle");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +65,11 @@ public class PuzzleActivity extends AppCompatActivity {
 
        setContentView(R.layout.activity_puzzle);
 
-
+       storage= FirebaseStorage.getInstance();
 
 init();
 
 scramble();
-
-
 
 setDimension();
 
@@ -118,46 +131,166 @@ setDimension();
     }
 
     private static void display(Context context){
-ArrayList<Button> buttons=new ArrayList<>();
-Button button;
+        //firebase db
+       StorageReference storageRef = storage.getReference().child("immagini puzzle/"+ puzzle1.getDirectory());
+        ArrayList<Button> buttons=new ArrayList<>();
+        Button button;
 
 for(int i=0;i<tileList.length;i++){
 
     button=new Button(context);
 
 
-    Context c = button.getContext();
+
 
     if(tileList[i].equals("0")){
 
-       Drawable img= GetImage(c,puzzle1.getDirectory()+"_1");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+      storageRef.child(puzzle1.getDirectory()+ "_1.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+              Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
+
 
 
     }else if (tileList[i].equals("1")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_2");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_2.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("2")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_3");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_3.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("3")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_4");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_4.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("4")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_5");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_5.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("5")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_6");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_6.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("6")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_7");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_7.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("7")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_8");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_8.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }else if (tileList[i].equals("8")){
-        Drawable img= GetImage(c,puzzle1.getDirectory()+"_9");
-        button.setBackgroundDrawable(img);
+        Button finalButton = button;
+        storageRef.child(puzzle1.getDirectory()+ "_9.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
+                Drawable  img = Drawable.createFromStream(is, "articleImage");
+                finalButton.setBackgroundDrawable(img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }
 
 
