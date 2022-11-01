@@ -1,5 +1,6 @@
 package com.example.percorsoculturale;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +35,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     private ImageView immaginePercorso;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
-
+    Button btnTakePicture, btnScanBarcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,19 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             showPercorso((String) savedInstanceState.getSerializable("percorso"));
         }
 
+        Button avvia = (Button) findViewById(R.id.avviaButton);
+
+        avvia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //passa alla sezione fotocamera (qrCode)
+                Intent intent = new Intent(getApplicationContext(), QrcodeActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 
     public void showPercorso(String search){
         db.collection("percorso")

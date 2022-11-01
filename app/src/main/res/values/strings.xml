@@ -8,4 +8,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_ricerca_percorsi">RicercaPercorsiActivity</string>
     <string name="title_activity_mostra_percorsi">MostraPercorsiActivity</string>
+    <string name="take_barcode_picture">string</string>
+    <string name="scan_barcode">qrcode</string>
 </resources>
