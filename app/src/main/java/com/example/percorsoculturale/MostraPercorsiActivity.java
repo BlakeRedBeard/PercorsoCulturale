@@ -35,7 +35,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     private ImageView immaginePercorso;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
-    Button btnTakePicture, btnScanBarcode;
+    private Button avvia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             showPercorso((String) savedInstanceState.getSerializable("percorso"));
         }
 
-        Button avvia = (Button) findViewById(R.id.avviaButton);
+        avvia = (Button) findViewById(R.id.avviaButton);
 
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
