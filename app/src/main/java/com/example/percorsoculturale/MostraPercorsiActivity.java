@@ -49,10 +49,14 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         comunePercorso = (TextView) findViewById(R.id.comunePercorso);
         immaginePercorso = (ImageView) findViewById(R.id.immaginePercorso);
 
+        String id = "";
+
         if(savedInstanceState == null){
             Bundle extra = getIntent().getExtras();
+            System.out.println(extra);
             if(extra != null){
                 showPercorso(extra.getString("percorso"));
+                id=extra.getString("percorso");
             }else {
                 showPercorso("Bari");
             }
@@ -62,11 +66,13 @@ public class MostraPercorsiActivity extends AppCompatActivity {
 
         avvia = (Button) findViewById(R.id.avviaButton);
 
+        String finalId = id;
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //passa alla sezione fotocamera (qrCode)
-                Intent intent = new Intent(getApplicationContext(), QrcodeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AttrazioneActivity.class);
+                intent.putExtra("percorso", finalId);
                 startActivity(intent);
             }
         });
