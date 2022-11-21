@@ -79,4 +79,6 @@ public class QrcodeActivity extends AppCompatActivity {
 
     }
 
+
+
 }

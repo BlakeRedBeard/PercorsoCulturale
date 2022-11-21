@@ -9,7 +9,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
 import androidx.appcompat.app.AppCompatActivity;
+/**
+    @Deprecated
 
+ */
 public class AttrazioneActivity extends AppCompatActivity {
 
     private TextView nomeAttrazione,

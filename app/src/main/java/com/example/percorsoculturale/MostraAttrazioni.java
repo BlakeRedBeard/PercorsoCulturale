@@ -24,66 +24,83 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
-public class MostraPercorsiActivity extends AppCompatActivity {
+public class MostraAttrazioni extends AppCompatActivity {
 
-    private TextView nomePercorso,
-                     descrizionePercorso,
-                     regionePercorso,
-                     comunePercorso;
-    private ImageView immaginePercorso;
+    private TextView nomeAttrazione,
+            descrizioneAttrazione;
+    private Button btnIndietro,
+                   btnAttivita,
+                   btnAvanti;
+    private ImageView immagineAttrazione;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
-    private Button avvia;
+    private static ArrayList<String> attrazioni;
+
+    public void setAttrazioni(Collection<String> lista){
+        attrazioni = new ArrayList<String>(lista);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
-        setContentView(R.layout.activity_mostra_percorso);
-        nomePercorso = (TextView) findViewById(R.id.nomePercorso);
-        descrizionePercorso = (TextView) findViewById(R.id.descrizionePercorso);
-        regionePercorso = (TextView) findViewById(R.id.regionePercorso);
-        comunePercorso = (TextView) findViewById(R.id.comunePercorso);
-        immaginePercorso = (ImageView) findViewById(R.id.immaginePercorso);
+        setContentView(R.layout.activity_attrazione);
+        nomeAttrazione = (TextView) findViewById(R.id.nomeAttrazione);
+        descrizioneAttrazione = (TextView) findViewById(R.id.descrizioneAttrazione);
+        immagineAttrazione = (ImageView) findViewById(R.id.immagineAttrazione);
+        btnIndietro = (Button) findViewById(R.id.btnIndietro);
+        btnAttivita = (Button) findViewById(R.id.btnAttivita);
+        btnAvanti = (Button) findViewById(R.id.btnAvanti);
 
-        String id = "";
+        //serve per recuperare l'attrazione specifica al percorso stabilito
+        if(savedInstanceState == null) {
+           Bundle extra = getIntent().getExtras();
+           if (extra != null) {
+               int id = Integer.getInteger(extra.getString("attrazione"));
+               if(id < 0){
+                   //TODO generare eccezione (non è possibile identificare l'attrazione)
+               }
+               showAttrazione(attrazioni.get(id));
+                //Inizializzazione bottoni
+               btnAvanti.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                       intent.putExtra("attrazione", Integer.toString(id+1));
+                       startActivity(intent);
+                   }
+               });
+               btnIndietro.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       finish();
+                   }
+               });
+               /*TODO se presente bisogna settarlo
+               btnAttivita.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
 
-        if(savedInstanceState == null){
-            Bundle extra = getIntent().getExtras();
-            System.out.println(extra);
-            if(extra != null){
-                showPercorso(extra.getString("percorso"));
-                id=extra.getString("percorso");
-            }else {
-                //TODO generare eccezione (id percorso non reperito)
-            }
-        }else {
-            showPercorso((String) savedInstanceState.getSerializable("percorso"));
+                   }
+               });*/
+           } else {
+               //TODO generare eccezione (non è possibile identificare l'attrazione)
+           }
         }
 
-        avvia = (Button) findViewById(R.id.avviaButton);
 
-        //TODO inizializzare l'array delle attrazioni
-        //finalid corrisponde all'indice dell'array in cui si trova la prima attrazione
-        String finalId = id;
-        avvia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //passa alla sezione attrazione relativa al percorso
-                Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                intent.putExtra("attrazione", finalId);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
 
-    public void showPercorso(String search){
-        db.collection("percorso")
+    public void showAttrazione(String search){
+        db.collection("attrazione")
                 .document(search)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -93,13 +110,9 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for(Map.Entry<String, Object> entry : document.getData().entrySet()){
                             if(entry.getKey().equals("nome")){
-                                nomePercorso.setText((String) entry.getValue());
+                                nomeAttrazione.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("descrizione")){
-                                descrizionePercorso.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("regione")){
-                                regionePercorso.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("comune")){
-                                comunePercorso.setText((String) entry.getValue());
+                                descrizioneAttrazione.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 1024 * 1024;
@@ -108,7 +121,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                     public void onSuccess(byte[] bytes) {
                                         // image retrieved
                                         Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                        immaginePercorso.setImageBitmap(bmp);
+                                        immagineAttrazione.setImageBitmap(bmp);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -121,6 +134,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                         }
                     }
                 });
+
     }
 
 }
