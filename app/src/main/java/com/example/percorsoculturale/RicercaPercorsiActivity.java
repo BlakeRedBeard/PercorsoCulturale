@@ -59,8 +59,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         });
         id_percorsi = new ArrayList<String>();
         nomi_percorsi = new ArrayList<String>();
-        nomi_percorsi.add("miao");
-        nomi_percorsi.add("hello");
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nomi_percorsi);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

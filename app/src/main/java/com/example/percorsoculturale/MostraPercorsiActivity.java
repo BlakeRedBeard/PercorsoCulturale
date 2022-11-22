@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class MostraPercorsiActivity extends AppCompatActivity {
@@ -36,6 +38,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
     private Button avvia;
+    private List<String> attrazioni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
 
         //TODO inizializzare l'array delle attrazioni
         //finalid corrisponde all'indice dell'array in cui si trova la prima attrazione
+        MostraAttrazioni.setAttrazioni(this.attrazioni);
         String finalId = id;
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +104,8 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                 regionePercorso.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("comune")){
                                 comunePercorso.setText((String) entry.getValue());
+                            }else if(entry.getKey().equals("percorsi")){
+                                attrazioni = (List<String>) entry.getValue();
                             }else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 1024 * 1024;
@@ -122,5 +128,6 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
 }

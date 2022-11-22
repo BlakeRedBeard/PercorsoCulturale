@@ -40,7 +40,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     private FirebaseStorage storage;
     private static ArrayList<String> attrazioni;
 
-    public void setAttrazioni(Collection<String> lista){
+    public static void setAttrazioni(Collection<String> lista){
         attrazioni = new ArrayList<String>(lista);
     }
 
