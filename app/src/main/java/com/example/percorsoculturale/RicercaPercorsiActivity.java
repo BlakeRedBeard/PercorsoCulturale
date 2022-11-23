@@ -93,6 +93,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                                         nomi_percorsi.add((String) entry.getValue());
                                 }
                             }
+                            arrayAdapter.notifyDataSetChanged();
                         } else {
                             Log.w("DEBUG", "Error getting documents.", task.getException());
                         }

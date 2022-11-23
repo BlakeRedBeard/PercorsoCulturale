@@ -38,6 +38,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     private ImageView immagineAttrazione;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
+    private int id;
     private static ArrayList<String> attrazioni;
 
     public static void setAttrazioni(Collection<String> lista){
@@ -61,7 +62,7 @@ public class MostraAttrazioni extends AppCompatActivity {
         if(savedInstanceState == null) {
            Bundle extra = getIntent().getExtras();
            if (extra != null) {
-               int id = Integer.getInteger(extra.getString("attrazione"));
+               id = extra.getInt("attrazione");
                if(id < 0){
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
@@ -71,7 +72,7 @@ public class MostraAttrazioni extends AppCompatActivity {
                    @Override
                    public void onClick(View v) {
                        Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                       intent.putExtra("attrazione", Integer.toString(id+1));
+                       intent.putExtra("attrazione", id+1);
                        startActivity(intent);
                    }
                });

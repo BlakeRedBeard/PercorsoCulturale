@@ -31,9 +31,9 @@
         android:id="@+id/nomeAttrazione"
         android:layout_width="330dp"
         android:layout_height="35dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="32dp"
         android:text="Nome Attrazione"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/immagineAttrazione"
         tools:ignore="UnknownId" />
@@ -44,7 +44,6 @@
         android:layout_height="229dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:srcCompat="@drawable/ic_baseline_person_outline_24" />
@@ -53,18 +52,22 @@
         android:id="@+id/descrizioneAttrazione"
         android:layout_width="330dp"
         android:layout_height="62dp"
+        android:layout_marginTop="24dp"
         android:text="Descrizione Attrazione"
-        tools:ignore="MissingConstraints,UnknownIdInLayout"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="423dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeAttrazione"
+        tools:ignore="MissingConstraints,UnknownIdInLayout" />
 
     <Button
         android:id="@+id/btnIndietro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Indietro"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="621dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnAvanti"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -72,17 +75,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Attivita"
-        tools:layout_editor_absoluteX="294dp"
-        tools:layout_editor_absoluteY="621dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnAvanti"
+        app:layout_constraintStart_toEndOf="@+id/btnIndietro"
+        app:layout_constraintTop_toTopOf="@+id/btnAvanti"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnAvanti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
         android:text="Avanti"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="621dp"
-        tools:ignore="MissingConstraints" />
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descrizioneAttrazione"
+        tools:ignore="MissingConstraints"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

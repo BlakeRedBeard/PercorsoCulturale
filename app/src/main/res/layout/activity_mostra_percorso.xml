@@ -31,7 +31,6 @@
         android:layout_height="229dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:srcCompat="@drawable/ic_baseline_person_outline_24" />
@@ -40,9 +39,9 @@
         android:id="@+id/nomePercorso"
         android:layout_width="330dp"
         android:layout_height="35dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="28dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/immaginePercorso" />
 
@@ -50,9 +49,9 @@
         android:id="@+id/descrizionePercorso"
         android:layout_width="330dp"
         android:layout_height="85dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomePercorso" />
 
@@ -60,9 +59,9 @@
         android:id="@+id/regionePercorso"
         android:layout_width="330dp"
         android:layout_height="35dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descrizionePercorso" />
 
@@ -70,9 +69,9 @@
         android:id="@+id/comunePercorso"
         android:layout_width="330dp"
         android:layout_height="35dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regionePercorso" />
 
@@ -80,9 +79,12 @@
         android:id="@+id/avviaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:text="Avvia"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="644dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comunePercorso"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

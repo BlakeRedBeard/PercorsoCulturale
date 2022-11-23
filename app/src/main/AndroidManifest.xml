@@ -30,6 +30,11 @@
             android:label="@string/title_activity_mostra_percorsi"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
         <activity
+            android:name=".MostraAttrazioni"
+            android:exported="false"
+            android:label="Mostra attrazioni"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/app_name"

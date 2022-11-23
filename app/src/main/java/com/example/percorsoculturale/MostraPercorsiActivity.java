@@ -51,15 +51,13 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         regionePercorso = (TextView) findViewById(R.id.regionePercorso);
         comunePercorso = (TextView) findViewById(R.id.comunePercorso);
         immaginePercorso = (ImageView) findViewById(R.id.immaginePercorso);
-
-        String id = "";
-
+        avvia = (Button) findViewById(R.id.avviaButton);
+        avvia.setEnabled(false);
         if(savedInstanceState == null){
             Bundle extra = getIntent().getExtras();
             System.out.println(extra);
             if(extra != null){
                 showPercorso(extra.getString("percorso"));
-                id=extra.getString("percorso");
             }else {
                 //TODO generare eccezione (id percorso non reperito)
             }
@@ -67,18 +65,14 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             showPercorso((String) savedInstanceState.getSerializable("percorso"));
         }
 
-        avvia = (Button) findViewById(R.id.avviaButton);
 
-        //TODO inizializzare l'array delle attrazioni
-        //finalid corrisponde all'indice dell'array in cui si trova la prima attrazione
-        MostraAttrazioni.setAttrazioni(this.attrazioni);
-        String finalId = id;
+
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //passa alla sezione attrazione relativa al percorso
                 Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                intent.putExtra("attrazione", finalId);
+                intent.putExtra("attrazione", 0);
                 startActivity(intent);
             }
         });
@@ -106,6 +100,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                 comunePercorso.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("percorsi")){
                                 attrazioni = (List<String>) entry.getValue();
+                                MostraAttrazioni.setAttrazioni(attrazioni);
                             }else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 1024 * 1024;
@@ -125,6 +120,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        avvia.setEnabled(true);
                     }
                 });
     }
