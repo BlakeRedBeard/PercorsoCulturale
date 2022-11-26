@@ -1,10 +1,12 @@
 package com.example.percorsoculturale;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,21 +15,34 @@ import android.widget.Toast;
 import com.example.percorsoculturale.databinding.ActivityQuizBinding;
 import com.example.percorsoculturale.tables.Attivita;
 import com.example.percorsoculturale.tables.Quiz;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity {
 
 
 public Attivita attivita;
+    //Configurazione db
+    public static FirebaseFirestore db;
 
-
+    ActivityQuizBinding binding;
+    //static Quiz quiz;
+Quiz quiz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityQuizBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
+         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
 
-        Quiz quiz=new Quiz(attivita,"Emanuele è finocchio?","Si","No","Anche","Forse",10);
-        binding.setQuiz(quiz);
+
+
+        readData();
+
 
 
         binding.Verifica.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +69,28 @@ public Attivita attivita;
             }
         });
 
+    }
+
+    private void readData() {
+
+
+
+        db= FirebaseFirestore.getInstance();
+        db.collection("Quiz")
+                .document("1")
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        quiz=documentSnapshot.toObject(Quiz.class);
+                        binding.setQuiz(quiz);
+                    }
+                });
+
+    }
+
+    private void getQuizId(String quizId) {
+        // Quiz quiz=new Quiz(attivita,domanda,risposta_corretta,risposta_errata1,risposta_errata2,risposta_errata3,10);
+        binding.setQuiz(quiz);
     }
 
 

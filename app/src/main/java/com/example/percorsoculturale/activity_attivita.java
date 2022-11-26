@@ -10,9 +10,12 @@ import android.content.Intent;
 import com.example.percorsoculturale.databinding.ActivityAttivitaBinding;
 
 import com.example.percorsoculturale.databinding.ActivityQuizBinding;
+import com.example.percorsoculturale.tables.Attivita;
+import com.example.percorsoculturale.tables.Puzzle;
 
 public class activity_attivita extends AppCompatActivity {
 
+static  Attivita attivita;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +32,12 @@ public class activity_attivita extends AppCompatActivity {
         binding.BtnForPuzzle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent=new Intent(activity_attivita.this,PuzzleActivity.class);
                 startActivity(intent);
+
+
+
             }
         });
     }

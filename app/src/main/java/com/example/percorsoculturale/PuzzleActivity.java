@@ -20,6 +20,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.percorsoculturale.GestureDetectGridView;
 import com.example.percorsoculturale.tables.Attivita;
+
 import com.example.percorsoculturale.tables.Puzzle;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -57,7 +58,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
 
 
-    static Puzzle puzzle1=new Puzzle(attivita,"Puzzle");
+    static  Puzzle puzzle1=new Puzzle(attivita,"Puzzle");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,10 @@ public class PuzzleActivity extends AppCompatActivity {
 
        storage= FirebaseStorage.getInstance();
 
-init();
+
+
+
+        init();
 
 scramble();
 
@@ -136,7 +142,9 @@ setDimension();
         ArrayList<Button> buttons=new ArrayList<>();
         Button button;
 
-for(int i=0;i<tileList.length;i++){
+
+
+        for(int i=0;i<tileList.length;i++){
 
     button=new Button(context);
 
@@ -379,6 +387,7 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
         }
     }
 
+    //Se è stato risolto
     private static boolean isSolved() {
         boolean solved = false;
 

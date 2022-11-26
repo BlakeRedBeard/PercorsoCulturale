@@ -11,7 +11,7 @@ public class Quiz {
     private int tempo;
 
 
-    public Quiz(Attivita attivita, String domanda, String risposta_corretta, String risposta_errata1, String risposta_errata2, String risposta_errata3, int tempo) {
+    public Quiz( Attivita attivita,String domanda, String risposta_corretta, String risposta_errata1, String risposta_errata2, String risposta_errata3, int tempo) {
         this.attivita = attivita;
         this.domanda = domanda;
         this.risposta_corretta = risposta_corretta;
@@ -20,7 +20,9 @@ public class Quiz {
         this.risposta_errata3 = risposta_errata3;
         this.tempo = tempo;
     }
+public Quiz(){
 
+}
 
     public Attivita getAttivita() { return attivita; }
 
@@ -48,5 +50,15 @@ public class Quiz {
         return tempo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "domanda='" + domanda + '\'' +
+                ", risposta_corretta='" + risposta_corretta + '\'' +
+                ", risposta_errata1='" + risposta_errata1 + '\'' +
+                ", risposta_errata2='" + risposta_errata2 + '\'' +
+                ", risposta_errata3='" + risposta_errata3 + '\'' +
+                ", tempo=" + tempo +
+                '}';
+    }
 }
