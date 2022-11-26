@@ -9,16 +9,26 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.internal.InternalTokenProvider;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class IscrivitiActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private Button mDatePickerBtn ;
     //Date picker
     private DatePickerDialog datePickerDialog;
@@ -56,8 +67,31 @@ public class IscrivitiActivity extends AppCompatActivity {
             }
 
         });
+        TextInputLayout mail = (TextInputLayout) findViewById(R.id.iscrizioneEmail);
+        TextInputLayout password = (TextInputLayout) findViewById(R.id.iscrizionePassword);
 
+        Button iscriviti = (Button) findViewById(R.id.iscrivitiBtn);
+        iscriviti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO controllo su password ed email
+                //Consiglio: firebase effettua già dei controlli di base sulla password e sull'email e restituisce un errore.
+                signUp(mail.getEditText().getText().toString(), password.getEditText().getText().toString());
+            }
+        });
     }
+
+    private Timestamp getTodayTimestamp(){
+        int     day = datePickerDialog.getDatePicker().getDayOfMonth(),
+                month = datePickerDialog.getDatePicker().getMonth(),
+                year = datePickerDialog.getDatePicker().getYear();
+        Calendar cal = new Calendar.Builder().setCalendarType(Calendar.getInstance().getCalendarType()).setFields(Calendar.YEAR, year,
+                                                                                                                  Calendar.MONTH, month,
+                                                                                                                  Calendar.DAY_OF_MONTH, day).build();
+        Timestamp date = new Timestamp(cal.getTime());
+        return date;
+    }
+
 //per data di oggi
     private String getTodaysDate() {
         Calendar cal= Calendar.getInstance();
@@ -144,12 +178,8 @@ public class IscrivitiActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("DEBUG", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(IscrivitiActivity.this, "Authentication success.",
-                                    Toast.LENGTH_SHORT).show();
-                            //Aggiornare interfaccia, l'utente si è registrato con successo
+                            //dopo aver inserito le informazioni di registrazione, i dati vengono salvati sul database
+                            addInfo();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("DEBUG", "createUserWithEmail:failure", task.getException());
@@ -157,6 +187,33 @@ public class IscrivitiActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             //Aggiornare interfaccia, il sistema non è riuscito a registrare l'utente
                         }
+                    }
+                });
+    }
+
+    private void addInfo(){
+        db = FirebaseFirestore.getInstance();
+        Map<String, Object> user = new HashMap<>();
+        String mail = mAuth.getCurrentUser().getEmail();
+        user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
+        user.put("cognome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
+        user.put("data_di_nascita", getTodayTimestamp());
+
+        db.collection("utente").document(mail)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        //una volta registrato, l'utente deve rieffettuare l'accesso
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        FirebaseAuth.getInstance().getCurrentUser().delete();
+                        Toast.makeText(IscrivitiActivity.this, "Registrazione fallita.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
