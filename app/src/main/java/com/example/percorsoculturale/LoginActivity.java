@@ -1,18 +1,22 @@
 package com.example.percorsoculturale;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
-
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -23,17 +27,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private TextInputLayout emailView;
     private TextInputLayout pwdView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.login);
+        //impostazioni lingua
+        loadLocale();
+
 
         emailView = (TextInputLayout) findViewById(R.id.editTextTextEmailAddress);
         pwdView = (TextInputLayout) findViewById(R.id.editTextTextPassword);
@@ -76,6 +86,15 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button lbtn = (Button) findViewById(R.id.bottoneLingua);
+        lbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLanguage();
+            }
+        });
+
     }
 
     @Override
@@ -112,5 +131,57 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+    //mostra le opzioni a disposizione
+    public void showLanguage(){
 
+        //Array che contiene le lingue previste per l'app
+        final String list[] = {"Spanish", "French", "English"};
+        AlertDialog.Builder mBulider = new AlertDialog.Builder(LoginActivity.this);
+        mBulider.setTitle("Chose language");
+        mBulider.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+
+                if(i == 0){
+                    setLocale("es");
+                    recreate();
+                }else if(i == 1){
+                    setLocale("fr");
+                    recreate();
+                }else if(i == 2){
+                    setLocale("en");
+                    recreate();
+                }
+
+                dialog.dismiss();
+                
+            }
+        });
+
+        AlertDialog mDialog = mBulider.create();
+        mDialog.show();
+    }
+
+    private void setLocale(String lang) {
+        //oggetto che specifica la lingua di riferimento in base al contesto scelto
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale= locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    private void loadLocale() {
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My_Lang", "");
+        //questa condizione serve se non si imposta alcuna lingua all'interno dell'app
+        //e quindi viene utilizzata quella selezionata nelle impostazioni del dispositivo
+        if (language != "") {
+            setLocale(language);
+        }
+    }
 }

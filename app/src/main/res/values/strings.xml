@@ -1,13 +1,23 @@
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
-    <string name="action_settings">Settings</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="app_name" translatable="false">PercorsoCulturale</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_ricerca_percorsi">RicercaPercorsiActivity</string>
-    <string name="title_activity_mostra_percorsi">MostraPercorsiActivity</string>
-    <string name="take_barcode_picture">string</string>
-    <string name="scan_barcode">qrcode</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_ricerca_percorsi" translatable="false">RicercaPercorsiActivity</string>
+    <string name="title_activity_mostra_percorsi" translatable="false">MostraPercorsiActivity</string>
+    <string name="take_barcode_picture" translatable="false">string</string>
+    <string name="scan_barcode" translatable="false">qrcode</string>
+
+    <string name= "editTextTextEmailAddress">Inserisci la tua email</string>
+    <string name= "editTextTextPassword">Inserisci la tua passwordl</string>
+    <string name= "cambiaPassword">Hai dimenticato la password?</string>
+    <string name= "loginButton">Accedi</string>
+    <string name= "iscrivitiButton">Iscriviti</string>
+    <string name= "oppureText">Oppure</string>
+    <string name= "accediComeOspite">Accedi come ospite</string>
+    <string name= "nextButton">Avanti</string>
+
 </resources>
