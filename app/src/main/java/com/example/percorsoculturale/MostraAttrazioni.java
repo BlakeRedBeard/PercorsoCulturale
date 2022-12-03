@@ -71,9 +71,18 @@ public class MostraAttrazioni extends AppCompatActivity {
                btnAvanti.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                       intent.putExtra("attrazione", id+1);
-                       startActivity(intent);
+
+                       if(attrazioni.size() == id) {
+                           Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                           startActivity(intent);
+                       }
+                       else {
+                           Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                           intent.putExtra("attrazione", id+1);
+                           startActivity(intent);
+                       }
+
+
                    }
                });
                btnIndietro.setOnClickListener(new View.OnClickListener() {
