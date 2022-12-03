@@ -53,11 +53,6 @@
             android:label="Iscriviti activity"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
-        <activity
-            android:name=".AttrazioneActivity"
-            android:exported="true"
-            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
-
         <activity android:name=".Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
