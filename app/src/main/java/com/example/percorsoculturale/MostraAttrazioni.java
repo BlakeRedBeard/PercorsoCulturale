@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,14 +68,21 @@ public class MostraAttrazioni extends AppCompatActivity {
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
                showAttrazione(attrazioni.get(id));
+
                 //Inizializzazione bottoni
                btnAvanti.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                       intent.putExtra("attrazione", id+1);
-                       startActivity(intent);
-                   }
+                            if(id+1 > attrazioni.size()){
+                                Intent intent = new Intent(getApplicationContext(), Valutazione.class);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                                intent.putExtra("attrazione", id + 1);
+                                startActivity(intent);
+                            }
+                       }
+
                });
                btnIndietro.setOnClickListener(new View.OnClickListener() {
                    @Override

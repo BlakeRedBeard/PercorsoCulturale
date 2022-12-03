@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
     public void showLanguage(){
 
         //Array che contiene le lingue previste per l'app
-        final String list[] = {"Spanish", "French", "English"};
+        final String list[] = {"Spanish", "French", "English","Italian"};
         AlertDialog.Builder mBulider = new AlertDialog.Builder(LoginActivity.this);
         mBulider.setTitle("Chose language");
         mBulider.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
@@ -151,10 +151,13 @@ public class LoginActivity extends AppCompatActivity {
                 }else if(i == 2){
                     setLocale("en");
                     recreate();
+                }else if(i == 3){
+                    setLocale("it");
+                    recreate();
                 }
 
                 dialog.dismiss();
-                
+
             }
         });
 
