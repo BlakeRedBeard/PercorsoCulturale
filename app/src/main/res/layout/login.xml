@@ -21,6 +21,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.065" />
 
+    <Button
+        android:id="@+id/bottoneLingua"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="239dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:text="Change Language"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/color_primary"
+        app:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accediComeOspite" />
 
     <Button
         android:id="@+id/accediComeOspite"
@@ -28,7 +42,7 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
-        android:text="Accedi come ospite"
+        android:text="@string/accediComeOspite"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/color_primary"
@@ -39,18 +53,15 @@
         app:layout_constraintTop_toBottomOf="@+id/iscrivitiButton" />
 
     <TextView
+        android:id="@+id/oppureText"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/linea_1"
-
         android:drawableRight="@drawable/linea_1"
         android:drawablePadding="16dp"
-
         android:padding="5dp"
-        android:text="Oppure"
-
-
+        android:text="@string/oppureText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +76,7 @@
 
         android:layout_marginTop="20dp"
         android:elevation="5dp"
-        android:text="Accedi"
+        android:text="@string/loginButton"
         android:textColor="@color/white"
 
         android:textStyle="bold"
@@ -81,7 +92,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="52dp"
 
-        android:text="Iscriviti"
+        android:text="@string/iscrivitiButton"
         android:textColor="@color/color_primary"
         android:textStyle="bold"
         app:elevation="5dp"
@@ -111,7 +122,7 @@
         app:boxStrokeWidth="0.8dp"
         app:counterEnabled="true"
         app:counterMaxLength="30"
-        app:helperText="Inserisci la tua email "
+        app:helperText="@string/editTextTextEmailAddress"
         app:helperTextEnabled="true"
         app:hintTextColor="@color/color_primary"
 
@@ -135,7 +146,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="12dp"
         android:padding="5dp"
-        android:text="Hai dimenticato la password?"
+        android:text="@string/cambiaPassword"
         android:textSize="15dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -156,7 +167,7 @@
         android:textColor="@color/color_primary"
 
 
-        app:helperText="Inserisci la tua password"
+        app:helperText="@string/editTextTextPassword"
         app:counterEnabled="true"
         app:counterMaxLength="10"
 
@@ -166,7 +177,7 @@
         app:boxCornerRadiusBottomStart="4dp"
         app:boxCornerRadiusBottomEnd="4dp"
         app:boxCornerRadiusTopEnd="4dp"
-      app:boxStrokeWidth="0.8dp"
+        app:boxStrokeWidth="0.8dp"
         app:boxStrokeColor="@color/color_primary"
         app:hintTextColor="@color/color_primary"
         app:endIconDrawable="@drawable/occhio"
@@ -180,11 +191,15 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
         >
 
+
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

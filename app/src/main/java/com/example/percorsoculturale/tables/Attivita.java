@@ -4,7 +4,7 @@ public class Attivita {
 
     private int id;
     private int punteggio;
-
+ private Puzzle puzzle;
     public Attivita(int id, int punteggio) {
         this.id = id;
         this.punteggio = punteggio;
@@ -17,4 +17,6 @@ public class Attivita {
     public int getPunteggio() {
         return punteggio;
     }
+
+
 }

@@ -98,7 +98,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                 regionePercorso.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("comune")){
                                 comunePercorso.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("percorsi")){
+                            }else if(entry.getKey().equals("attrazioni")){
                                 attrazioni = (List<String>) entry.getValue();
                                 MostraAttrazioni.setAttrazioni(attrazioni);
                             }else if(entry.getKey().equals("immagine")){

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PercorsoCulturale</string>
+    <string name= "editTextTextEmailAddress">inserta tu correo electronico</string>
+    <string name= "editTextTextPassword">Ingresa tu contraseña</string>
+    <string name= "cambiaPassword">¿Olvidaste tu contraseña?</string>
+    <string name= "loginButton">Registrarse</string>
+    <string name= "iscrivitiButton">Suscribir</string>
+    <string name= "oppureText">O</string>
+    <string name= "accediComeOspite">Iniciar sesión como invitado</string>
+    <string name= "nextButton">Vamos!</string>
+</resources>

@@ -1,8 +1,6 @@
 package com.example.percorsoculturale;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,20 +8,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -36,6 +35,11 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     private ArrayList<String> nomi_percorsi;
     private ArrayAdapter<String> arrayAdapter;
     private FirebaseFirestore db;
+private LinearLayout mBottomSheet;
+private BottomSheetBehavior mBottomSheetBehavior;
+private BottomSheetBehavior BottomSheetBehavior;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -45,6 +49,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
         searchView = findViewById(R.id.searchView);
+        //imposta la casella di ricerca fissa
+        searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -70,7 +76,60 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             }
         });
 
+        //Implementazione App bar
+        Toolbar toolbar=findViewById(R.id.Toolbar);
+        setSupportActionBar(toolbar);
+     //implementazione bottom sheet
+
+        mBottomSheet=findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior=BottomSheetBehavior.from(mBottomSheet);
+        BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+searchView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
+});
+        //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
+    }
+
+
+
+    //Implementazione App bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu,menu);
+        return true;
+    }
+
+
+        @Override
+        public boolean onOptionsItemSelected (@NonNull MenuItem item){
+            mBottomSheet = findViewById(R.id.bottom_sheet);
+            mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+
+
+                switch (item.getItemId()) {
+
+                    case R.id.menuIcon:
+                        Toast.makeText(this, "Hai chliccato il menu", Toast.LENGTH_SHORT).show();
+
+
+                        if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                        } else {
+                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        }
+
+                        return true;
+
+
+                    default:
+                        return super.onOptionsItemSelected(item);
+                }
+
+        }
 
 
     public void showPercorsi(String search){
@@ -100,5 +159,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
 }
