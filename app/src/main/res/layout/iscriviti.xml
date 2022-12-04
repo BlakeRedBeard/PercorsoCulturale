@@ -14,36 +14,46 @@
             android:orientation="vertical">
 <LinearLayout
     android:orientation="horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
             <TextView
                 android:id="@+id/textView2"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
 
-                android:layout_margin="44dp"
-                android:gravity="left"
+
                 android:text="Crea il tuo account "
 
                 android:textColor="@color/black"
                 android:textSize="28dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_centerVertical="true"
 
-        >
+        app:layout_constraintStart_toEndOf="@id/textView2" >
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/returnButtonLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          android:layout_marginTop="35dp"
+
 
             android:backgroundTint="@color/color_primary"
             android:src="@drawable/arrow"
@@ -51,7 +61,7 @@
             app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -77,6 +87,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:inputType="text"
                     />
 
 
@@ -105,7 +116,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:inputType="text"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +146,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:inputType="text"/>
 
                 <Button
                     android:id="@+id/datePickerButton"
@@ -181,7 +194,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:inputType="textPassword"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -209,7 +224,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -92,6 +92,16 @@ searchView.setOnClickListener(new View.OnClickListener() {
     }
 });
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
+
+   LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
+   BProfile.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           Intent IBProfile=new Intent(RicercaPercorsiActivity.this,ProfiloActivity.class);
+           startActivity(IBProfile);
+       }
+   });
+
     }
 
 
@@ -108,8 +118,7 @@ searchView.setOnClickListener(new View.OnClickListener() {
         public boolean onOptionsItemSelected (@NonNull MenuItem item){
             mBottomSheet = findViewById(R.id.bottom_sheet);
             mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
-
-
+            
                 switch (item.getItemId()) {
 
                     case R.id.menuIcon:
