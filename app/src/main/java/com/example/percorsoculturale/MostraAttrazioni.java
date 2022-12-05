@@ -72,14 +72,15 @@ public class MostraAttrazioni extends AppCompatActivity {
                    @Override
                    public void onClick(View v) {
 
-                       if(attrazioni.size() == id) {
-                           Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
-                           startActivity(intent);
-                       }
-                       else {
-                           Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                           intent.putExtra("attrazione", id+1);
-                           startActivity(intent);
+                       int cont = attrazioni.size();
+
+                       Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                       intent.putExtra("attrazione", id+1);
+                       startActivity(intent);
+
+                       if (id+1 >= cont) {
+                           Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                           startActivity(intent2);
                        }
 
 
