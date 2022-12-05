@@ -1,5 +1,6 @@
 package com.example.percorsoculturale;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -35,9 +37,9 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     private ArrayList<String> nomi_percorsi;
     private ArrayAdapter<String> arrayAdapter;
     private FirebaseFirestore db;
-private LinearLayout mBottomSheet;
-private BottomSheetBehavior mBottomSheetBehavior;
-private BottomSheetBehavior BottomSheetBehavior;
+    private LinearLayout mBottomSheet;
+    private BottomSheetBehavior mBottomSheetBehavior;
+    private BottomSheetBehavior BottomSheetBehavior;
 
 
 
@@ -88,7 +90,9 @@ private BottomSheetBehavior BottomSheetBehavior;
 searchView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
+
         BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        showMessage();
     }
 });
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
@@ -103,8 +107,15 @@ searchView.setOnClickListener(new View.OnClickListener() {
    });
 
     }
+    //metodo
+    private void showMessage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
+         builder.setMessage("La ricerca avviene per comune e attrazione")
+                .setTitle("Info");
 
-
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
     //Implementazione App bar
     @Override
@@ -112,6 +123,8 @@ searchView.setOnClickListener(new View.OnClickListener() {
         getMenuInflater().inflate(R.menu.home_menu,menu);
         return true;
     }
+
+
 
 
         @Override

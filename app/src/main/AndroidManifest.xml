@@ -71,6 +71,11 @@
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
         <activity
+            android:name=".ProfiloActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
             android:name=".InfoBadge"
             android:exported="true"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />

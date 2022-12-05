@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.percorsoculturale.tables.Utente;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.internal.InternalTokenProvider;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -176,6 +178,18 @@ public class IscrivitiActivity extends AppCompatActivity {
 
     //registrazione dell'utente a firebase
     protected void signUp(String email, String password) {
+
+        if ((email != "") && (password !="")) {
+            addInfo();
+        }
+        else {
+            // If sign in fails, display a message to the user.
+            //Log.w("DEBUG", "createUserWithEmail:failure", task.getException());
+            Toast.makeText(IscrivitiActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+            //Aggiornare interfaccia, il sistema non è riuscito a registrare l'utente
+        }
+
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
