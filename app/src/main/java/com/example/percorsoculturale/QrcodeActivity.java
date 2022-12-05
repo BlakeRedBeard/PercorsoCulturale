@@ -24,11 +24,9 @@ public class QrcodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
 
-        btn = findViewById(R.id.button);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+
                 IntentIntegrator intentIntegrator = new IntentIntegrator(QrcodeActivity.this);
 
                 intentIntegrator.setPrompt("For flash use volume app");
@@ -41,9 +39,9 @@ public class QrcodeActivity extends AppCompatActivity {
 
                 intentIntegrator.initiateScan();
 
-            }
 
-        });
+
+
 
     }
 

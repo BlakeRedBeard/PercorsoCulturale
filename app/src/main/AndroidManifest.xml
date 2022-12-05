@@ -74,6 +74,10 @@
             android:name=".ProfiloActivity"
             android:exported="true"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+        <activity
+            android:name=".DialogMessage"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
         <activity
             android:name=".ValutazionePercorsoActivity"
