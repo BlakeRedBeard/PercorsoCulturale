@@ -213,11 +213,30 @@ public class IscrivitiActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         String mail = mAuth.getCurrentUser().getEmail();
-        //nomeR = findViewById(R.id.iscrizioneNome);
-        //String nome = nomeR.getText().toString();
-        user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
-        user.put("cognome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
-        user.put("data_di_nascita", getTodayTimestamp());
+
+        // Validazioni Dati
+
+        if ((!nomeValido(((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sul nome", Toast.LENGTH_SHORT).show();
+        }if ((!cognomeValido(((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sul cognome", Toast.LENGTH_SHORT).show();
+        }if ((!emailValida(((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sulla mail", Toast.LENGTH_SHORT).show();
+        }if ((!passwordValida(((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sulla password", Toast.LENGTH_SHORT).show();
+        } else {
+            user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
+            user.put("cognnome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
+            user.put("data_di_nascita", getTodayTimestamp());
+            user.put("email", ((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString());
+            user.put("password", ((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString());
+
+
+
+        }
+
+
+
 
         db.collection("utente").document(mail)
                 .set(user)
@@ -259,5 +278,79 @@ public class IscrivitiActivity extends AppCompatActivity {
 
         // Return se il nome corrisponde con la stringa Regex
         return m.matches();
+    }
+
+    // Controllo sul cognome
+    private boolean cognomeValido(String cognome) {
+
+
+        // Regex per controllare se il cognome è valido.
+        String regex = "^[A-Za-z]{3,29}$";
+
+        // Compila il ReGex
+        Pattern p = Pattern.compile(regex);
+
+        // Se il il cognome è vuoto
+        // return false
+        if (cognome == null) {
+            return false;
+        }
+
+        // Pattern class contiene il metodo matcher()
+        //per trovare la corrispondenza tra un dato e il Cognome
+        Matcher m = p.matcher(cognome);
+
+        // Return se il nome corrisponde con la stringa Regex
+        return m.matches();
+    }
+
+
+    private boolean emailValida(String email) {
+        {
+            // Regex per controllare se il cognome è valido.
+            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$";
+
+            // Compila il ReGex
+            Pattern pat = Pattern.compile(emailRegex);
+
+            // Se l'email è vuota
+            // return false
+            if (email == null)
+                return false;
+
+            // Return se l'email corrisponde con la stringa Regex
+            return pat.matcher(email).matches();
+        }
+    }
+
+    private boolean passwordValida(String password) {
+        {
+
+            // Regex per controllare se la password è valida.
+            String regex = "^(?=.*[0-9])"
+                    + "(?=.*[a-z])(?=.*[A-Z])"
+                    + "(?=.*[@#$%^&+=])"
+                    + "(?=\\S+$).{8,20}$";
+
+            // Compila il ReGex
+            Pattern p = Pattern.compile(regex);
+
+            // Se la password è vuota
+            // return false
+            if (password == null)
+                return false;
+
+
+            // Pattern class contiene il metodo matcher()
+            //per trovare la corrispondenza tra un dato e la password
+            Matcher m = p.matcher(password);
+
+            // Return se la password corrisponde con la stringa Regex
+            return m.matches();
+
+        }
     }
 }

@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_mostra_percorso.xml" value="0.33" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.25" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/content_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/content_ricerca_percorsi.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/layout/signin.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/menu/menu_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/blake/StudioProjects/PercorsoCulturale/app/src/main/res/menu/search_menu.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.125" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_launcher_background.xml" value="0.125" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.125" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/key.xml" value="0.125" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_attivita.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_attrazione.xml" value="0.176" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_mostra_percorso.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_quiz.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.1" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/badge.xml" value="0.18984375" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/button_attrazione.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/content_ricerca_percorsi.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/iscriviti.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/lista_badge.xml" value="0.20854700854700856" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/login.xml" value="0.264" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/profilo.xml" value="0.253125" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/signin.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/valutazione_percorso.xml" value="0.3719512195121951" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/menu/home_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/menu/search_menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_attivita.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_mostra_percorso.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_puzzle.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_qrcode.xml" value="0.11" />
+        <entry key="app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/content_ricerca_percorsi.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/home.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/iscriviti.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/signin.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/signup.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
