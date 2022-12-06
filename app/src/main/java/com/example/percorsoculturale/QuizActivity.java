@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.percorsoculturale.databinding.ActivityQuizBinding;
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity {
@@ -29,6 +32,11 @@ public class QuizActivity extends AppCompatActivity {
 public Attivita attivita;
     //Configurazione db
     public static FirebaseFirestore db;
+    private static ArrayList<String> attrazioni;
+    private int id = 0;
+    private RadioButton risposta_corretta, risposta_errata1,
+            risposta_errata2, risposta_errata3;
+
 
     ActivityQuizBinding binding;
     //static Quiz quiz;
@@ -36,12 +44,23 @@ Quiz quiz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String searchQuiz = "";
 
-         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
+        Bundle extra = getIntent().getExtras();
 
+        System.out.println("search1"+searchQuiz);
+        searchQuiz = extra.getString("quiz");
+        id = extra.getInt("Idattrazioni");
+        attrazioni = extra.getStringArrayList("attrazioni");
+        System.out.println("PIPPO"+id);
+        System.out.println("PIPPA"+searchQuiz);
+        showQuiz(searchQuiz);
 
-
-        readData();
+        Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
+        System.out.println("La second Bkinn Scarlatt"+id);
+        intent2.putExtra("Idattrazione", id);
+        intent2.putExtra("attrazioni", attrazioni);
 
 
 
@@ -58,7 +77,11 @@ Quiz quiz;
                 if(radioButton.getText()==quiz.getRisposta_corretta()) {
                     Toast.makeText(getBaseContext(), radioButton.getText(), Toast.LENGTH_LONG).show();
                 }
+
                 finish();
+
+                startActivity(intent2);
+
             }
         });
 
@@ -69,18 +92,19 @@ Quiz quiz;
             }
         });
 
+
+
     }
 
-    private void readData() {
-
-
-
+    private void showQuiz(String searchQuiz) {
         db= FirebaseFirestore.getInstance();
         db.collection("Quiz")
-                .document("1")
+                .document(searchQuiz)
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+
                         quiz=documentSnapshot.toObject(Quiz.class);
                         binding.setQuiz(quiz);
                     }

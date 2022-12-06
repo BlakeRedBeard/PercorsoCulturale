@@ -96,14 +96,16 @@ public class MostraAttrazioni extends AppCompatActivity {
                        finish();
                    }
                });
+
+
                //TODO se presente bisogna settarlo
                btnAttivita.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
 
-
-
                        Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
+                       intent3.putExtra("Idattrazione", id);
+                       intent3.putExtra("attrazioni", attrazioni);
                        startActivity(intent3);
 
                    }

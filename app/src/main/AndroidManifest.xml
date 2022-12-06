@@ -89,6 +89,16 @@
             android:exported="true"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
+        <activity
+            android:name=".QuizActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".PuzzleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
         <activity android:name=".Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
