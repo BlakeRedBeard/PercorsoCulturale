@@ -14,6 +14,7 @@ public class ProfiloActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilo);
 
+
         LinearLayout rl = (LinearLayout) findViewById(R.id.LinearProfile2);
         rl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -21,5 +22,14 @@ public class ProfiloActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfiloActivity.this, BadgeActivity.class));
             }
         });
+   
+   
+    }
+
+    public void backHome(View view) {
+
+        Intent backIntent=new Intent(this,RicercaPercorsiActivity.class);
+        startActivity(backIntent);
+
     }
 }
