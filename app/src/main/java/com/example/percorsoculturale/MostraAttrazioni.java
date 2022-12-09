@@ -1,10 +1,11 @@
 package com.example.percorsoculturale;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -68,21 +70,25 @@ public class MostraAttrazioni extends AppCompatActivity {
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
                showAttrazione(attrazioni.get(id));
-
+               checkAttivita(attrazioni.get(id));
                 //Inizializzazione bottoni
                btnAvanti.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                            if(id+1 > attrazioni.size()){
-                                Intent intent = new Intent(getApplicationContext(), Valutazione.class);
-                                startActivity(intent);
-                            }else {
-                                Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                                intent.putExtra("attrazione", id + 1);
-                                startActivity(intent);
-                            }
+
+                       int cont = attrazioni.size();
+
+                       Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                       intent.putExtra("attrazione", id+1);
+                       startActivity(intent);
+
+                       if (id+1 >= cont) {
+                           Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                           startActivity(intent2);
                        }
 
+
+                   }
                });
                btnIndietro.setOnClickListener(new View.OnClickListener() {
                    @Override
@@ -90,13 +96,20 @@ public class MostraAttrazioni extends AppCompatActivity {
                        finish();
                    }
                });
-               /*TODO se presente bisogna settarlo
+
+
+               //TODO se presente bisogna settarlo
                btnAttivita.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
 
+                       Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
+                       intent3.putExtra("Idattrazione", id);
+                       intent3.putExtra("attrazioni", attrazioni);
+                       startActivity(intent3);
+
                    }
-               });*/
+               });
            } else {
                //TODO generare eccezione (non è possibile identificare l'attrazione)
            }
@@ -144,6 +157,43 @@ public class MostraAttrazioni extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void checkAttivita(String search) {
+        db.collection("attrazione")
+                .document(search)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    int valore = 0;
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
+                        String attivita = document.getString("attivita");
+
+
+                        if (attivita == ""){
+                            valore = 0;//controlla se non è vuoto
+
+                            if (valore == 1) {
+                                btnAttivita.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                btnAttivita.setVisibility(View.INVISIBLE);
+                            }
+                        }
+
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
 }

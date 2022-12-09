@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.percorsoculturale.tables.Utente;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,8 +29,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.internal.InternalTokenProvider;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,10 +42,11 @@ public class IscrivitiActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private Button mDatePickerBtn ;
+    private Button mDatePickerBtn;
     //Date picker
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    EditText nomeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,7 @@ public class IscrivitiActivity extends AppCompatActivity {
 
         //for date picker iscrizione
         initDatePicker();
-        dateButton=findViewById(R.id.datePickerButton);
+        dateButton = findViewById(R.id.datePickerButton);
         //data di oggi
         //dateButton.setText(getTodaysDate());
 
@@ -82,82 +88,82 @@ public class IscrivitiActivity extends AppCompatActivity {
         });
     }
 
-    private Timestamp getTodayTimestamp(){
-        int     day = datePickerDialog.getDatePicker().getDayOfMonth(),
+    private Timestamp getTodayTimestamp() {
+        int day = datePickerDialog.getDatePicker().getDayOfMonth(),
                 month = datePickerDialog.getDatePicker().getMonth(),
                 year = datePickerDialog.getDatePicker().getYear();
         Calendar cal = new Calendar.Builder().setCalendarType(Calendar.getInstance().getCalendarType()).setFields(Calendar.YEAR, year,
-                                                                                                                  Calendar.MONTH, month,
-                                                                                                                  Calendar.DAY_OF_MONTH, day).build();
+                Calendar.MONTH, month,
+                Calendar.DAY_OF_MONTH, day).build();
         Timestamp date = new Timestamp(cal.getTime());
         return date;
     }
 
-//per data di oggi
+    //per data di oggi
     private String getTodaysDate() {
-        Calendar cal= Calendar.getInstance();
-        int year=cal.get(Calendar.YEAR);
-        int month=cal.get(Calendar.MONTH);
-        month=month + 1;
-        int day=cal.get(Calendar.DAY_OF_MONTH);
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        return makeDateString(day,month,year);
+        return makeDateString(day, month, year);
     }
 
 
     //menu date picker
     private void initDatePicker() {
-        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-             month=month +1 ;
-             String date=makeDateString(day,month,year);
-            // dateButton.setText(date);
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                // dateButton.setText(date);
             }
         };
 
-        Calendar cal= Calendar.getInstance();
-        int year=cal.get(Calendar.YEAR);
-        int month=cal.get(Calendar.MONTH);
-        int day=cal.get(Calendar.DAY_OF_MONTH);
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
 
-       int style= AlertDialog.THEME_HOLO_LIGHT;
+        int style = AlertDialog.THEME_HOLO_LIGHT;
 
-        datePickerDialog=new DatePickerDialog(this,style,dateSetListener,year,month,day);
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
 
     ///per creare la stringa data preview button
     private String makeDateString(int day, int month, int year) {
 
-        return getMonthFormat(month) +" "+ day +" " + year ;
+        return getMonthFormat(month) + " " + day + " " + year;
     }
 
     //per attribuire il numero del mese al nome del mese alla preview button
     private String getMonthFormat(int month) {
 
-        if(month ==1)
+        if (month == 1)
             return "GENNAIO";
-        if(month==2)
+        if (month == 2)
             return "FEBBRAIO";
-        if(month ==3)
+        if (month == 3)
             return "MARZO";
-        if(month==4)
+        if (month == 4)
             return "APRILE";
-        if(month ==5)
+        if (month == 5)
             return "MAGGIO";
-        if(month==6)
+        if (month == 6)
             return "GIUGNO";
-        if(month ==7)
+        if (month == 7)
             return "LUGLIO";
-        if(month==8)
+        if (month == 8)
             return "AGOSTO";
-        if(month ==9)
+        if (month == 9)
             return "SETTEMBRE";
-        if(month==10)
+        if (month == 10)
             return "OTTOBE";
-        if(month ==11)
+        if (month == 11)
             return "NOVEMBRE";
-        if(month==12)
+        if (month == 12)
             return "DICEMBRE";
 
         return "GENNAIO";
@@ -165,14 +171,26 @@ public class IscrivitiActivity extends AppCompatActivity {
     }
 
 
-//start date picker
+    //start date picker
     public void openDatePicker(View view) {
 
         datePickerDialog.show();
     }
 
     //registrazione dell'utente a firebase
-    protected void signUp(String email, String password){
+    protected void signUp(String email, String password) {
+
+        if ((email != "") && (password !="")) {
+            addInfo();
+        }
+        else {
+            // If sign in fails, display a message to the user.
+            //Log.w("DEBUG", "createUserWithEmail:failure", task.getException());
+            Toast.makeText(IscrivitiActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+            //Aggiornare interfaccia, il sistema non è riuscito a registrare l'utente
+        }
+
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -192,13 +210,34 @@ public class IscrivitiActivity extends AppCompatActivity {
                 });
     }
 
-    private void addInfo(){
+    private void addInfo() {
         db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         String mail = mAuth.getCurrentUser().getEmail();
-        user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
-        user.put("cognome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
-        user.put("data_di_nascita", getTodayTimestamp());
+
+        // Validazioni Dati
+
+        if ((!nomeValido(((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sul nome", Toast.LENGTH_SHORT).show();
+        }if ((!cognomeValido(((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sul cognome", Toast.LENGTH_SHORT).show();
+        }if ((!emailValida(((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sulla mail", Toast.LENGTH_SHORT).show();
+        }if ((!passwordValida(((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString()))) {
+            Toast.makeText(IscrivitiActivity.this, "Errore sulla password", Toast.LENGTH_SHORT).show();
+        } else {
+            user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
+            user.put("cognnome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
+            user.put("data_di_nascita", getTodayTimestamp());
+            user.put("email", ((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString());
+            user.put("password", ((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString());
+
+
+
+        }
+
+
+
 
         db.collection("utente").document(mail)
                 .set(user)
@@ -217,5 +256,102 @@ public class IscrivitiActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private boolean nomeValido(String nome) {
+
+
+        // Regex per controllare se il nome è valdio.
+        String regex = "^[A-Za-z]{3,29}$";
+
+        // Compila il ReGex
+        Pattern p = Pattern.compile(regex);
+
+        // se il nome è vuoto
+        // return false
+        if (nome == null) {
+            return false;
+        }
+
+        // Pattern class contiene il metodo matcher()
+        //per trovare la corrispondenza tra un dato e il Nome
+        Matcher m = p.matcher(nome);
+
+        // Return se il nome corrisponde con la stringa Regex
+        return m.matches();
+    }
+
+    // Controllo sul cognome
+    private boolean cognomeValido(String cognome) {
+
+
+        // Regex per controllare se il cognome è valido.
+        String regex = "^[A-Za-z]{3,29}$";
+
+        // Compila il ReGex
+        Pattern p = Pattern.compile(regex);
+
+        // Se il il cognome è vuoto
+        // return false
+        if (cognome == null) {
+            return false;
+        }
+
+        // Pattern class contiene il metodo matcher()
+        //per trovare la corrispondenza tra un dato e il Cognome
+        Matcher m = p.matcher(cognome);
+
+        // Return se il nome corrisponde con la stringa Regex
+        return m.matches();
+    }
+
+
+    private boolean emailValida(String email) {
+        {
+            // Regex per controllare se il cognome è valido.
+            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$";
+
+            // Compila il ReGex
+            Pattern pat = Pattern.compile(emailRegex);
+
+            // Se l'email è vuota
+            // return false
+            if (email == null)
+                return false;
+
+            // Return se l'email corrisponde con la stringa Regex
+            return pat.matcher(email).matches();
+        }
+    }
+
+    private boolean passwordValida(String password) {
+        {
+
+            // Regex per controllare se la password è valida.
+            String regex = "^(?=.*[0-9])"
+                    + "(?=.*[a-z])(?=.*[A-Z])"
+                    + "(?=.*[@#$%^&+=])"
+                    + "(?=\\S+$).{8,20}$";
+
+            // Compila il ReGex
+            Pattern p = Pattern.compile(regex);
+
+            // Se la password è vuota
+            // return false
+            if (password == null)
+                return false;
+
+
+            // Pattern class contiene il metodo matcher()
+            //per trovare la corrispondenza tra un dato e la password
+            Matcher m = p.matcher(password);
+
+            // Return se la password corrisponde con la stringa Regex
+            return m.matches();
+
+        }
     }
 }

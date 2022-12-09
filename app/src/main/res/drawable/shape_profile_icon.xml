@@ -4,6 +4,7 @@
 
     <solid
         android:color="@color/white" >
+
     </solid>
 
     <stroke
@@ -19,8 +20,7 @@
     </padding>
 
     <corners
-        android:topLeftRadius="20dp"
-        android:topRightRadius="20dp"
+        android:radius="500dp"
 
         >
     </corners>

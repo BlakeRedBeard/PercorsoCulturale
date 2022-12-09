@@ -54,9 +54,49 @@
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
         <activity
-            android:name=".Valutazione"
+            android:name=".BadgeActivity"
             android:exported="false"
-            android:label="Valutazione"
+            android:label="Iscriviti activity"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".ListaBadge"
+            android:exported="false"
+            android:label="Iscriviti activity"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".AttrazioneActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".ProfiloActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+        <activity
+            android:name=".DialogMessage"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".ValutazionePercorsoActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".InfoBadge"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".QuizActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
+        <activity
+            android:name=".PuzzleActivity"
+            android:exported="true"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
         <activity android:name=".Capture"

@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
+import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -32,12 +34,14 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     private ListView listView;
     private android.widget.SearchView searchView;
     private ArrayList<String> id_percorsi;
+    private ArrayList<String> id_attrazioni;
     private ArrayList<String> nomi_percorsi;
+    private ArrayList<String> nomi_attrazioni;
     private ArrayAdapter<String> arrayAdapter;
     private FirebaseFirestore db;
-private LinearLayout mBottomSheet;
-private BottomSheetBehavior mBottomSheetBehavior;
-private BottomSheetBehavior BottomSheetBehavior;
+    private LinearLayout mBottomSheet;
+    private BottomSheetBehavior mBottomSheetBehavior;
+    private BottomSheetBehavior BottomSheetBehavior;
 
 
 
@@ -51,9 +55,11 @@ private BottomSheetBehavior BottomSheetBehavior;
         searchView = findViewById(R.id.searchView);
         //imposta la casella di ricerca fissa
         searchView.setIconifiedByDefault(false);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+
                 showPercorsi(s);
                 return true;
             }
@@ -79,21 +85,43 @@ private BottomSheetBehavior BottomSheetBehavior;
         //Implementazione App bar
         Toolbar toolbar=findViewById(R.id.Toolbar);
         setSupportActionBar(toolbar);
-     //implementazione bottom sheet
+        //implementazione bottom sheet
 
         mBottomSheet=findViewById(R.id.bottom_sheet);
         BottomSheetBehavior=BottomSheetBehavior.from(mBottomSheet);
         BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-searchView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-    }
-});
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                showMessage();
+            }
+        });
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
+
+        LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
+        BProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent IBProfile=new Intent(RicercaPercorsiActivity.this,ProfiloActivity.class);
+                startActivity(IBProfile);
+            }
+        });
+
     }
 
+    private void showMessage() {
+        // 1. Instantiate an <code><a href="/reference/android/app/AlertDialog.Builder.html">AlertDialog.Builder</a></code> with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
+
+        builder.setMessage("La ricerca avviene per comune e attrazione")
+                .setTitle("Info");
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 
     //Implementazione App bar
@@ -104,32 +132,31 @@ searchView.setOnClickListener(new View.OnClickListener() {
     }
 
 
-        @Override
-        public boolean onOptionsItemSelected (@NonNull MenuItem item){
-            mBottomSheet = findViewById(R.id.bottom_sheet);
-            mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+    @Override
+    public boolean onOptionsItemSelected (@NonNull MenuItem item){
+        mBottomSheet = findViewById(R.id.bottom_sheet);
+        mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+
+        switch (item.getItemId()) {
+
+            case R.id.menuIcon:
+                Toast.makeText(this, "Hai cliccato il menu", Toast.LENGTH_SHORT).show();
 
 
-                switch (item.getItemId()) {
-
-                    case R.id.menuIcon:
-                        Toast.makeText(this, "Hai chliccato il menu", Toast.LENGTH_SHORT).show();
-
-
-                        if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                        } else {
-                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        }
-
-                        return true;
-
-
-                    default:
-                        return super.onOptionsItemSelected(item);
+                if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                } else {
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 }
 
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
+
+    }
 
 
     public void showPercorsi(String search){
@@ -159,6 +186,8 @@ searchView.setOnClickListener(new View.OnClickListener() {
                     }
                 });
     }
+
+
 
 
 }
