@@ -50,6 +50,7 @@ public class IscrivitiActivity extends AppCompatActivity {
         setContentView(R.layout.iscriviti); //classe R serve per istanziare risorse della cartella res
 
 
+
         //for date picker iscrizione
         initDatePicker();
         dateButton=findViewById(R.id.datePickerButton);

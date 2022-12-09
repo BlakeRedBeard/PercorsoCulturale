@@ -53,6 +53,12 @@
             android:label="Iscriviti activity"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
+        <activity
+            android:name=".Valutazione"
+            android:exported="false"
+            android:label="Valutazione"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+
         <activity android:name=".Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
