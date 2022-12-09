@@ -33,6 +33,7 @@ public class QrcodeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
     private static ArrayList<String> attrazioni;
+    private static int punti = 0;
 
 
     @Override
@@ -101,7 +102,7 @@ public class QrcodeActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
+                        finish();
 
             }else{
                 //TODO SOLLEVA L'ECCETIONAE
@@ -113,6 +114,20 @@ public class QrcodeActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "ciao", Toast.LENGTH_SHORT).show();
 
         }
+
+    }
+
+    public static void aggiungiPunti(int points) {
+        punti += points;
+
+    }
+
+    public static void resettaPunti() {
+        punti = 0;
+    }
+
+    public static int getPunti() {
+        return punti;
 
     }
 

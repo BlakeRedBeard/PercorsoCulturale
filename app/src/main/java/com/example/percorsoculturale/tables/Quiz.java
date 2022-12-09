@@ -9,9 +9,10 @@ public class Quiz {
     private String risposta_errata2;
     private String risposta_errata3;
     private int tempo;
+    private int punti;
 
 
-    public Quiz( Attivita attivita,String domanda, String risposta_corretta, String risposta_errata1, String risposta_errata2, String risposta_errata3, int tempo) {
+    public Quiz( Attivita attivita,String domanda, String risposta_corretta, String risposta_errata1, String risposta_errata2, String risposta_errata3, int tempo, int punti) {
         this.attivita = attivita;
         this.domanda = domanda;
         this.risposta_corretta = risposta_corretta;
@@ -19,6 +20,7 @@ public class Quiz {
         this.risposta_errata2 = risposta_errata2;
         this.risposta_errata3 = risposta_errata3;
         this.tempo = tempo;
+        this.punti = punti;
     }
 public Quiz(){
 
@@ -44,6 +46,10 @@ public Quiz(){
 
     public String getRisposta_errata3() {
         return risposta_errata3;
+    }
+
+    public int getPunti() {
+        return punti;
     }
 
     public int getTempo() {

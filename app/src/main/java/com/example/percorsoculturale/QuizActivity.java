@@ -32,11 +32,10 @@ public class QuizActivity extends AppCompatActivity {
 public Attivita attivita;
     //Configurazione db
     public static FirebaseFirestore db;
-    private static ArrayList<String> attrazioni;
-    private int id = 0;
+    private int cont;
     private RadioButton risposta_corretta, risposta_errata1,
             risposta_errata2, risposta_errata3;
-
+    private String searchQuiz;
 
     ActivityQuizBinding binding;
     //static Quiz quiz;
@@ -45,7 +44,8 @@ public Attivita attivita;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String searchQuiz = "";
+        int id = 0;
+        searchQuiz = "";
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
         Bundle extra = getIntent().getExtras();
@@ -53,13 +53,10 @@ public Attivita attivita;
         System.out.println("search1"+searchQuiz);
         searchQuiz = extra.getString("id");
         id = extra.getInt("Idattrazioni");
-        attrazioni = extra.getStringArrayList("attrazioni");
         showQuiz(searchQuiz);
 
         Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
-        System.out.println("La second Bkinn Scarlatt"+id);
         intent2.putExtra("Idattrazione", id);
-        intent2.putExtra("attrazioni", attrazioni);
 
 
         binding.Verifica.setOnClickListener(new View.OnClickListener() {
@@ -74,12 +71,12 @@ public Attivita attivita;
                 //print risposta selezionata if is true
                 if(radioButton.getText()==quiz.getRisposta_corretta()) {
                     Toast.makeText(getBaseContext(), radioButton.getText(), Toast.LENGTH_LONG).show();
+
+                    QrcodeActivity.aggiungiPunti(quiz.getPunti());
+
                 }
 
                 finish();
-
-                startActivity(intent2);
-
             }
         });
 

@@ -65,6 +65,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         //String stringaPunti = dati.getString("Punteggio");
 
         //legge da db
+        //TODO cambiare nome utente con utente generico
         noteRef = db.collection("utente").document("blake99@live.it");
         noteRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -75,11 +76,16 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
             }
         });
 
-        textview2.setText("100");
+
+
+        int puntiTotali = QrcodeActivity.getPunti();
+
+        textview2.setText(Integer.toString(puntiTotali));
+
 
         //aggiorna punti utente
-        /*noteRef
-                .update("punti", FieldValue.increment(puntiAttivita))
+        noteRef
+                .update("punti", FieldValue.increment(puntiTotali))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -91,7 +97,9 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         //Log.w(TAG, "Error updating document", e);
                     }
-                });*/
+                });
+
+        QrcodeActivity.resettaPunti();
         Button condividi = (Button) findViewById(R.id.button);
 
 

@@ -164,7 +164,7 @@ public class MostraAttrazioni extends AppCompatActivity {
                     Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
                     intent3.putExtra("attivita", attivita.get(id));
                     startActivity(intent3);
-
+                    btnAttivita.setEnabled(false);
                 }
             });
         }else
