@@ -40,7 +40,8 @@ public Attivita attivita;
 
     ActivityQuizBinding binding;
     //static Quiz quiz;
-Quiz quiz;
+    Quiz quiz;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,18 +51,15 @@ Quiz quiz;
         Bundle extra = getIntent().getExtras();
 
         System.out.println("search1"+searchQuiz);
-        searchQuiz = extra.getString("quiz");
+        searchQuiz = extra.getString("id");
         id = extra.getInt("Idattrazioni");
         attrazioni = extra.getStringArrayList("attrazioni");
-        System.out.println("PIPPO"+id);
-        System.out.println("PIPPA"+searchQuiz);
         showQuiz(searchQuiz);
 
         Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
         System.out.println("La second Bkinn Scarlatt"+id);
         intent2.putExtra("Idattrazione", id);
         intent2.putExtra("attrazioni", attrazioni);
-
 
 
         binding.Verifica.setOnClickListener(new View.OnClickListener() {
@@ -97,14 +95,13 @@ Quiz quiz;
     }
 
     private void showQuiz(String searchQuiz) {
+
         db= FirebaseFirestore.getInstance();
-        db.collection("Quiz")
+        db.collection("attività")
                 .document(searchQuiz)
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-
                         quiz=documentSnapshot.toObject(Quiz.class);
                         binding.setQuiz(quiz);
                     }

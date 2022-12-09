@@ -38,7 +38,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
     private Button avvia;
-    private List<String> attrazioni;
+    private List<String> attrazioni, attivita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,9 +98,12 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                 regionePercorso.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("comune")){
                                 comunePercorso.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("attrazioni")){
+                            }else if(entry.getKey().equals("attrazioni")) {
                                 attrazioni = (List<String>) entry.getValue();
                                 MostraAttrazioni.setAttrazioni(attrazioni);
+                            }else if(entry.getKey().equals("attivita")){
+                                attivita = (List<String>) entry.getValue();
+                                MostraAttrazioni.setAttivita(attivita);
                             }else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 1024 * 1024;

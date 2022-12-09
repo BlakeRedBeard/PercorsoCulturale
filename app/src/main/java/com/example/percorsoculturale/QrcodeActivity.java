@@ -77,19 +77,34 @@ public class QrcodeActivity extends AppCompatActivity {
             });
 
             if(a.equals("https://www.qrfy.com/z4UHo55")) {
-                int id = 0;
+
                 Bundle extra = getIntent().getExtras();
+                String idAttivita = extra.getString("attivita");
+                db.collection("attività")
+                        .document(idAttivita)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                DocumentSnapshot document = task.getResult();
+                                String categoria = document.getString("categoria");
+                                if(categoria.equals("quiz")){
+                                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                                    intent.putExtra("id", idAttivita);
+                                    startActivity(intent);
+                                }else if(categoria.equals("puzzle")){
+                                    //TODO intent del puzzle
+                                    /*
+                                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                                    startActivity(intent);
+                                     */
+                                }
+                            }
+                        });
 
 
-
-                id = extra.getInt("Idattrazione");
-                attrazioni = extra.getStringArrayList("attrazioni");
-
-                String c = String.valueOf(id);
-
-                checkAttivita(attrazioni.get(id), id, attrazioni);
             }else{
-
+                //TODO SOLLEVA L'ECCETIONAE
             }
         }
 
@@ -100,50 +115,6 @@ public class QrcodeActivity extends AppCompatActivity {
         }
 
     }
-
-    private void checkAttivita(String check, int id, ArrayList<String> attrazioni) {
-
-        db.collection("attrazione")
-                .document(check)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-
-                                String tipoAttivita = document.getString("attivita");
-
-                                if (tipoAttivita.equals("quiz")){
-
-                                    String quiz = document.getString("NomeQuiz");
-                                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
-                                    intent.putExtra("Idattrazione", id);
-                                    intent.putExtra("attrazioni", attrazioni);
-                                    intent.putExtra("quiz", quiz);
-                                    System.out.println("attrazioni"+attrazioni);
-                                    System.out.println("idddddddddd"+id);
-                                    startActivity(intent);
-                                }
-                                /*else if (tipoAttivita == "puzzle"){
-                                    String puzzle = document.getString("NomePercorso");
-                                    Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
-                                    intent.putExtra("puzzle", puzzle);
-                                    startActivity(intent);
-                                }*/
-
-
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-    }
-
 
 
     }

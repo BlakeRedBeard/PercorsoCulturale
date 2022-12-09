@@ -55,8 +55,6 @@ public class IscrivitiActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.iscriviti); //classe R serve per istanziare risorse della cartella res
 
-
-
         //for date picker iscrizione
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
@@ -180,10 +178,9 @@ public class IscrivitiActivity extends AppCompatActivity {
     //registrazione dell'utente a firebase
     protected void signUp(String email, String password) {
 
-        if ((email != "") && (password !="")) {
+        if ((email != "") && (password != "")) {
             addInfo();
-        }
-        else {
+        } else {
             // If sign in fails, display a message to the user.
             //Log.w("DEBUG", "createUserWithEmail:failure", task.getException());
             Toast.makeText(IscrivitiActivity.this, "Authentication failed.",
@@ -219,25 +216,22 @@ public class IscrivitiActivity extends AppCompatActivity {
 
         if ((!nomeValido(((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString()))) {
             Toast.makeText(IscrivitiActivity.this, "Errore sul nome", Toast.LENGTH_SHORT).show();
-        }if ((!cognomeValido(((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString()))) {
+        }
+        if ((!cognomeValido(((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString()))) {
             Toast.makeText(IscrivitiActivity.this, "Errore sul cognome", Toast.LENGTH_SHORT).show();
-        }if ((!emailValida(((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString()))) {
+        }
+        if ((!emailValida(((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString()))) {
             Toast.makeText(IscrivitiActivity.this, "Errore sulla mail", Toast.LENGTH_SHORT).show();
-        }if ((!passwordValida(((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString()))) {
+        }
+        /*if ((!passwordValida(((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString()))) {
             Toast.makeText(IscrivitiActivity.this, "Errore sulla password", Toast.LENGTH_SHORT).show();
-        } else {
+        } */else {
             user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
             user.put("cognnome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
             user.put("data_di_nascita", getTodayTimestamp());
             user.put("email", ((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString());
             user.put("password", ((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString());
-
-
-
         }
-
-
-
 
         db.collection("utente").document(mail)
                 .set(user)
@@ -353,5 +347,5 @@ public class IscrivitiActivity extends AppCompatActivity {
             return m.matches();
 
         }
-    }
+}
 }

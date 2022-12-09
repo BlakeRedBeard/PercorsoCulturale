@@ -43,9 +43,14 @@ public class MostraAttrazioni extends AppCompatActivity {
     private FirebaseStorage storage;
     private int id;
     private static ArrayList<String> attrazioni;
+    private static ArrayList<String> attivita;
 
     public static void setAttrazioni(Collection<String> lista){
         attrazioni = new ArrayList<String>(lista);
+    }
+
+    public static void setAttivita(Collection<String> lista){
+        attivita = new ArrayList<String>(lista);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class MostraAttrazioni extends AppCompatActivity {
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
                showAttrazione(attrazioni.get(id));
-               checkAttivita(attrazioni.get(id));
+               checkAttivita(attivita.get(id));
                 //Inizializzazione bottoni
                btnAvanti.setOnClickListener(new View.OnClickListener() {
                    @Override
@@ -99,17 +104,7 @@ public class MostraAttrazioni extends AppCompatActivity {
 
 
                //TODO se presente bisogna settarlo
-               btnAttivita.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
 
-                       Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
-                       intent3.putExtra("Idattrazione", id);
-                       intent3.putExtra("attrazioni", attrazioni);
-                       startActivity(intent3);
-
-                   }
-               });
            } else {
                //TODO generare eccezione (non è possibile identificare l'attrazione)
            }
@@ -160,40 +155,20 @@ public class MostraAttrazioni extends AppCompatActivity {
     }
 
     public void checkAttivita(String search) {
-        db.collection("attrazione")
-                .document(search)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    int valore = 0;
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+        if(search != null) {
 
-                        String attivita = document.getString("attivita");
+            btnAttivita.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
+                    intent3.putExtra("attivita", attivita.get(id));
+                    startActivity(intent3);
 
-                        if (attivita == ""){
-                            valore = 0;//controlla se non è vuoto
-
-                            if (valore == 1) {
-                                btnAttivita.setVisibility(View.VISIBLE);
-                            }
-                            else {
-                                btnAttivita.setVisibility(View.INVISIBLE);
-                            }
-                        }
-
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
                 }
-            }
-        });
+            });
+        }else
+            btnAttivita.setEnabled(false);
     }
 
 }
