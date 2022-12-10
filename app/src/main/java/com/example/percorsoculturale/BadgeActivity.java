@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +41,7 @@ public class BadgeActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference noteRef;
     private FirebaseStorage storage;
+    private FirebaseAuth firebaseAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +68,11 @@ public class BadgeActivity extends AppCompatActivity {
         });
 
         //prendo il nome dell'utente loggato
-        noteRef = db.collection("utente").document("blake99@live.it");
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String mailUtente = firebaseUser.getEmail();
+
+        noteRef = db.collection("utente").document(mailUtente);
         noteRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -80,7 +87,10 @@ public class BadgeActivity extends AppCompatActivity {
     public void mostraBadgeSbloccati(ImageView badge1, ImageView badge2, ImageView badge3, ImageView badge4) {
 
         //prendo la mail dell'utente loggato
-        String mailUtente = "blake99@live.it";
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String mailUtente = firebaseUser.getEmail();
+
         String percorsoCollezione = "utente";
 
 

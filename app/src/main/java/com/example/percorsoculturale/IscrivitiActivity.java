@@ -227,10 +227,11 @@ public class IscrivitiActivity extends AppCompatActivity {
             Toast.makeText(IscrivitiActivity.this, "Errore sulla password", Toast.LENGTH_SHORT).show();
         } */else {
             user.put("nome", ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString());
-            user.put("cognnome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
+            user.put("cognome", ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString());
             user.put("data_di_nascita", getTodayTimestamp());
             user.put("email", ((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString());
             user.put("password", ((TextInputLayout) findViewById(R.id.iscrizionePassword)).getEditText().getText().toString());
+            user.put("punti", 0);
         }
 
         db.collection("utente").document(mail)

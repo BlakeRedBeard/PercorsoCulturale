@@ -15,6 +15,8 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -35,6 +37,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef;
     private DocumentReference noteRef;
+    private FirebaseAuth firebaseAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         textview1 = (TextView) findViewById(R.id.textView4);
         textview2 = (TextView) findViewById(R.id.textView6);
 
-        String CHANNEL_ID = "My Notification";
+        /*String CHANNEL_ID = "My Notification";
 
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
@@ -57,16 +60,16 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
         NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "This is my first Notification", NotificationManager.IMPORTANCE_DEFAULT);
         notificationManager.createNotificationChannel(notificationChannel);
-        //notificationManager.notify(0,builderNotificationCompat.build());
+        //notificationManager.notify(0,builderNotificationCompat.build());*/
 
-
-        //Bundle dati = getIntent().getExtras();
-        //int puntiAttivita = dati.getInt("PunteggioValore");
-        //String stringaPunti = dati.getString("Punteggio");
 
         //legge da db
         //TODO cambiare nome utente con utente generico
-        noteRef = db.collection("utente").document("blake99@live.it");
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String mailUtente = firebaseUser.getEmail();
+
+        noteRef = db.collection("utente").document(mailUtente);
         noteRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {

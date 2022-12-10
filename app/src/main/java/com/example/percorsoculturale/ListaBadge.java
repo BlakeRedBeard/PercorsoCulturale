@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,6 +35,7 @@ public class ListaBadge extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
+    private FirebaseAuth firebaseAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +63,12 @@ public class ListaBadge extends AppCompatActivity {
     public void mostraTuttiBadge(ImageView badge1, ImageView badge2, ImageView badge3, ImageView badge4, ImageView badge1Grigio, ImageView badge2Grigio, ImageView badge3Grigio, ImageView badge4Grigio, TextView textRegistrazione, TextView textAttivita, TextView textPercorso, TextView textPercorsi) {
 
         //prendo la mail dell'utente loggato
-        String mailUtente = "blake99@live.it";
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String mailUtente = firebaseUser.getEmail();
+
+
         String percorsoCollezione = "utente";
 
         //verifico se l'utente ha sbloccato il badge da 5 punti
