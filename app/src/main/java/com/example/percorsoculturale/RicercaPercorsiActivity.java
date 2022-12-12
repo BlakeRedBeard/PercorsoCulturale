@@ -22,6 +22,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -42,6 +44,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     private LinearLayout mBottomSheet;
     private BottomSheetBehavior mBottomSheetBehavior;
     private BottomSheetBehavior BottomSheetBehavior;
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -100,15 +103,27 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         });
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
 
-        LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
-        BProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String mailUtente = firebaseUser.getEmail();
 
-                Intent IBProfile=new Intent(RicercaPercorsiActivity.this,ProfiloActivity.class);
-                startActivity(IBProfile);
-            }
-        });
+        LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
+
+        if (mailUtente.equals("user@guest.com")) {
+            BProfile.setEnabled(false);
+        }
+        else {
+            BProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent IBProfile=new Intent(RicercaPercorsiActivity.this,ProfiloActivity.class);
+                    startActivity(IBProfile);
+                }
+            });
+        }
+
+
 
     }
 
