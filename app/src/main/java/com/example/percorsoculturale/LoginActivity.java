@@ -2,6 +2,7 @@ package com.example.percorsoculturale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import androidx.annotation.NonNull;
@@ -22,16 +24,27 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseStorage storage;
     private TextInputLayout emailView;
     private TextInputLayout pwdView;
 
@@ -100,8 +113,62 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        File file = new File(getApplicationContext().getFilesDir(), "Versione_0_1.json");
+        try {
+            //Read text from file
+            StringBuilder text = new StringBuilder();
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
+            }
+            System.out.println(text);
+            br.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(file.exists()){
+            Log.i("CHECK FILE", "il file esiste");
+            System.out.println(file);
+        }else{
+            Log.i("CHECK FILE", "il file NON esiste");
+            // TODO se l'utente è già loggato, andare direttamente alla homepage
+            // Check if user is signed in (non-null) and update UI accordingly.
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            storage = FirebaseStorage.getInstance();
+            StorageReference reference = storage.getReferenceFromUrl("gs://percorsoculturale.appspot.com/PortableDB");
+            reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
+                @Override
+                public void onComplete(@NonNull Task<ListResult> task) {
+                    if(task.isSuccessful()){
+                        ListResult res = task.getResult();
+                        for(StorageReference item : res.getItems()){
+                            Log.i("NOME FILE:", item.getName());
+                            final long ONE_GIGABYTE = 1024 * 1024 * 1024;
+                            item.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                @Override
+                                public void onSuccess(byte[] bytes) {
+                                    String filename = item.getName();
+                                    try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
+                                        fos.write(bytes);
+                                        Log.i("SCRITTURA FILE", "Il file è stato salvato");
+                                    } catch (FileNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
         //cambiare schermata poiché l'utente ha già effettuato l'accesso
     }
 
