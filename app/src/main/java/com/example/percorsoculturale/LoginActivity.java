@@ -113,62 +113,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        File file = new File(getApplicationContext().getFilesDir(), "Versione_0_1.json");
-        try {
-            //Read text from file
-            StringBuilder text = new StringBuilder();
-
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-            System.out.println(text);
-            br.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(file.exists()){
-            Log.i("CHECK FILE", "il file esiste");
-            System.out.println(file);
-        }else{
-            Log.i("CHECK FILE", "il file NON esiste");
-            // TODO se l'utente è già loggato, andare direttamente alla homepage
-            // Check if user is signed in (non-null) and update UI accordingly.
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            storage = FirebaseStorage.getInstance();
-            StorageReference reference = storage.getReferenceFromUrl("gs://percorsoculturale.appspot.com/PortableDB");
-            reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
-                @Override
-                public void onComplete(@NonNull Task<ListResult> task) {
-                    if(task.isSuccessful()){
-                        ListResult res = task.getResult();
-                        for(StorageReference item : res.getItems()){
-                            Log.i("NOME FILE:", item.getName());
-                            final long ONE_GIGABYTE = 1024 * 1024 * 1024;
-                            item.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                @Override
-                                public void onSuccess(byte[] bytes) {
-                                    String filename = item.getName();
-                                    try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
-                                        fos.write(bytes);
-                                        Log.i("SCRITTURA FILE", "Il file è stato salvato");
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-        }
-
+        // TODO se l'utente è già loggato, andare direttamente alla homepage
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        loadConfiguration();
         //cambiare schermata poiché l'utente ha già effettuato l'accesso
     }
 
@@ -230,6 +178,77 @@ public class LoginActivity extends AppCompatActivity {
 
         AlertDialog mDialog = mBulider.create();
         mDialog.show();
+    }
+
+    private void loadConfiguration(){
+        for(File item : getApplicationContext().getFilesDir().listFiles()){
+            Log.i("DEBUG: CHECK NOME FILE", item.getName());
+            if(item.getName().contains("Versione")){
+                //Il confronto tra stringhe funziona
+                //se la versione del file salvato è inferiore sarà ritornato un numero negativo
+                Log.i("DEBUG: CONFRONTO STRINGHE", Integer.toString(item.getName().compareTo("Versione_0_0.json")));
+            }
+        }
+
+        /*
+        File file = new File(getApplicationContext().getFilesDir(), "Versione_0_1.json");
+        try {
+            //Read text from file
+            StringBuilder text = new StringBuilder();
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
+            }
+            System.out.println(text);
+            br.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(file.exists()){
+            Log.i("DEBUG: CHECK FILE", "il file esiste");
+            System.out.println(file);
+        }else{
+            Log.i("DEBUG: CHECK FILE", "il file NON esiste");
+            storage = FirebaseStorage.getInstance();
+            StorageReference reference = storage.getReferenceFromUrl("gs://percorsoculturale.appspot.com/PortableDB");
+            reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
+                @Override
+                public void onComplete(@NonNull Task<ListResult> task) {
+                    if(task.isSuccessful()){
+                        ListResult res = task.getResult();
+                        for(StorageReference item : res.getItems()){
+                            Log.i("DEBUG", item.getName());
+                            final long ONE_GIGABYTE = 1024 * 1024 * 1024;
+                            item.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                @Override
+                                public void onSuccess(byte[] bytes) {
+                                    String filename = item.getName();
+                                    try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
+                                        fos.write(bytes);
+                                        Log.i("DEBUG", "Il file è stato salvato");
+                                        for(File item : getApplicationContext().getFilesDir().listFiles()){
+                                            Log.i("DEBUG", item.getName());
+                                        }
+                                    } catch (FileNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+         */
+
     }
 
     private void setLocale(String lang) {
