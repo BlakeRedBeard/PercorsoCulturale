@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private TextInputLayout emailView;
     private TextInputLayout pwdView;
+    private final String CONFIGURL = "gs://percorsoculturale.appspot.com/PortableDB";
 
 
     @Override
@@ -181,59 +182,58 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadConfiguration(){
-        for(File item : getApplicationContext().getFilesDir().listFiles()){
-            Log.i("DEBUG: CHECK NOME FILE", item.getName());
-            if(item.getName().contains("Versione")){
-                //Il confronto tra stringhe funziona
-                //se la versione del file salvato è inferiore sarà ritornato un numero negativo
-                Log.i("DEBUG: CONFRONTO STRINGHE", Integer.toString(item.getName().compareTo("Versione_0_0.json")));
+        boolean fileExists = false;
+        for(File fileLocale : getApplicationContext().getFilesDir().listFiles()){
+            if(fileLocale.getName().contains("Versione")){
+                fileExists = true;
+                storage = FirebaseStorage.getInstance();
+                StorageReference reference = storage.getReferenceFromUrl(CONFIGURL);
+                reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<ListResult> task) {
+                        ListResult res = task.getResult();
+                        for(StorageReference fileOnline : res.getItems()){
+                            if(fileOnline.getName().contains("Versione")){
+                                if(fileLocale.getName().compareTo(fileOnline.getName()) < 0){   //se la versione del file salvato è inferiore sarà ritornato un numero negativo
+                                    final long ONE_GIGABYTE = 1024 * 1024 * 1024;
+                                    fileOnline.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                        @Override
+                                        public void onSuccess(byte[] bytes) {
+                                            String filename = fileOnline.getName();
+                                            try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
+                                                fos.write(bytes);
+                                            } catch (FileNotFoundException e) {
+                                                e.printStackTrace();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
+
+
             }
         }
-
-        /*
-        File file = new File(getApplicationContext().getFilesDir(), "Versione_0_1.json");
-        try {
-            //Read text from file
-            StringBuilder text = new StringBuilder();
-
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-            System.out.println(text);
-            br.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(file.exists()){
-            Log.i("DEBUG: CHECK FILE", "il file esiste");
-            System.out.println(file);
-        }else{
-            Log.i("DEBUG: CHECK FILE", "il file NON esiste");
+        if(!fileExists){
             storage = FirebaseStorage.getInstance();
-            StorageReference reference = storage.getReferenceFromUrl("gs://percorsoculturale.appspot.com/PortableDB");
+            StorageReference reference = storage.getReferenceFromUrl(CONFIGURL);
             reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
                 @Override
                 public void onComplete(@NonNull Task<ListResult> task) {
-                    if(task.isSuccessful()){
-                        ListResult res = task.getResult();
-                        for(StorageReference item : res.getItems()){
-                            Log.i("DEBUG", item.getName());
+                    ListResult res = task.getResult();
+                    for(StorageReference fileOnline : res.getItems()){
+                        if(fileOnline.getName().contains("Versione")){
                             final long ONE_GIGABYTE = 1024 * 1024 * 1024;
-                            item.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                            fileOnline.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
-                                    String filename = item.getName();
+                                    String filename = fileOnline.getName();
                                     try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
                                         fos.write(bytes);
-                                        Log.i("DEBUG", "Il file è stato salvato");
-                                        for(File item : getApplicationContext().getFilesDir().listFiles()){
-                                            Log.i("DEBUG", item.getName());
-                                        }
                                     } catch (FileNotFoundException e) {
                                         e.printStackTrace();
                                     } catch (IOException e) {
@@ -246,9 +246,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
-
-         */
-
     }
 
     private void setLocale(String lang) {

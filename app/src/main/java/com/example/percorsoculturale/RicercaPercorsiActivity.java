@@ -28,6 +28,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -173,8 +179,45 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        testJson();
+    }
 
-    public void showPercorsi(String search){
+    private void testJson(){
+        for(File file : getApplicationContext().getFilesDir().listFiles()) {
+            if(file.getName().contains("Versione")){
+                try {
+                    //Read text from file
+                    StringBuilder text = new StringBuilder();
+
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    String line;
+
+                    while ((line = br.readLine()) != null) {
+                        text.append(line);
+                        text.append('\n');
+                    }
+
+                    br.close();
+                    JSONObject obj = new JSONObject(text.substring(0));
+                    JSONArray jsonArray = obj.getJSONArray("percorsi");
+                    System.out.println("DEBUG: Il contenuto del file è:");
+                    for(int i=0; i<jsonArray.length(); i++){
+                        System.out.println(jsonArray.getJSONObject(i).toString());
+                    }
+                    System.out.println("DEBUG: fine del contenuto del file");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+
+    private void showPercorsi(String search){
         db.collection("percorso")
                 .whereEqualTo("comune", search)
                 .get()
