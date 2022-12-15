@@ -184,6 +184,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loadConfiguration(){
         boolean fileExists = false;
         for(File fileLocale : getApplicationContext().getFilesDir().listFiles()){
+            Log.i("DEBUG: nome file locale", fileLocale.getName());
             if(fileLocale.getName().contains("Versione")){
                 fileExists = true;
                 storage = FirebaseStorage.getInstance();
@@ -195,13 +196,15 @@ public class LoginActivity extends AppCompatActivity {
                         for(StorageReference fileOnline : res.getItems()){
                             if(fileOnline.getName().contains("Versione")){
                                 if(fileLocale.getName().compareTo(fileOnline.getName()) < 0){   //se la versione del file salvato è inferiore sarà ritornato un numero negativo
-                                    final long ONE_GIGABYTE = 1024 * 1024 * 1024;
-                                    fileOnline.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    final long ONE_MEGABYTE = 1024 * 1024;
+                                    fileOnline.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                         @Override
                                         public void onSuccess(byte[] bytes) {
                                             String filename = fileOnline.getName();
                                             try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
                                                 fos.write(bytes);
+                                                fos.flush();
+                                                fileLocale.delete();
                                             } catch (FileNotFoundException e) {
                                                 e.printStackTrace();
                                             } catch (IOException e) {

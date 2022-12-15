@@ -34,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Map;
@@ -70,7 +71,11 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
 
-                showPercorsi(s);
+                try {
+                    showJSON(s);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
                 return true;
             }
 
@@ -180,20 +185,28 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        testJson();
-    }
-
-    private void testJson(){
-        JSONParser parser = new JSONParser(getApplicationContext(), "Versione_0_2");
-        for(Percorso percorso : parser.getFilteredPercorsi("Mona Lisa")){
-            Log.i("DEBUG: contenuto Json filtrato", percorso.toString());
+    private void showJSON(String filter) throws FileNotFoundException{
+        JSONParser parser = null;
+        for(File fileLocale : getApplicationContext().getFilesDir().listFiles()) {
+            if (fileLocale.getName().contains("Versione")) {
+                parser = new JSONParser(fileLocale);
+            }
+        }
+        if(parser != null) {
+            id_percorsi.clear();
+            nomi_percorsi.clear();
+            for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
+                Log.i("DEBUG: contenuto Json filtrato ("+filter+")", percorso.toString());
+                id_percorsi.add(percorso.getId());
+                nomi_percorsi.add(percorso.getNome());
+            }
+            arrayAdapter.notifyDataSetChanged();
+        }else{
+            throw new FileNotFoundException();
         }
     }
 
-
+    @Deprecated
     private void showPercorsi(String search){
         db.collection("percorso")
                 .whereEqualTo("comune", search)
