@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.percorsoculturale.tables.Percorso;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -186,33 +187,9 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     }
 
     private void testJson(){
-        for(File file : getApplicationContext().getFilesDir().listFiles()) {
-            if(file.getName().contains("Versione")){
-                try {
-                    //Read text from file
-                    StringBuilder text = new StringBuilder();
-
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    String line;
-
-                    while ((line = br.readLine()) != null) {
-                        text.append(line);
-                        text.append('\n');
-                    }
-
-                    br.close();
-                    JSONObject obj = new JSONObject(text.substring(0));
-                    JSONArray jsonArray = obj.getJSONArray("percorsi");
-                    System.out.println("DEBUG: Il contenuto del file è:");
-                    for(int i=0; i<jsonArray.length(); i++){
-                        System.out.println(jsonArray.getJSONObject(i).toString());
-                    }
-                    System.out.println("DEBUG: fine del contenuto del file");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
+        JSONParser parser = new JSONParser(getApplicationContext(), "Versione_0_2");
+        for(Percorso percorso : parser.getFilteredPercorsi("Mona Lisa")){
+            Log.i("DEBUG: contenuto Json filtrato", percorso.toString());
         }
     }
 

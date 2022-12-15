@@ -2,21 +2,15 @@ package com.example.percorsoculturale.tables;
 
 public class Attrazione {
 
-    private int id;
+    private String id;
     private String nome;
-    private String descrizione;
-    private String immagine;
-    private Attivita attivita;
 
-    public Attrazione(int id, String nome, String descrizione, String immagine, Attivita attivita) {
+    public Attrazione(String id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.descrizione = descrizione;
-        this.immagine = immagine;
-        this.attivita = attivita;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -24,15 +18,11 @@ public class Attrazione {
         return nome;
     }
 
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public String getImmagine() {
-        return immagine;
-    }
-
-    public Attivita getAttivita() {
-        return attivita;
+    @Override
+    public String toString() {
+        return "Attrazione{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }
