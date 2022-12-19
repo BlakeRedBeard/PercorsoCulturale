@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.percorsoculturale.LoginActivity;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,8 +42,10 @@ public class MostraAttrazioni extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
     private int id;
+    private String lang;
     private static ArrayList<String> attrazioni;
     private static ArrayList<String> attivita;
+    private static ArrayList<Boolean> isSvolta;
 
     public static void setAttrazioni(Collection<String> lista){
         attrazioni = new ArrayList<String>(lista);
@@ -69,13 +71,18 @@ public class MostraAttrazioni extends AppCompatActivity {
         //serve per recuperare l'attrazione specifica al percorso stabilito
         if(savedInstanceState == null) {
            Bundle extra = getIntent().getExtras();
+
            if (extra != null) {
                id = extra.getInt("attrazione");
                if(id < 0){
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
+
                showAttrazione(attrazioni.get(id));
+               int cont = attrazioni.size();
+               setAllSvolta(cont);
                checkAttivita(attivita.get(id));
+
                 //Inizializzazione bottoni
                btnAvanti.setOnClickListener(new View.OnClickListener() {
                    @Override
@@ -86,7 +93,6 @@ public class MostraAttrazioni extends AppCompatActivity {
                        Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                        intent.putExtra("attrazione", id+1);
                        startActivity(intent);
-
                        if (id+1 >= cont) {
                            Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
                            startActivity(intent2);
@@ -161,14 +167,36 @@ public class MostraAttrazioni extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
-                    intent3.putExtra("attivita", attivita.get(id));
-                    startActivity(intent3);
-                    btnAttivita.setEnabled(false);
+                    if(isSvolta.get(id) == true) {
+
+                        btnAttivita.setEnabled(false);
+                    }
+                    else {
+                        Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
+                        intent3.putExtra("attivita", attivita.get(id));
+                        isSvolta.set(id,true);
+                        btnAttivita.setEnabled(false);
+                        startActivity(intent3);
+
+                    }
+
+
+
                 }
             });
         }else
             btnAttivita.setEnabled(false);
     }
 
-}
+    public void setAllSvolta(int cont) {
+        int i;
+        isSvolta = new ArrayList<Boolean>();
+        for(i =  0; i < cont; i++) {
+            isSvolta.add(false);
+        }
+    }
+
+
+
+
+    }

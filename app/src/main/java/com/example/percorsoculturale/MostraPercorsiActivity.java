@@ -1,6 +1,8 @@
 package com.example.percorsoculturale;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,15 +68,18 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             showPercorso((String) savedInstanceState.getSerializable("percorso"));
         }
 
-
+        LoginActivity b = new LoginActivity();
 
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //passa alla sezione attrazione relativa al percorso
-                Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                intent.putExtra("attrazione", 0);
-                startActivity(intent);
+                LoginActivity a = new LoginActivity();
+
+            Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+            intent.putExtra("attrazione", 0);
+            startActivity(intent);
+
             }
         });
 
@@ -87,12 +93,16 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+                        String lang = pref.getString("My_Lang", "");
+                        Toast.makeText(MostraPercorsiActivity.this, "contenuto di lang: " +lang,
+                                Toast.LENGTH_SHORT).show();
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-                            if(entry.getKey().equals("nome")){
+                            if(entry.getKey().equals("nome"+lang)){
                                 nomePercorso.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("descrizione")){
+                            }else if(entry.getKey().equals("descrizione"+lang)){
                                 descrizionePercorso.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("regione")){
                                 regionePercorso.setText((String) entry.getValue());
