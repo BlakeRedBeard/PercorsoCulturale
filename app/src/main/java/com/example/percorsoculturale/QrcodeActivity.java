@@ -81,6 +81,7 @@ public class QrcodeActivity extends AppCompatActivity {
 
                 Bundle extra = getIntent().getExtras();
                 String idAttivita = extra.getString("attivita");
+                int idAttrazione = extra.getInt("Idattrazioni");
                 db.collection("attività")
                         .document(idAttivita)
                         .get()
@@ -92,6 +93,7 @@ public class QrcodeActivity extends AppCompatActivity {
                                 if(categoria.equals("quiz")){
                                     Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
                                     intent.putExtra("id", idAttivita);
+                                    intent.putExtra("Idattrazioni", idAttrazione);
                                     startActivity(intent);
                                 }else if(categoria.equals("puzzle")){
                                     //TODO intent del puzzle

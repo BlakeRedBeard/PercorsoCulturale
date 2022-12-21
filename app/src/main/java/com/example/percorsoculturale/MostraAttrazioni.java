@@ -28,7 +28,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 public class MostraAttrazioni extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     private int id;
     private static ArrayList<String> attrazioni;
     private static ArrayList<String> attivita;
+    private static ArrayList<Boolean> isSvolta;
 
     public static void setAttrazioni(Collection<String> lista){
         attrazioni = new ArrayList<String>(lista);
@@ -74,6 +77,7 @@ public class MostraAttrazioni extends AppCompatActivity {
                if(id < 0){
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
+                //setIsSvolta();
                showAttrazione(attrazioni.get(id));
                checkAttivita(attivita.get(id));
                 //Inizializzazione bottoni
@@ -155,20 +159,41 @@ public class MostraAttrazioni extends AppCompatActivity {
     }
 
     public void checkAttivita(String search) {
-        if(search != null) {
+        if(isSvolta.get(id) == false) {
+            if(search != null) {
 
-            btnAttivita.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                btnAttivita.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
-                    intent3.putExtra("attivita", attivita.get(id));
-                    startActivity(intent3);
-                    btnAttivita.setEnabled(false);
-                }
-            });
-        }else
+                        Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
+                        intent3.putExtra("attivita", attivita.get(id));
+                        intent3.putExtra("Idattrazioni", id);
+                        startActivity(intent3);
+                        btnAttivita.setEnabled(false);
+                    }
+                });
+            }else
+                btnAttivita.setEnabled(false);
+        }
+        else{
             btnAttivita.setEnabled(false);
+
+        }
+
+    }
+
+    public static void setIsSvolta() {
+
+        int cont = attrazioni.size();
+        isSvolta=new ArrayList<Boolean>(Collections.nCopies(cont, false));
+
+    }
+
+    public static void setTrue(int id) {
+
+            isSvolta.set(id,true);
+
     }
 
 }

@@ -110,7 +110,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                showMessage();
+                String messaggio = "La ricerca avviene per comune e attrazione";
+                showMessage(messaggio);
             }
         });
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
@@ -122,7 +123,16 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
 
         if (mailUtente.equals("user@guest.com")) {
-            BProfile.setEnabled(false);
+            BProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String messaggio = "Non puoi accedere al profilo in quanto non hai effettuato l'accesso";
+                    showMessage(messaggio);
+                }
+            });
+
+
         }
         else {
             BProfile.setOnClickListener(new View.OnClickListener() {
@@ -135,15 +145,40 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             });
         }
 
+        LinearLayout BDisconnettiti=findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
 
+        if (mailUtente.equals("user@guest.com")) {
+            BDisconnettiti.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String messaggio = "Non puoi disconnetterti in quanto non hai effettuato l'accesso";
+                    showMessage(messaggio);
+                }
+            });
+
+
+        }
+        else {
+            BDisconnettiti.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String messaggio = "Hai effettuato la disconnessione";
+                    showMessage(messaggio);
+                    FirebaseAuth.getInstance().signOut();
+                    Intent home=new Intent(RicercaPercorsiActivity.this,LoginActivity.class);
+                    startActivity(home);
+                }
+            });
+        }
 
     }
 
-    private void showMessage() {
-        // 1. Instantiate an <code><a href="/reference/android/app/AlertDialog.Builder.html">AlertDialog.Builder</a></code> with its constructor
+    private void showMessage(String messaggio) {
         AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
 
-        builder.setMessage("La ricerca avviene per comune e attrazione")
+        builder.setMessage(messaggio)
                 .setTitle("Info");
 
         AlertDialog dialog = builder.create();

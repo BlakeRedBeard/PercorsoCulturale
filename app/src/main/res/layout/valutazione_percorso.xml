@@ -14,12 +14,28 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="160dp"
         android:elevation="5dp"
-        android:text="Continua"
+        android:text="Home"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/color_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/badgeButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+
+        android:layout_marginTop="32dp"
+        android:elevation="5dp"
+        android:text="Visualizza badge"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continuaButton" />
 
     <TextView
         android:id="@+id/textView3"

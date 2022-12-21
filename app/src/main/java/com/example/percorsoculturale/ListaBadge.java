@@ -45,22 +45,27 @@ public class ListaBadge extends AppCompatActivity {
         ImageView cinquePunti = (ImageView) findViewById(R.id.imageView10);
         ImageView dieciPunti = (ImageView) findViewById(R.id.imageView15);
         ImageView venticinquePunti = (ImageView) findViewById(R.id.imageView16);
-        ImageView venticinquePuntiGrigio= (ImageView) findViewById(R.id.imageView12);
-
-        ImageView cinquePuntiGrigio = (ImageView) findViewById(R.id.imageView17);
-        ImageView dieciPuntiGrigio = (ImageView) findViewById(R.id.imageView14);
         ImageView cinquantaPunti = (ImageView) findViewById(R.id.imageView11);
-        ImageView cinquantaPuntiGrigio = (ImageView) findViewById(R.id.imageView13);
 
-        TextView textRegistrazione = (TextView) findViewById(R.id.textView10);
-        TextView textAttivita = (TextView) findViewById(R.id.textView11);
-        TextView textPercorso = (TextView) findViewById(R.id.textView12);
-        TextView textPercorsi = (TextView) findViewById(R.id.textView13);
+        TextView descrizioneB1 = (TextView) findViewById(R.id.textView10);
+        TextView descrizioneB2 = (TextView) findViewById(R.id.textView11);
+        TextView descrizioneB3 = (TextView) findViewById(R.id.textView12);
+        TextView descrizioneB4 = (TextView) findViewById(R.id.textView13);
 
-        mostraTuttiBadge(cinquePunti, dieciPunti, venticinquePunti, cinquantaPunti, cinquePuntiGrigio, dieciPuntiGrigio, venticinquePuntiGrigio, cinquantaPuntiGrigio, textRegistrazione, textAttivita, textPercorso, textPercorsi);
+        mostraTuttiBadge(cinquePunti, dieciPunti, venticinquePunti, cinquantaPunti, descrizioneB1, descrizioneB2, descrizioneB3, descrizioneB4);
+
+
+        Button btnContinua = (Button)findViewById(R.id.continuaButton);
+        btnContinua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ListaBadge.this, RicercaPercorsiActivity.class));
+            }
+
+        });
 
     }
-    public void mostraTuttiBadge(ImageView badge1, ImageView badge2, ImageView badge3, ImageView badge4, ImageView badge1Grigio, ImageView badge2Grigio, ImageView badge3Grigio, ImageView badge4Grigio, TextView textRegistrazione, TextView textAttivita, TextView textPercorso, TextView textPercorsi) {
+    public void mostraTuttiBadge(ImageView badge1, ImageView badge2, ImageView badge3, ImageView badge4, TextView descrizioneB1, TextView descrizioneB2, TextView descrizioneB3, TextView descrizioneB4) {
 
         //prendo la mail dell'utente loggato
 
@@ -82,40 +87,35 @@ public class ListaBadge extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 
-                        //int ultimaVersion = document.get(Integer.class);
                         int puntiVeri = document.getLong("punti").intValue();
 
-                        //
+
                         if (puntiVeri >= 50 ){
-                            mostraBadge("5punti",badge1);
-                            mostraBadge("10punti",badge2);
-                            mostraBadge("25punti",badge3);
-                            mostraBadge("50punti",badge4);
+                            mostraBadge("5punti",badge1,descrizioneB1);
+                            mostraBadge("10punti",badge2,descrizioneB2);
+                            mostraBadge("25punti",badge3,descrizioneB3);
+                            mostraBadge("50punti",badge4,descrizioneB4);
                         }
                         else {
-                            mostraBadge("50puntigrigio",badge4);
-                            //badge4Grigio.setVisibility(View.VISIBLE);
+                            mostraBadge("50puntigrigio",badge4,descrizioneB4);
                             if (puntiVeri >= 25 ){
-                                mostraBadge("5punti",badge1);
-                                mostraBadge("10punti",badge2);
-                                mostraBadge("25punti",badge3);
+                                mostraBadge("5punti",badge1,descrizioneB1);
+                                mostraBadge("10punti",badge2,descrizioneB2);
+                                mostraBadge("25punti",badge3,descrizioneB3);
                             }
                             else {
-                                mostraBadge("25puntigrigio",badge3);
-                                //badge3Grigio.setVisibility(View.VISIBLE);
+                                mostraBadge("25puntigrigio",badge3,descrizioneB3);
                                 if (puntiVeri >= 10 ){
-                                    mostraBadge("5punti",badge1);
-                                    mostraBadge("10punti",badge2);
+                                    mostraBadge("5punti",badge1,descrizioneB1);
+                                    mostraBadge("10punti",badge2,descrizioneB2);
                                 }
                                 else {
-                                    mostraBadge("10puntigrigio",badge2);
-                                    badge2Grigio.setVisibility(View.VISIBLE);
+                                    mostraBadge("10puntigrigio",badge2,descrizioneB2);
                                     if (puntiVeri >= 5 ){
-                                        mostraBadge("5punti",badge1);
+                                        mostraBadge("5punti",badge1,descrizioneB1);
                                     }
                                     else {
-                                        mostraBadge("5puntigrigio",badge1);
-                                        //badge1Grigio.setVisibility(View.VISIBLE);
+                                        mostraBadge("5puntigrigio",badge1,descrizioneB1);
                                     }
                                 }
                             }
@@ -133,7 +133,7 @@ public class ListaBadge extends AppCompatActivity {
 
     }
 
-    public void mostraBadge(String search,ImageView badge){
+    public void mostraBadge(String search,ImageView badge, TextView descrizione){
         db.collection("badge")
                 .document(search)
                 .get()
@@ -143,7 +143,10 @@ public class ListaBadge extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-                            if(entry.getKey().equals("immagine")){
+                            if(entry.getKey().equals("descrizione")){
+                                descrizione.setText((String) entry.getValue());
+                            }
+                            else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 102 * 102;
                                 gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

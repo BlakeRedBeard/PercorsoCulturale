@@ -33,9 +33,7 @@ import java.text.SimpleDateFormat;
 public class ValutazionePercorsoActivity extends AppCompatActivity {
     private TextView textview1;
     private TextView textview2;
-    private Button btnContinua;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference notebookRef;
     private DocumentReference noteRef;
     private FirebaseAuth firebaseAuth;
 
@@ -47,24 +45,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         textview1 = (TextView) findViewById(R.id.textView4);
         textview2 = (TextView) findViewById(R.id.textView6);
 
-        /*String CHANNEL_ID = "My Notification";
-
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                //.setSmallIcon(R.drawable.notification_icon)
-                .setContentTitle("textTitle")
-                .setContentText("textContent")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "This is my first Notification", NotificationManager.IMPORTANCE_DEFAULT);
-        notificationManager.createNotificationChannel(notificationChannel);
-        //notificationManager.notify(0,builderNotificationCompat.build());*/
-
-
         //legge da db
-        //TODO cambiare nome utente con utente generico
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String mailUtente = firebaseUser.getEmail();
@@ -125,14 +106,21 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
 
 
+        Button btnBadge = (Button)findViewById(R.id.badgeButton);
+        btnBadge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ValutazionePercorsoActivity.this, BadgeActivity.class));
+            }
 
+        });
 
 
         Button btnContinua = (Button)findViewById(R.id.continuaButton);
         btnContinua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ValutazionePercorsoActivity.this, BadgeActivity.class));
+                startActivity(new Intent(ValutazionePercorsoActivity.this, RicercaPercorsiActivity.class));
             }
 
         });

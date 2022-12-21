@@ -73,6 +73,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                 //passa alla sezione attrazione relativa al percorso
                 Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                 intent.putExtra("attrazione", 0);
+                MostraAttrazioni.setIsSvolta();
                 startActivity(intent);
             }
         });

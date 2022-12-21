@@ -9,30 +9,21 @@
         android:id="@+id/imageView10"
         android:layout_width="69dp"
         android:layout_height="59dp"
-        android:layout_marginTop="149dp"
-        android:layout_marginEnd="192dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="316dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+
 
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="69dp"
         android:layout_height="59dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="195dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="69dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="192dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="316dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
         app:srcCompat="@drawable/ic_baseline_person_outline_24" />
 
     <TextView
@@ -41,29 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="40dp"
-        android:text="Ottieni 25 punti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="69dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="195dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="69dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="189dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
 
     <TextView
         android:id="@+id/textView11"
@@ -71,7 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
         android:layout_marginEnd="43dp"
-        android:text="Ottieni 10 punti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -81,7 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="36dp"
-        android:text="Ottieni 50 punti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -89,9 +58,9 @@
         android:id="@+id/imageView15"
         android:layout_width="69dp"
         android:layout_height="59dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="189dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="316dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         app:srcCompat="@drawable/ic_baseline_person_outline_24" />
 
@@ -101,7 +70,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="48dp"
-        android:text="Ottieni 5 punti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -110,10 +78,10 @@
         android:id="@+id/imageView16"
         android:layout_width="69dp"
         android:layout_height="59dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="192dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="316dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15"
         app:srcCompat="@drawable/ic_baseline_person_outline_24" />
 
     <TextView
@@ -128,14 +96,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="69dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="149dp"
-        android:layout_marginEnd="192dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+    <Button
+        android:id="@+id/continuaButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+
+        android:layout_marginTop="368dp"
+        android:elevation="5dp"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

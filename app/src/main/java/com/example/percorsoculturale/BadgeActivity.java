@@ -67,7 +67,7 @@ public class BadgeActivity extends AppCompatActivity {
 
         });
 
-        //prendo il nome dell'utente loggato
+        //prendo la mail dell'utente loggato
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String mailUtente = firebaseUser.getEmail();
@@ -86,15 +86,12 @@ public class BadgeActivity extends AppCompatActivity {
 
     public void mostraBadgeSbloccati(ImageView badge1, ImageView badge2, ImageView badge3, ImageView badge4) {
 
-        //prendo la mail dell'utente loggato
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String mailUtente = firebaseUser.getEmail();
 
         String percorsoCollezione = "utente";
 
-
-        //verifico se l'utente ha sbloccato il badge da 5 punti
         DocumentReference docRef = db.collection(percorsoCollezione).document(mailUtente);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -163,7 +160,6 @@ public class BadgeActivity extends AppCompatActivity {
         utenti.put("punti", 5);
         String uniqueID = UUID.randomUUID().toString();
 
-        //String mailUtente = "blake99@live.it";
         String percorsoCollezione = "utente/"+mailUtente+"/badge_ottenuti";
 
         //inserisco il badge percorsi
@@ -189,10 +185,8 @@ public class BadgeActivity extends AppCompatActivity {
         utenti.put("punti", 10);
         String uniqueID = UUID.randomUUID().toString();
 
-        //String mailUtente = "blake99@live.it";
         String percorsoCollezione = "utente/"+mailUtente+"/badge_ottenuti";
 
-        //inserisco il badge percorsi
         db.collection(percorsoCollezione).document(uniqueID)
                 .set(utenti)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -214,10 +208,8 @@ public class BadgeActivity extends AppCompatActivity {
         utenti.put("punti", 25);
         String uniqueID = UUID.randomUUID().toString();
 
-        //String mailUtente = "blake99@live.it";
         String percorsoCollezione = "utente/"+mailUtente+"/badge_ottenuti";
 
-        //inserisco il badge percorsi
         db.collection(percorsoCollezione).document(uniqueID)
                 .set(utenti)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -240,10 +232,8 @@ public class BadgeActivity extends AppCompatActivity {
         utenti.put("punti", 50);
         String uniqueID = UUID.randomUUID().toString();
 
-        //String mailUtente = "blake99@live.it";
         String percorsoCollezione = "utente/"+mailUtente+"/badge_ottenuti";
 
-        //inserisco il badge percorsi
         db.collection(percorsoCollezione).document(uniqueID)
                 .set(utenti)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -263,7 +253,6 @@ public class BadgeActivity extends AppCompatActivity {
     public void controllaBadge(String mailUtente, int valore) {
         String percorsoCollezione = "utente/"+mailUtente+"/badge_ottenuti";
 
-        //conto quanti percorsi l'utente ha eseguito
         db.collection(percorsoCollezione)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

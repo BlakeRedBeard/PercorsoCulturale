@@ -32,7 +32,7 @@ public class QuizActivity extends AppCompatActivity {
 public Attivita attivita;
     //Configurazione db
     public static FirebaseFirestore db;
-    private int cont;
+    private int id = 0;
     private RadioButton risposta_corretta, risposta_errata1,
             risposta_errata2, risposta_errata3;
     private String searchQuiz;
@@ -44,7 +44,6 @@ public Attivita attivita;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int id = 0;
         searchQuiz = "";
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
@@ -75,10 +74,12 @@ public Attivita attivita;
                     QrcodeActivity.aggiungiPunti(quiz.getPunti());
 
                 }
-
+                MostraAttrazioni.setTrue(id);
                 finish();
             }
         });
+
+
 
         binding.btnBackAttivita.setOnClickListener(new View.OnClickListener() {
             @Override
