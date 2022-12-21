@@ -2,18 +2,17 @@ package com.example.percorsoculturale;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.percorsoculturale.tables.Utente;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,19 +23,11 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.internal.InternalTokenProvider;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class IscrivitiActivity extends AppCompatActivity {
 
@@ -118,7 +109,7 @@ public class IscrivitiActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
-                // dateButton.setText(date);
+                dateButton.setText(date);
             }
         };
 
@@ -129,10 +120,16 @@ public class IscrivitiActivity extends AppCompatActivity {
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
+
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        cal.set(2010,1,1);
+        datePickerDialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
+
     }
 
     ///per creare la stringa data preview button
+
+
     private String makeDateString(int day, int month, int year) {
 
         return getMonthFormat(month) + " " + day + " " + year;
