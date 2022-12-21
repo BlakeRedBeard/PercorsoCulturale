@@ -1,37 +1,23 @@
 package com.example.percorsoculturale;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
-
-import com.example.percorsoculturale.GestureDetectGridView;
 import com.example.percorsoculturale.tables.Attivita;
-
-import com.example.percorsoculturale.tables.Puzzle;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -57,9 +43,9 @@ public class PuzzleActivity extends AppCompatActivity {
     public static FirebaseStorage storage ;
 
 
-
-    static  Puzzle puzzle1=new Puzzle(attivita,"Puzzle");
-
+    static String searchPuzzle;
+    private int id;
+    //static  Puzzle puzzle1=new Puzzle(attivita,"Puzzle");
 
 
     @Override
@@ -70,7 +56,18 @@ public class PuzzleActivity extends AppCompatActivity {
 
        storage= FirebaseStorage.getInstance();
 
+        searchPuzzle="";
+        id=0;
+        Bundle extra = getIntent().getExtras();
 
+        System.out.println("search1"+searchPuzzle);
+        searchPuzzle = extra.getString("id");
+
+        id = extra.getInt("Idattrazioni");
+
+
+        Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
+        intent2.putExtra("Idattrazione", id);
 
 
         init();
@@ -138,7 +135,7 @@ setDimension();
 
     private static void display(Context context){
         //firebase db
-       StorageReference storageRef = storage.getReference().child("immagini puzzle/"+ puzzle1.getDirectory());
+       StorageReference storageRef = storage.getReference().child("immagini puzzle/"+ searchPuzzle);
         ArrayList<Button> buttons=new ArrayList<>();
         Button button;
 
@@ -154,7 +151,7 @@ setDimension();
     if(tileList[i].equals("0")){
 
         Button finalButton = button;
-      storageRef.child(puzzle1.getDirectory()+ "_1.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+      storageRef.child(searchPuzzle+ "_1.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -173,7 +170,7 @@ setDimension();
 
     }else if (tileList[i].equals("1")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_2.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_2.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -189,7 +186,7 @@ setDimension();
 
     }else if (tileList[i].equals("2")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_3.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_3.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -205,7 +202,7 @@ setDimension();
 
     }else if (tileList[i].equals("3")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_4.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_4.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -221,7 +218,7 @@ setDimension();
 
     }else if (tileList[i].equals("4")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_5.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_5.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -237,7 +234,7 @@ setDimension();
 
     }else if (tileList[i].equals("5")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_6.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_6.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -253,7 +250,7 @@ setDimension();
 
     }else if (tileList[i].equals("6")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_7.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_7.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -269,7 +266,7 @@ setDimension();
 
     }else if (tileList[i].equals("7")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_8.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_8.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -285,7 +282,7 @@ setDimension();
 
     }else if (tileList[i].equals("8")){
         Button finalButton = button;
-        storageRef.child(puzzle1.getDirectory()+ "_9.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(searchPuzzle+ "_9.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 ByteArrayInputStream is=new ByteArrayInputStream(bytes);
@@ -319,7 +316,11 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
         tileList[currentPosition] = newPosition;
         display(context);
 
-        if (isSolved()) Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+        if (isSolved()){
+            //PUNTI
+            Toast.makeText(context, "Hai vinto!!", Toast.LENGTH_SHORT).show();
+            QrcodeActivity.aggiungiPunti(10);
+        }
     }
 
     public static void moveTiles(Context context, String direction, int position) {

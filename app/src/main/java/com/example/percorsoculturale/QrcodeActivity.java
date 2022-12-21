@@ -1,16 +1,15 @@
 package com.example.percorsoculturale;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.percorsoculturale.tables.Quiz;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,13 +18,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import javax.annotation.Nullable;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 public class QrcodeActivity extends AppCompatActivity {
 
@@ -96,11 +91,12 @@ public class QrcodeActivity extends AppCompatActivity {
                                     intent.putExtra("Idattrazioni", idAttrazione);
                                     startActivity(intent);
                                 }else if(categoria.equals("puzzle")){
-                                    //TODO intent del puzzle
-                                    /*
-                                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+
+
+                                    Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
+                                    intent.putExtra("id", idAttivita);
                                     startActivity(intent);
-                                     */
+
                                 }
                             }
                         });
