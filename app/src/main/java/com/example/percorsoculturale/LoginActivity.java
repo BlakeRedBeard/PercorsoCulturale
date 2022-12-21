@@ -63,8 +63,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO Aggiungere controlli sull'input
-                String email = emailView.getEditText().getText().toString();
-                String password = pwdView.getEditText().getText().toString();
+                String email = emailView.getEditText().getText().toString().trim();
+                String password = pwdView.getEditText().getText().toString().trim();
                 signIn(email, password);
 
             }
@@ -92,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO Avviare la procedura di cambio password
-                Log.d("DEBUG", "è stata mandata una mail");
                 Toast.makeText(LoginActivity.this, "È stata mandata una mail per la procedura di cambio password.",
                         Toast.LENGTH_SHORT).show();
             }
@@ -125,9 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            //TODO quando funzionante, eliminare le istruzioni di debug
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d("DEBUG", user.getEmail());
                             Toast.makeText(LoginActivity.this, "Authentication success.",
                                     Toast.LENGTH_SHORT).show();
                             //Aggiornare interfaccia, l'utente ha effettuato l'accesso

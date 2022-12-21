@@ -85,10 +85,10 @@
                 app:startIconTint="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/iscrivitiCognome"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:inputType="text"
-                    />
+                    android:inputType="text" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,9 +115,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageiscriviti">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/iscrivitiNome"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -145,9 +146,10 @@
                 app:strokeColor="#20000000">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/iscrivitiEmail"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
                 <Button
                     android:id="@+id/datePickerButton"
@@ -172,7 +174,6 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/iscrizionePassword"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -193,15 +194,14 @@
                 app:strokeColor="#20000000">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/iscrivitiPassword"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:inputType="textPassword"
-                    />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/iscrizioneRecuperaPassword"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -223,9 +223,10 @@
                 app:strokeColor="#20000000">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/iscrivitiConfermaPassword"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
