@@ -241,36 +241,4 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         }
     }
 
-    @Deprecated
-    private void showPercorsi(String search){
-        db.collection("percorso")
-                .whereEqualTo("comune", search)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            id_percorsi.clear();
-                            nomi_percorsi.clear();
-                            //istanze del database ottenute con successo
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("DEBUG", document.getId() + " => " + document.getData());
-                                id_percorsi.add(document.getId());
-                                for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-
-                                    if(entry.getKey().equals("nome"))
-                                        nomi_percorsi.add((String) entry.getValue());
-                                }
-                            }
-                            arrayAdapter.notifyDataSetChanged();
-                        } else {
-                            Log.w("DEBUG", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
-
-
-
-
 }

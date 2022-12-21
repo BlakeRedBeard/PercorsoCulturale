@@ -14,7 +14,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -24,7 +23,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -33,11 +31,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -53,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.login);
         //impostazioni lingua
@@ -168,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                     setLocale("en");
                     recreate();
                 }else if(i == 3){
-                    setLocale("it");
+                    setLocale("");
                     recreate();
                 }
 
@@ -251,7 +248,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void setLocale(String lang) {
+    public void setLocale(String lang) {
         //oggetto che specifica la lingua di riferimento in base al contesto scelto
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -262,6 +259,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
         editor.apply();
+
     }
 
     private void loadLocale() {
