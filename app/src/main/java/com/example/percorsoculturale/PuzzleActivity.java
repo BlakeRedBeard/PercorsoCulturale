@@ -1,5 +1,7 @@
 package com.example.percorsoculturale;
 
+import static com.example.percorsoculturale.QuizActivity.db;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,8 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.percorsoculturale.tables.Attivita;
+import com.example.percorsoculturale.tables.Puzzle;
+import com.example.percorsoculturale.tables.Quiz;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -44,26 +50,27 @@ public class PuzzleActivity extends AppCompatActivity {
 
 
     static String searchPuzzle;
-    private int id;
+    private int id = 0;
     //static  Puzzle puzzle1=new Puzzle(attivita,"Puzzle");
-
+    Puzzle puzzle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        searchPuzzle="";
 
        setContentView(R.layout.activity_puzzle);
 
        storage= FirebaseStorage.getInstance();
 
-        searchPuzzle="";
-        id=0;
-        Bundle extra = getIntent().getExtras();
+       Bundle extra = getIntent().getExtras();
 
-        System.out.println("search1"+searchPuzzle);
-        searchPuzzle = extra.getString("id");
+       System.out.println("search1"+searchPuzzle);
+       searchPuzzle = extra.getString("id");
 
         id = extra.getInt("Idattrazioni");
+        showPuzzle(searchPuzzle);
+
 
 
         Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
@@ -72,9 +79,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
         init();
 
-scramble();
+        scramble();
 
-setDimension();
+        setDimension();
 
 
     }
@@ -320,6 +327,7 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
             //PUNTI
             Toast.makeText(context, "Hai vinto!!", Toast.LENGTH_SHORT).show();
             QrcodeActivity.aggiungiPunti(10);
+
         }
     }
 
@@ -403,7 +411,18 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
 
         return solved;
     }
+    private void showPuzzle(String searchPuzzle){
+        db= FirebaseFirestore.getInstance();
+        db.collection("attività")
+                .document(searchPuzzle)
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        isSolved();
 
+                    }
+                });
+    }
 //prende un drawable attraverso una stringa
     public static Drawable GetImage(Context c, String ImageName) {
         return c.getResources().getDrawable(c.getResources().getIdentifier(ImageName, "drawable", c.getPackageName()));

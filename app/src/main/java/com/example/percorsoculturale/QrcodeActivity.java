@@ -92,9 +92,10 @@ public class QrcodeActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }else if(categoria.equals("puzzle")){
 
-
+                                    System.out.println("FICAA");
                                     Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
                                     intent.putExtra("id", idAttivita);
+                                    intent.putExtra("Idattrazioni", idAttrazione);
                                     startActivity(intent);
 
                                 }

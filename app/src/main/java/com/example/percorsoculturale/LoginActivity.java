@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout emailView;
     private TextInputLayout pwdView;
     private final String CONFIGURL = "gs://percorsoculturale.appspot.com/PortableDB";
+    private final String JSONFILENAME = "Versione";
 
 
     @Override
@@ -179,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean fileExists = false;
         for(File fileLocale : getApplicationContext().getFilesDir().listFiles()){
             Log.i("DEBUG: nome file locale", fileLocale.getName());
-            if(fileLocale.getName().contains("Versione")){
+            if(fileLocale.getName().contains(JSONFILENAME)){
                 fileExists = true;
                 storage = FirebaseStorage.getInstance();
                 StorageReference reference = storage.getReferenceFromUrl(CONFIGURL);
