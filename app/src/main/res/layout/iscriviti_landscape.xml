@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:backgroundTint="#FFFFFF">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView2"
+
+                    android:layout_width="271dp"
+                    android:layout_height="43dp"
+
+                    android:text="Crea il tuo account "
+                    android:textColor="@color/black"
+                    android:textSize="28dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.508"
+                    tools:ignore="MissingConstraints" />
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:id="@+id/coordinatorLayout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintStart_toEndOf="@id/textView2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/returnButtonLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_marginStart="68dp"
+                    android:backgroundTint="@color/color_primary"
+                    android:src="@drawable/arrow"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:tint="@color/white"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="22dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/iscrizioneCognome"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:hint="Cognome"
+
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/color_primary"
+
+
+
+            app:hintTextColor="@color/color_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iscrizioneNome"
+            app:startIconTint="#000000">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iscrivitiCognome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="text" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/iscrizioneNome"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Nome"
+            android:textColorHint="#99000000"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/color_primary"
+
+
+
+            app:helperTextEnabled="true"
+            app:hintTextColor="@color/color_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageiscriviti">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iscrivitiNome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="text" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/iscrizioneEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Email"
+            android:textColorHint="#99000000"
+            app:boxBackgroundMode="outline"
+
+            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeWidth="1dp"
+
+
+            app:hintTextColor="@color/color_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iscrizioneCognome"
+            app:strokeColor="#20000000">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iscrivitiEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/datePickerButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="280dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/white"
+                android:onClick="openDatePicker"
+                android:text="Data di nascita"
+
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="#99000000"
+                app:strokeColor="#60000000"
+                app:strokeWidth="1dp"
+
+                tools:ignore="RtlCompat" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Password"
+            android:textColorHint="#99000000"
+            app:boxBackgroundMode="outline"
+
+            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeWidth="1dp"
+
+            app:hintTextColor="@color/color_primary"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DataDiNascita"
+            app:strokeColor="#20000000">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iscrivitiPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Ripeti password"
+            android:textColorHint="#99000000"
+
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeWidth="1dp"
+
+
+            app:hintTextColor="@color/color_primary"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iscrizionePassword"
+            app:strokeColor="#20000000">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iscrivitiConfermaPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/iscrivitiBtn"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:text="Iscriviti"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@color/color_primary"
+
+
+            app:elevation="5dp" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+
+
+
+
+
+
+
+

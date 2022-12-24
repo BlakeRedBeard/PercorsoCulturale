@@ -2,6 +2,7 @@ package com.example.percorsoculturale;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +46,12 @@ public class IscrivitiActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.iscriviti); //classe R serve per istanziare risorse della cartella res
 
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.iscriviti);
+        } else {
+            setContentView(R.layout.iscriviti_landscape);
+        }
         //for date picker iscrizione
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);

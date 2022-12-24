@@ -23,6 +23,7 @@
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.125" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/key.xml" value="0.125" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout-land/iscriviti.xml" value="0.1" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/aaa.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_attivita.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_attrazione.xml" value="0.176" />
@@ -38,6 +39,7 @@
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/content_ricerca_percorsi.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/iscriviti.xml" value="0.264" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/iscriviti_landscape.xml" value="0.176" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/lista_badge.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/login.xml" value="0.264" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/profilo.xml" value="0.253125" />

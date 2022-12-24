@@ -50,6 +50,7 @@
         <activity
             android:name=".IscrivitiActivity"
             android:exported="false"
+            android:configChanges="orientation"
             android:label="Iscriviti activity"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
 
