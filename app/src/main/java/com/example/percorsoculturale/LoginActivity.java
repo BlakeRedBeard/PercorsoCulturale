@@ -53,15 +53,15 @@ public class LoginActivity extends AppCompatActivity {
         loadLocale();
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.login);
-
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.login_landscape);
+        }else{
+            setContentView(R.layout.login);
+        }
         //impostazioni lingua
         loadLocale();
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.login);
-        } else if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.login_landscape);
-        }
+
 
 
         emailView = (TextInputLayout) findViewById(R.id.editTextTextEmailAddress);
