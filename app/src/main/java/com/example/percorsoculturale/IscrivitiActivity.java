@@ -42,15 +42,23 @@ public class IscrivitiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.iscriviti); //classe R serve per istanziare risorse della cartella res
+        mAuth = FirebaseAuth.getInstance();
+        //setContentView(R.layout.iscriviti); //classe R serve per istanziare risorse della cartella res
 
         int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.iscriviti);
-        } else {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.iscriviti_landscape);
+        } else{
+            setContentView(R.layout.iscriviti);
+        }
+        if(savedInstanceState != null){
+            ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().setText(savedInstanceState.getString("cognome"));
+            ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().setText(savedInstanceState.getString("nome"));
+            ((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().setText(savedInstanceState.getString("email"));
+            ((TextInputEditText) findViewById(R.id.iscrivitiPassword)).setText(savedInstanceState.getString("password"));
+
         }
         //for date picker iscrizione
         initDatePicker();
@@ -255,6 +263,20 @@ public class IscrivitiActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        String  cognome = ((TextInputLayout) findViewById(R.id.iscrizioneCognome)).getEditText().getText().toString(),
+                nome = ((TextInputLayout) findViewById(R.id.iscrizioneNome)).getEditText().getText().toString(),
+                email = ((TextInputLayout) findViewById(R.id.iscrizioneEmail)).getEditText().getText().toString(),
+                password = ((TextInputEditText) findViewById(R.id.iscrivitiPassword)).getText().toString();
+
+        savedInstanceState.putString("cognome", cognome != null ? cognome : "");
+        savedInstanceState.putString("nome", nome  != null ? nome : "");
+        savedInstanceState.putString("email", email != null ? email : "");
+        savedInstanceState.putString("password", password != null ? password : "");
+
+    }
 
 
 }

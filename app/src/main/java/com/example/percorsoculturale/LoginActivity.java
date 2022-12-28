@@ -50,22 +50,28 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale();
         mAuth = FirebaseAuth.getInstance();
-        setContentView(R.layout.login);
+
+        loadLocale();
+
+        //impostazioni lingua
+
         int orientation = this.getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.login_landscape);
         }else{
             setContentView(R.layout.login);
         }
-        //impostazioni lingua
-        loadLocale();
 
+        loadLocale();
 
 
         emailView = (TextInputLayout) findViewById(R.id.editTextTextEmailAddress);
         pwdView = (TextInputLayout) findViewById(R.id.editTextTextPassword);
+        if(savedInstanceState != null){
+            emailView.getEditText().setText(savedInstanceState.getString("email"));
+            pwdView.getEditText().setText(savedInstanceState.getString("password"));
+        }
         Button login = (Button) findViewById(R.id.loginButton);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,5 +281,12 @@ public class LoginActivity extends AppCompatActivity {
         if (language != "") {
             setLocale(language);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("email", emailView.getEditText().getText().toString());
+        savedInstanceState.putString("password", pwdView.getEditText().getText().toString());
     }
 }

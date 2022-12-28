@@ -81,7 +81,12 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                return false;
+                try {
+                    showJSON(s);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                return true;
             }
         });
         id_percorsi = new ArrayList<String>();
