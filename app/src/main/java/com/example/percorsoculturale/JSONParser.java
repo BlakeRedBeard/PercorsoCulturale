@@ -18,18 +18,73 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JSONParser {
-
-    private StringBuilder text;
+    private String filename;
+    private String version;
+    private String language;
     private File file;
 
     public JSONParser(File file){
-        this.text = new StringBuilder();
         this.file = file;
+        this.filename = getFileName(file.getName());
+        this.version = getFileVersion(file.getName());
+        this.language = getFileLanguage(file.getName());
     }
 
+    public JSONParser(){
+
+    }
+
+    public void testReg(String file){
+        String[] fileInfo = file.split("_|.json");
+        for(String item : fileInfo)
+        Log.i("DEBUG: test della regex", item);
+    }
+
+    public String getFileName(String file){
+        String[] fileInfo = file.split("_|.json");
+        return fileInfo[0];
+    }
+
+    public String getFileVersion(String file){
+        String[] fileInfo = file.split("_|.json");
+        return fileInfo[1]+fileInfo[2];
+    }
+
+    public String getFileLanguage(String file){
+        String[] fileInfo = file.split("_|.json");
+        try{
+            return fileInfo[3];
+        }catch(ArrayIndexOutOfBoundsException e){
+            return "";
+        }
+    }
 
     public ArrayList<Percorso> getFilteredPercorsi(String filter){
-        text = new StringBuilder();
+        ArrayList<Percorso> result = new ArrayList<Percorso>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            line = br.readLine();
+            while((line = br.readLine()) != null){
+                if(!line.startsWith("]")){
+                    if(line.contains(filter)){
+                        addPercorso(line, result);
+                    }
+                }
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
+
+    /*
+    public ArrayList<Percorso> getFilteredPercorsi(String filter){
+        StringBuilder text = new StringBuilder();
         ArrayList<Percorso> result = new ArrayList<Percorso>();
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -71,30 +126,31 @@ public class JSONParser {
 
         return result;
 
-    }
+    }*/
 
     private void addPercorso(String json, List<Percorso> percorsi){
         try {
             JSONObject percorsoJson = new JSONObject(json);
-            String idP = percorsoJson.isNull("id") ? null : percorsoJson.getString("id");
+            String idP = percorsoJson.isNull("idPercorso") ? null : percorsoJson.getString("idPercorso");
             String  nome = percorsoJson.isNull("nome") ? null : percorsoJson.getString("nome"),
                     comune = percorsoJson.isNull("comune") ? null : percorsoJson.getString("comune"),
                     provincia = percorsoJson.isNull("provincia") ? null : percorsoJson.getString("provincia"),
                     regione = percorsoJson.isNull("regione") ? null : percorsoJson.getString("regione"),
-                    stato = percorsoJson.isNull("stato") ? null : percorsoJson.getString("stato");
+                    stato = percorsoJson.isNull("stato") ? null : percorsoJson.getString("stato"),
+                    descrizione = percorsoJson.isNull("descrizione") ? null : percorsoJson.getString("descrizione");
             ArrayList<Attrazione> attrazioni = new ArrayList<Attrazione>();
 
             JSONArray attrazioniJson = percorsoJson.isNull("attrazioni") ? null : percorsoJson.getJSONArray("attrazioni");
             if(attrazioniJson != null){
                 for(int i=0; i<attrazioniJson.length(); i++){
                     Attrazione attrazione;
-                    String idA = attrazioniJson.getJSONObject(i).getString("id");
+                    String idA = attrazioniJson.getJSONObject(i).getString("idAttrazione");
                     String nomeAttr = attrazioniJson.getJSONObject(i).getString("nome");
                     attrazione = new Attrazione(idA, nomeAttr);
                     attrazioni.add(attrazione);
                 }
             }
-            Percorso percorso = new Percorso(idP, nome, comune, provincia, regione, stato, attrazioni);
+            Percorso percorso = new Percorso(idP, nome, comune, provincia, regione, stato, descrizione, attrazioni);
             percorsi.add(percorso);
         } catch (JSONException e) {
             e.printStackTrace();

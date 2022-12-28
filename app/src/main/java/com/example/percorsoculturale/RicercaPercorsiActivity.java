@@ -205,8 +205,9 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                                     Toast.makeText(RicercaPercorsiActivity.this,"Entrato",Toast.LENGTH_LONG).show();
                                     List<Address> addresses=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     //TODO Passare la regione a MostraPercorsi
-                                    String Regione=addresses.get(0).getAdminArea();
-                                    Toast.makeText(RicercaPercorsiActivity.this,Regione,Toast.LENGTH_LONG).show();
+                                    String regione = addresses.get(0).getAdminArea();
+                                    showJSON(regione);
+                                    Toast.makeText(RicercaPercorsiActivity.this,regione,Toast.LENGTH_LONG).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }

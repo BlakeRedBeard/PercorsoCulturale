@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             setContentView(R.layout.login);
         }
 
-        loadLocale();
 
 
         emailView = (TextInputLayout) findViewById(R.id.editTextTextEmailAddress);
@@ -190,9 +189,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadConfiguration(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My_Lang", "");
+        JSONParser parser = new JSONParser();
         boolean fileExists = false;
         for(File fileLocale : getApplicationContext().getFilesDir().listFiles()){
-            Log.i("DEBUG: nome file locale", fileLocale.getName());
             if(fileLocale.getName().contains(JSONFILENAME)){
                 fileExists = true;
                 storage = FirebaseStorage.getInstance();
@@ -202,25 +203,26 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<ListResult> task) {
                         ListResult res = task.getResult();
                         for(StorageReference fileOnline : res.getItems()){
-                            if(fileOnline.getName().contains("Versione")){
-                                if(fileLocale.getName().compareTo(fileOnline.getName()) < 0){   //se la versione del file salvato è inferiore sarà ritornato un numero negativo
-                                    final long ONE_MEGABYTE = 1024 * 1024;
-                                    fileOnline.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                        @Override
-                                        public void onSuccess(byte[] bytes) {
-                                            String filename = fileOnline.getName();
-                                            try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
-                                                fos.write(bytes);
-                                                fos.flush();
-                                                fileLocale.delete();
-                                            } catch (FileNotFoundException e) {
-                                                e.printStackTrace();
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
+                            if(fileOnline.getName().contains(JSONFILENAME)){
+                                if(parser.getFileLanguage(fileOnline.getName()).equals(language))
+                                    if(parser.getFileVersion(fileLocale.getName()).compareTo(parser.getFileVersion(fileOnline.getName())) < 0 || !parser.getFileLanguage(fileLocale.getName()).equals(language)){   //se la versione del file salvato è inferiore sarà ritornato un numero negativo
+                                        final long ONE_MEGABYTE = 1024 * 1024;
+                                        fileOnline.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                            @Override
+                                            public void onSuccess(byte[] bytes) {
+                                                String filename = fileOnline.getName();
+                                                try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
+                                                    fos.write(bytes);
+                                                    fos.flush();
+                                                    fileLocale.delete();
+                                                } catch (FileNotFoundException e) {
+                                                    e.printStackTrace();
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
                                             }
-                                        }
-                                    });
-                                }
+                                        });
+                                    }
                             }
                         }
                     }
@@ -237,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<ListResult> task) {
                     ListResult res = task.getResult();
                     for(StorageReference fileOnline : res.getItems()){
-                        if(fileOnline.getName().contains("Versione")){
+                        if(fileOnline.getName().contains(JSONFILENAME) && parser.getFileLanguage(fileOnline.getName()).equals(language)){
                             final long ONE_GIGABYTE = 1024 * 1024 * 1024;
                             fileOnline.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
@@ -270,7 +272,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
         editor.apply();
-
+        loadConfiguration();
     }
 
     private void loadLocale() {
