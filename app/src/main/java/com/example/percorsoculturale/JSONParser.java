@@ -16,6 +16,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JSONParser {
     private String filename;
@@ -61,20 +64,29 @@ public class JSONParser {
 
     public ArrayList<Percorso> getFilteredPercorsi(String filter){
         ArrayList<Percorso> result = new ArrayList<Percorso>();
+        Pattern pattern = Pattern.compile(":[\\s]*\".+?\"");
+        Matcher matcher;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
-            line = br.readLine();
+            br.readLine();
             while((line = br.readLine()) != null){
                 if(!line.startsWith("]")){
-                    if(line.contains(filter)){
-                        addPercorso(line, result);
+                    matcher = pattern.matcher(line);
+                    boolean isToAdd = false;
+                    while (matcher.find()) {
+                        Log.i("DEBUG: contenuto regex", matcher.group());
+                        if (matcher.group().toLowerCase().contains(filter.toLowerCase())) {
+                            isToAdd = true;
+                            matcher.reset("");
+                        }
+
                     }
+                    if(isToAdd) { addPercorso(line, result); }
+
                 }
             }
-
-
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
 
