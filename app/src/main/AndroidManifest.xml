@@ -33,8 +33,8 @@
         <activity
             android:name=".MostraAttrazioni"
             android:exported="false"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="Mostra Atrrazione"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Mostra Attrazione"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
         <activity
             android:name=".LoginActivity"

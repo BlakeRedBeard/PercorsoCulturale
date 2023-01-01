@@ -3,6 +3,7 @@ package com.example.percorsoculturale;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,15 +61,71 @@ public class MostraAttrazioni extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_attrazione_landscape);
+        }else{
+            setContentView(R.layout.activity_attrazione);
+        }
+
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
-        setContentView(R.layout.activity_attrazione);
+
         nomeAttrazione = (TextView) findViewById(R.id.nomeAttrazione);
         descrizioneAttrazione = (TextView) findViewById(R.id.descrizioneAttrazione);
         immagineAttrazione = (ImageView) findViewById(R.id.immagineAttrazione);
         btnIndietro = (Button) findViewById(R.id.btnIndietro);
         btnAttivita = (Button) findViewById(R.id.btnAttivita);
         btnAvanti = (Button) findViewById(R.id.btnAvanti);
+
+        if(savedInstanceState != null){
+           nomeAttrazione.setText(savedInstanceState.getString("nomeAttrazione"));
+
+            Bundle extra = getIntent().getExtras();
+            if (extra != null) {
+                id = extra.getInt("attrazione");
+                if(id < 0){
+                    //TODO generare eccezione (non è possibile identificare l'attrazione)
+                }
+                //setIsSvolta();
+                showAttrazione(attrazioni.get(id));
+                checkAttivita(attivita.get(id));
+                //Inizializzazione bottoni
+                btnAvanti.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        int cont = attrazioni.size();
+
+                        Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                        intent.putExtra("attrazione", id+1);
+                        startActivity(intent);
+
+                        if (id+1 >= cont) {
+                            Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                            startActivity(intent2);
+                        }
+
+
+                    }
+                });
+                btnIndietro.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
+
+                //TODO se presente bisogna settarlo
+
+            } else {
+                //TODO generare eccezione (non è possibile identificare l'attrazione)
+            }
+        }
+
+
 
         //serve per recuperare l'attrazione specifica al percorso stabilito
         if(savedInstanceState == null) {
@@ -193,6 +251,12 @@ public class MostraAttrazioni extends AppCompatActivity {
     public static void setTrue(int id) {
 
             isSvolta.set(id,true);
+
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("nomeAttrazione", nomeAttrazione.getText().toString());
 
     }
 

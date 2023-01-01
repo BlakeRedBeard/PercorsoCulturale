@@ -2,6 +2,7 @@ package com.example.percorsoculturale;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -40,7 +41,13 @@ public class ListaBadge extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         storage = FirebaseStorage.getInstance();
-        setContentView(R.layout.lista_badge);
+
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.lista_badge_landscape);
+        }else{
+            setContentView(R.layout.lista_badge);
+        }
 
         ImageView cinquePunti = (ImageView) findViewById(R.id.imageView10);
         ImageView dieciPunti = (ImageView) findViewById(R.id.imageView15);

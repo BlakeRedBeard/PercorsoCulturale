@@ -3,6 +3,7 @@ package com.example.percorsoculturale;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,12 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.valutazione_percorso);
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.valutazione_percorso_landscape);
+        }else{
+            setContentView(R.layout.valutazione_percorso);
+        }
 
         textview1 = (TextView) findViewById(R.id.textView4);
         textview2 = (TextView) findViewById(R.id.textView6);

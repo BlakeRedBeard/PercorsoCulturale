@@ -3,6 +3,7 @@ package com.example.percorsoculturale;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -46,7 +47,13 @@ public class BadgeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         storage = FirebaseStorage.getInstance();
-        setContentView(R.layout.badge);
+
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.badge_landscape);
+        }else{
+            setContentView(R.layout.badge);
+        }
 
         TextView textview1 = (TextView) findViewById(R.id.textView8);
 

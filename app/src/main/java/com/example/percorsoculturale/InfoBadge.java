@@ -1,6 +1,7 @@
 package com.example.percorsoculturale;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -33,7 +34,13 @@ public class InfoBadge extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         storage = FirebaseStorage.getInstance();
-        setContentView(R.layout.info_badge);
+
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.info_badge_landscape);
+        }else{
+            setContentView(R.layout.info_badge);
+        }
 
         TextView descrizione = (TextView) findViewById(R.id.textView12);
         ImageView badge = (ImageView) findViewById(R.id.imageView10);
