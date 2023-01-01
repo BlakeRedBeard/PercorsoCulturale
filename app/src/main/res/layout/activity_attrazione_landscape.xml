@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MostraPercorsiActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/nomeAttrazione"
+        android:layout_width="330dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:text="Nome Attrazione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/immagineAttrazione"
+        tools:ignore="UnknownId" />
+
+    <ImageView
+        android:id="@+id/immagineAttrazione"
+        android:layout_width="332dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+
+    <TextView
+        android:id="@+id/descrizioneAttrazione"
+        android:layout_width="330dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:text="Descrizione Attrazione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeAttrazione"
+        tools:ignore="MissingConstraints,UnknownIdInLayout" />
+
+    <Button
+        android:id="@+id/btnIndietro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indietro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnAvanti"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnAttivita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attivita"
+        app:layout_constraintEnd_toStartOf="@+id/btnAvanti"
+        app:layout_constraintStart_toEndOf="@+id/btnIndietro"
+        app:layout_constraintTop_toTopOf="@+id/btnAvanti"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnAvanti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="@string/nextButton"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descrizioneAttrazione"
+        tools:ignore="MissingConstraints"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
