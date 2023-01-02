@@ -71,8 +71,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         searchView = findViewById(R.id.searchView);
         //imposta la casella di ricerca fissa
-        searchView.setIconifiedByDefault(false);
 
+        searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -191,6 +191,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
 
 
+
     private void getLocation() {
         if(PackageManager.PERMISSION_GRANTED== ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
 
@@ -273,6 +274,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     //Implementazione App bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.home_menu,menu);
         return true;
     }
@@ -297,12 +299,31 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.searchView:
 
             default:
                 return super.onOptionsItemSelected(item);
         }
 
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem item = menu.findItem(R.id.searchView);
+item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        item.setVisible(false);
+        searchView.setVisibility(View.VISIBLE);
+        return false;
+    }
+});
+
+        return true;
+    }
+
+
 
     private void showJSON(String filter) throws FileNotFoundException{
         JSONParser parser = null;
