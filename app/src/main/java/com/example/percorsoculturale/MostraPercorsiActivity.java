@@ -1,8 +1,10 @@
 package com.example.percorsoculturale;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,13 +42,19 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private Button avvia;
     private List<String> attrazioni, attivita;
+    private final String LINK = "https://www.percorsoculturale.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
-        setContentView(R.layout.activity_mostra_percorso);
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_mostra_percorso_landscape);
+        }else{
+            setContentView(R.layout.activity_mostra_percorso);
+        }
         nomePercorso = (TextView) findViewById(R.id.nomePercorso);
         descrizionePercorso = (TextView) findViewById(R.id.descrizionePercorso);
         regionePercorso = (TextView) findViewById(R.id.regionePercorso);
@@ -57,12 +66,37 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             Bundle extra = getIntent().getExtras();
             System.out.println(extra);
             if(extra != null){
-                showPercorso(extra.getString("percorso"));
+                if(extra.getString("percorso") != null)
+                    showPercorso(extra.getString("percorso"));
+                    Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
+                    btnShare.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+                            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
+                            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK+extra.getString("percorso"));
+                            emailIntent.setType("text/plain");
+                            startActivity(Intent.createChooser(emailIntent, "Send to friend"));
+                        }
+                    });
             }else {
                 //TODO generare eccezione (id percorso non reperito)
             }
         }else {
             showPercorso((String) savedInstanceState.getSerializable("percorso"));
+            Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
+            btnShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+                    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
+                    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK+(String) savedInstanceState.getSerializable("percorso"));
+                    emailIntent.setType("text/plain");
+                    startActivity(Intent.createChooser(emailIntent, "Send to friend"));
+                }
+            });
         }
 
 
@@ -78,6 +112,18 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        if(data != null) {
+
+            showPercorso(data.getLastPathSegment());
+
+        }else Log.i("DEBUG: intent", "data è nullo");
     }
 
 

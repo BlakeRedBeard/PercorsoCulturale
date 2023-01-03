@@ -75,7 +75,6 @@ public class JSONParser {
                     matcher = pattern.matcher(line);
                     boolean isToAdd = false;
                     while (matcher.find()) {
-                        Log.i("DEBUG: contenuto regex", matcher.group());
                         if (matcher.group().toLowerCase().contains(filter.toLowerCase())) {
                             isToAdd = true;
                             matcher.reset("");

@@ -315,7 +315,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             id_percorsi.clear();
             nomi_percorsi.clear();
             for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
-                Log.i("DEBUG: contenuto Json filtrato ("+filter+")", percorso.toString());
                 id_percorsi.add(percorso.getId());
                 nomi_percorsi.add(percorso.getNome());
             }

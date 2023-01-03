@@ -27,9 +27,18 @@
             />
         <activity
             android:name=".MostraPercorsiActivity"
-            android:exported="false"
-            android:label="@string/title_activity_mostra_percorsi"
-            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "app://percorsoculturale” -->
+                <data android:scheme="https" android:host="www.percorsoculturale.com"/>
+                <data android:scheme="http" android:host="www.percorsoculturale.com"/>
+                <data android:scheme="app" android:host="www.percorsoculturale.com"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MostraAttrazioni"
             android:exported="false"
