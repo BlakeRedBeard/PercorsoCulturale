@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
 
 
-    <item
-        android:id="@+id/homeIcon"
-        android:icon="@drawable/ic_outline_home_24"
-        android:title="home"
-        android:contentDescription="home"
-        app:showAsAction="ifRoom"
-        android:visible="false"/>
+<item
+    android:id="@+id/searchView"
+    android:icon="@drawable/ic_search_black_24dp"
+    android:title="Search"
+    android:contentDescription="menu"
+    app:showAsAction="ifRoom"
+
+/>
 
 
 
@@ -23,3 +25,4 @@
 
 
 </menu>
+

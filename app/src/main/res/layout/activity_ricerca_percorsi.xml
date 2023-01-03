@@ -28,15 +28,18 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/color_primary"
+
     app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
    >
 
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="match_parent"
         android:inputType="textAutoComplete"
+        android:visibility="invisible"
+
         />
 
 </androidx.appcompat.widget.Toolbar>
@@ -63,7 +66,9 @@
 
         >
 
-            <include layout="@layout/bottom_sheet" />
+        <include layout="@layout/bottom_sheet" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
