@@ -8,17 +8,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
-import android.view.View;
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,10 +28,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout pwdView;
     private final String CONFIGURL = "gs://percorsoculturale.appspot.com/PortableDB";
     private final String JSONFILENAME = "Versione";
+    public int loadImage;
+
 
 
     @Override
@@ -110,15 +110,30 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button lbtn = (Button) findViewById(R.id.bottoneLingua);
+        FloatingActionButton lbtn = (FloatingActionButton) findViewById(R.id.bottoneLingua);
         lbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showLanguage();
             }
         });
+        if(savedInstanceState != null) {
+            int flags = savedInstanceState.getInt("loadImage");
+            FloatingActionButton lingua = (FloatingActionButton) findViewById(R.id.bottoneLingua);
+            if (flags == 0) {
+                lingua.setImageDrawable(getResources().getDrawable(R.drawable.england));
+            } else if (flags == 1) {
+                lingua.setImageDrawable(getResources().getDrawable(R.drawable.france));
+            } else if (flags == 2) {
+                lingua.setImageDrawable(getResources().getDrawable(R.drawable.spain));
+            } else if (flags == 3) {
+                lingua.setImageDrawable(getResources().getDrawable(R.drawable.italy));
+            }
+        }
 
     }
+
+
 
     @Override
     public void onStart() {
@@ -166,17 +181,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int i) {
 
                 if(i == 0){
+
+                    loadImage=2;
                     setLocale("es");
                     recreate();
+
+
                 }else if(i == 1){
+                    loadImage=1;
                     setLocale("fr");
+
                     recreate();
+
                 }else if(i == 2){
+                    loadImage=0;
                     setLocale("en");
+
                     recreate();
+
                 }else if(i == 3){
+                    loadImage=3;
                     setLocale("");
+
                     recreate();
+
                 }
 
                 dialog.dismiss();
@@ -290,5 +318,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString("email", emailView.getEditText().getText().toString());
         savedInstanceState.putString("password", pwdView.getEditText().getText().toString());
+        savedInstanceState.putInt("loadImage", loadImage);
     }
 }

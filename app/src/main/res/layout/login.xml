@@ -21,20 +21,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.065" />
 
-    <Button
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bottoneLingua"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="239dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="16dp"
-        android:text="Change Language"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:backgroundTint="@color/color_primary"
-        app:elevation="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_margin="16dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accediComeOspite" />
+        app:backgroundTint="@color/white"
+        android:elevation="6dp"
+        app:hoveredFocusedTranslationZ="2dp"
+        app:pressedTranslationZ="6dp"
+        app:srcCompat="@drawable/italy"
+        app:maxImageSize="20dp"
+        app:tint="@null"
+        />
 
     <Button
         android:id="@+id/accediComeOspite"
