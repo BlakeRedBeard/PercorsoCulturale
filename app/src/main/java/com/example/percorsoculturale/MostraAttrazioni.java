@@ -49,6 +49,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     private static ArrayList<String> attrazioni;
     private static ArrayList<String> attivita;
     private static ArrayList<Boolean> isSvolta;
+    private String nomePercorso = "";
 
     public static void setAttrazioni(Collection<String> lista){
         attrazioni = new ArrayList<String>(lista);
@@ -85,6 +86,7 @@ public class MostraAttrazioni extends AppCompatActivity {
             Bundle extra = getIntent().getExtras();
             if (extra != null) {
                 id = extra.getInt("attrazione");
+                nomePercorso = extra.getString("nomePercorso");
                 if(id < 0){
                     //TODO generare eccezione (non è possibile identificare l'attrazione)
                 }
@@ -109,6 +111,7 @@ public class MostraAttrazioni extends AppCompatActivity {
                         }else {
                             Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                             intent.putExtra("attrazione", id+1);
+                            intent.putExtra("nomePercorso", nomePercorso);
                             startActivity(intent);
                         }
 
@@ -137,6 +140,7 @@ public class MostraAttrazioni extends AppCompatActivity {
            Bundle extra = getIntent().getExtras();
            if (extra != null) {
                id = extra.getInt("attrazione");
+               nomePercorso = extra.getString("nomePercorso");
                if(id < 0){
                    //TODO generare eccezione (non è possibile identificare l'attrazione)
                }
@@ -152,10 +156,12 @@ public class MostraAttrazioni extends AppCompatActivity {
 
                        if (id+1 >= cont) {
                            Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                           intent2.putExtra("nomePercorso", nomePercorso);
                            startActivity(intent2);
                        }else {
                            Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                            intent.putExtra("attrazione", id+1);
+                           intent.putExtra("nomePercorso", nomePercorso);
                            startActivity(intent);
                        }
 
@@ -232,6 +238,7 @@ public class MostraAttrazioni extends AppCompatActivity {
                         Intent intent3 = new Intent(getApplicationContext(), QrcodeActivity.class);
                         intent3.putExtra("attivita", attivita.get(id));
                         intent3.putExtra("Idattrazioni", id);
+                        intent3.putExtra("nomePercorso", nomePercorso);
                         startActivity(intent3);
                         btnAttivita.setEnabled(false);
                     }

@@ -29,6 +29,7 @@ public class QrcodeActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private static ArrayList<String> attrazioni;
     private static int punti = 0;
+    private String nomePercorso = "";
 
 
     @Override
@@ -40,7 +41,7 @@ public class QrcodeActivity extends AppCompatActivity {
 
                 IntentIntegrator intentIntegrator = new IntentIntegrator(QrcodeActivity.this);
                 intentIntegrator.setPrompt("For flash use volume app");
-                intentIntegrator.setBeepEnabled(true);
+                intentIntegrator.setBeepEnabled(false);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
                 intentIntegrator.initiateScan();
@@ -60,7 +61,6 @@ public class QrcodeActivity extends AppCompatActivity {
             builder.setMessage(intentResult.getContents());
 
             String a = intentResult.getContents().toString();
-            System.out.println("APOLLO"+a);
 
 
             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
@@ -77,6 +77,7 @@ public class QrcodeActivity extends AppCompatActivity {
                 Bundle extra = getIntent().getExtras();
                 String idAttivita = extra.getString("attivita");
                 int idAttrazione = extra.getInt("Idattrazioni");
+                nomePercorso = extra.getString("nomePercorso");
                 db.collection("attività")
                         .document(idAttivita)
                         .get()
@@ -89,13 +90,13 @@ public class QrcodeActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
                                     intent.putExtra("id", idAttivita);
                                     intent.putExtra("Idattrazioni", idAttrazione);
+                                    intent.putExtra("nomePercorso", nomePercorso);
                                     startActivity(intent);
                                 }else if(categoria.equals("puzzle")){
-
-                                    System.out.println("FICAA");
                                     Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
                                     intent.putExtra("id", idAttivita);
                                     intent.putExtra("Idattrazioni", idAttrazione);
+                                    intent.putExtra("nomePercorso", nomePercorso);
                                     startActivity(intent);
 
                                 }
