@@ -23,6 +23,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -96,7 +98,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //effettua il login come ospite con credenziali predefinite
-                signIn("user@guest.com", "userguest");
+                //signIn("user@guest.com", "userguest");
+                Intent i = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
+                startActivity(i);
             }
         });
 
@@ -105,8 +109,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO Avviare la procedura di cambio password
-                Toast.makeText(LoginActivity.this, "È stata mandata una mail per la procedura di cambio password.",
-                        Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), RecuperaPassword.class);
+                startActivity(i);
             }
         });
 
@@ -125,9 +129,28 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // TODO se l'utente è già loggato, andare direttamente alla homepage
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            updateUser(currentUser);
+        }
         loadConfiguration();
         //cambiare schermata poiché l'utente ha già effettuato l'accesso
+    }
+
+    private void updateUser(FirebaseUser currentUser){
+        FirebaseFirestore db;
+        db = FirebaseFirestore.getInstance();
+        db.collection("utente")
+                .document(currentUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        Intent i = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
+                        startActivity(i);
+                    }
+                });
     }
 
     protected void signIn(String email, String password){

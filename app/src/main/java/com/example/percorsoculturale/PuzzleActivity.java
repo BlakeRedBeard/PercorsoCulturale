@@ -418,8 +418,8 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //isSolved();
-
+                        Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                        intent2.putExtra("Idattrazione", id);
                     }
                 });
     }

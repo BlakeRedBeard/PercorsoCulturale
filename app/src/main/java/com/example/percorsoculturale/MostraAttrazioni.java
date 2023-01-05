@@ -99,8 +99,13 @@ public class MostraAttrazioni extends AppCompatActivity {
                         int cont = attrazioni.size();
 
                         if (id+1 >= cont) {
-                            Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
-                            startActivity(intent2);
+                            if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+                                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                                startActivity(intent);
+                            }else{
+                                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                                startActivity(intent);
+                            }
                         }else {
                             Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                             intent.putExtra("attrazione", id+1);

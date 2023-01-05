@@ -44,7 +44,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         int orientation = this.getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.valutazione_percorso_landscape);
-        }else{
+        } else {
             setContentView(R.layout.valutazione_percorso);
         }
 
@@ -65,7 +65,6 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         int puntiTotali = QrcodeActivity.getPunti();
@@ -93,26 +92,24 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         Button condividi = (Button) findViewById(R.id.button);
 
 
-        condividi.setOnClickListener(new View.OnClickListener () {
+        condividi.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
                 String nomePercorso = "a";
                 String body = "Ho ottenuto " + textview2.getText().toString() + " punti completando il percorso " + nomePercorso;
                 String sub = "Valutazione percorso";
-                myIntent.putExtra(Intent.EXTRA_SUBJECT,sub);
-                myIntent.putExtra(Intent.EXTRA_TEXT,body);
+                myIntent.putExtra(Intent.EXTRA_SUBJECT, sub);
+                myIntent.putExtra(Intent.EXTRA_TEXT, body);
                 startActivity(Intent.createChooser(myIntent, "Share Using"));
 
             }
         });
 
 
-
-
-        Button btnBadge = (Button)findViewById(R.id.badgeButton);
+        Button btnBadge = (Button) findViewById(R.id.badgeButton);
         btnBadge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +119,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         });
 
 
-        Button btnContinua = (Button)findViewById(R.id.continuaButton);
+        Button btnContinua = (Button) findViewById(R.id.continuaButton);
         btnContinua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

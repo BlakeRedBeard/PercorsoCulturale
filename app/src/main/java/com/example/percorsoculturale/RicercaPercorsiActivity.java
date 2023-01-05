@@ -129,11 +129,11 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        String mailUtente = firebaseUser.getEmail();
+
 
         LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
 
-        if (mailUtente.equals("user@guest.com")) {
+        if (firebaseUser == null) {
             BProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -156,9 +156,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             });
         }
 
-        LinearLayout BDisconnettiti=findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
-
-        if (mailUtente.equals("user@guest.com")) {
+        LinearLayout BDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
+        if (firebaseUser == null) {
             BDisconnettiti.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -167,8 +166,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     showMessage(messaggio);
                 }
             });
-
-
         }
         else {
             BDisconnettiti.setOnClickListener(new View.OnClickListener() {

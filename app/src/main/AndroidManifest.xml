@@ -26,6 +26,12 @@
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
             />
         <activity
+            android:name=".RecuperaPassword"
+            android:exported="false"
+            android:label="@string/title_activity_ricerca_percorsi"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
+            />
+        <activity
             android:name=".MostraPercorsiActivity"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
             android:exported="true">
