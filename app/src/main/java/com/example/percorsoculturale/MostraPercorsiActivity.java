@@ -104,9 +104,11 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String nomePercorsoo = nomePercorso.getText().toString();
                 //passa alla sezione attrazione relativa al percorso
                 Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                 intent.putExtra("attrazione", 0);
+                intent.putExtra("nomePercorso", nomePercorsoo);
                 MostraAttrazioni.setIsSvolta();
                 startActivity(intent);
             }

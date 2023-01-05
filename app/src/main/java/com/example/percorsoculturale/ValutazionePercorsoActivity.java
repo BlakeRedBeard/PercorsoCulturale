@@ -37,6 +37,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference noteRef;
     private FirebaseAuth firebaseAuth;
+    private String nomePercorso = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,9 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         }else{
             setContentView(R.layout.valutazione_percorso);
         }
+
+        Bundle extra = getIntent().getExtras();
+        nomePercorso = extra.getString("nomePercorso");
 
         textview1 = (TextView) findViewById(R.id.textView4);
         textview2 = (TextView) findViewById(R.id.textView6);
@@ -126,7 +130,9 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         btnContinua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ValutazionePercorsoActivity.this, RicercaPercorsiActivity.class));
+                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoUtente.class);
+                intent.putExtra("nomePercorso", nomePercorso);
+                startActivity(intent);
             }
 
         });

@@ -46,6 +46,12 @@
             android:label="Mostra Attrazione"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
         <activity
+            android:name=".ValutazionePercorsoUtente"
+            android:exported="false"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Mostra Attrazione"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar" />
+        <activity
             android:name=".LoginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
