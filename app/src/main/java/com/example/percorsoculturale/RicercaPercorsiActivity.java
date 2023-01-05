@@ -194,8 +194,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
     private void getLocation() {
         if(PackageManager.PERMISSION_GRANTED== ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
-
-            Toast.makeText(this,"Permesso gia accettato",Toast.LENGTH_LONG).show();
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                         @Override
@@ -203,16 +201,18 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                             if (location != null) {
                             geocoder=new Geocoder(RicercaPercorsiActivity.this, Locale.getDefault());
                                 try {
-                                    Toast.makeText(RicercaPercorsiActivity.this,"Entrato",Toast.LENGTH_LONG).show();
                                     List<Address> addresses=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     //TODO Passare la regione a MostraPercorsi
                                     String regione = addresses.get(0).getAdminArea();
                                     showJSON(regione);
-                                    Toast.makeText(RicercaPercorsiActivity.this,regione,Toast.LENGTH_LONG).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
 
+                            }else{
+                                new AlertDialog.Builder(RicercaPercorsiActivity.this)
+                                        .setTitle("Attivare posizione")
+                                        .setMessage("Per utilizzare le funzionalità del gps bisogna attivarlo").create().show();
                             }
                         }
                     });

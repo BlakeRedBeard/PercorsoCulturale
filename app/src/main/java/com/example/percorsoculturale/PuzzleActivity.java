@@ -32,8 +32,8 @@ public class PuzzleActivity extends AppCompatActivity {
 
     public static Attivita attivita;
 
-    private static final int COLUMNS=3;
-    private static final int DIMENSIONS=COLUMNS*COLUMNS;
+    private static final int COLUMNS = 3;
+    private static final int DIMENSIONS = COLUMNS * COLUMNS;
 
     private static String[] tileList;
 
@@ -46,7 +46,7 @@ public class PuzzleActivity extends AppCompatActivity {
     public static final String left = "left";
     public static final String right = "right";
     //Configurazione db
-    public static FirebaseStorage storage ;
+    public static FirebaseStorage storage;
 
 
     static String searchPuzzle;
@@ -57,25 +57,18 @@ public class PuzzleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        searchPuzzle="";
+        searchPuzzle = "";
 
-       setContentView(R.layout.activity_puzzle);
+        setContentView(R.layout.activity_puzzle);
 
-       storage= FirebaseStorage.getInstance();
+        storage = FirebaseStorage.getInstance();
 
-       Bundle extra = getIntent().getExtras();
+        Bundle extra = getIntent().getExtras();
 
-       System.out.println("search1"+searchPuzzle);
-       searchPuzzle = extra.getString("id");
+        System.out.println("search1" + searchPuzzle);
+        searchPuzzle = extra.getString("id");
 
-        id = extra.getInt("Idattrazioni");
         showPuzzle(searchPuzzle);
-
-
-
-        Intent intent2 = new Intent(getApplicationContext(), MostraAttrazioni.class);
-        intent2.putExtra("Idattrazione", id);
-
 
         init();
 
@@ -85,38 +78,40 @@ public class PuzzleActivity extends AppCompatActivity {
 
 
     }
-    private void init(){
-        mGridView=(GestureDetectGridView)findViewById(R.id.grid);
+
+    private void init() {
+        mGridView = (GestureDetectGridView) findViewById(R.id.grid);
         mGridView.setNumColumns(COLUMNS);
         tileList = new String[DIMENSIONS];
-        for(int i=0;i<DIMENSIONS;i++){
-            tileList[i]=String.valueOf(i);
+        for (int i = 0; i < DIMENSIONS; i++) {
+            tileList[i] = String.valueOf(i);
         }
     }
-    private void scramble(){
+
+    private void scramble() {
         int index;
         String temp;
-        Random random=new Random();
+        Random random = new Random();
 
-        for (int i=tileList.length-1;i>0;i--){
-            index= random.nextInt(i+1);
-            temp=tileList[index];
-            tileList[index]=tileList[i];
-            tileList[i]=temp;
+        for (int i = tileList.length - 1; i > 0; i--) {
+            index = random.nextInt(i + 1);
+            temp = tileList[index];
+            tileList[index] = tileList[i];
+            tileList[i] = temp;
         }
     }
 
 
     private void setDimension() {
-        ViewTreeObserver vto=mGridView.getViewTreeObserver();
+        ViewTreeObserver vto = mGridView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                int displayWidth=mGridView.getMeasuredWidth();
-                int displayHeight=mGridView.getMeasuredHeight();
+                int displayWidth = mGridView.getMeasuredWidth();
+                int displayHeight = mGridView.getMeasuredHeight();
 
-                  int statusbarHeight=getStatusBarHeight(getApplicationContext());
+                int statusbarHeight = getStatusBarHeight(getApplicationContext());
                 int requiredHeight = displayHeight - statusbarHeight;
 
                 mColumnWidth = displayWidth / COLUMNS;
@@ -140,180 +135,31 @@ public class PuzzleActivity extends AppCompatActivity {
         return result;
     }
 
-    private static void display(Context context){
+    private static void display(Context context) {
         //firebase db
-       StorageReference storageRef = storage.getReference().child("immagini puzzle/"+ searchPuzzle);
-        ArrayList<Button> buttons=new ArrayList<>();
-        Button button;
+        StorageReference storageRef = storage.getReference().child("immagini puzzle/" + searchPuzzle);
+        ArrayList<Button> buttons = new ArrayList<>();
 
 
+        for (int i = 0; i < tileList.length; i++) {
 
-        for(int i=0;i<tileList.length;i++){
-
-    button=new Button(context);
-
-
-
-
-    if(tileList[i].equals("0")){
-
-        Button finalButton = button;
-      storageRef.child(searchPuzzle+ "_1.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-              Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-
-
-
-    }else if (tileList[i].equals("1")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_2.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("2")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_3.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("3")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_4.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("4")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_5.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("5")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_6.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("6")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_7.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("7")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_8.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }else if (tileList[i].equals("8")){
-        Button finalButton = button;
-        storageRef.child(searchPuzzle+ "_9.png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                ByteArrayInputStream is=new ByteArrayInputStream(bytes);
-                Drawable  img = Drawable.createFromStream(is, "articleImage");
-                finalButton.setBackgroundDrawable(img);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-    }
-
-
-
-
-    buttons.add(button);
-
-
-}
-
-mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
+            Button button = new Button(context);
+            storageRef.child(searchPuzzle + "_" + (Integer.parseInt(tileList[i]) + 1) + ".png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+                    Drawable img = Drawable.createFromStream(is, "articleImage");
+                    button.setBackground(img);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+            buttons.add(button);
+        }
+        mGridView.setAdapter(new CustomAdapter(buttons, mColumnWidth, mColumnHeight));
     }
 
 
@@ -323,7 +169,7 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
         tileList[currentPosition] = newPosition;
         display(context);
 
-        if (isSolved()){
+        if (isSolved()) {
             //PUNTI
             Toast.makeText(context, "Hai vinto!!", Toast.LENGTH_SHORT).show();
             QrcodeActivity.aggiungiPunti(10);
@@ -411,19 +257,21 @@ mGridView.setAdapter(new CustomAdapter(buttons,mColumnWidth,mColumnHeight));
 
         return solved;
     }
-    private void showPuzzle(String searchPuzzle){
-        db= FirebaseFirestore.getInstance();
+
+    private void showPuzzle(String searchPuzzle) {
+        db = FirebaseFirestore.getInstance();
         db.collection("attività")
                 .document(searchPuzzle)
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //isSolved();
+
 
                     }
                 });
     }
-//prende un drawable attraverso una stringa
+
+    //prende un drawable attraverso una stringa
     public static Drawable GetImage(Context c, String ImageName) {
         return c.getResources().getDrawable(c.getResources().getIdentifier(ImageName, "drawable", c.getPackageName()));
     }

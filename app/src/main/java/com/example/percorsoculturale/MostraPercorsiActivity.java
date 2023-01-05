@@ -64,7 +64,6 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         avvia.setEnabled(false);
         if(savedInstanceState == null){
             Bundle extra = getIntent().getExtras();
-            System.out.println(extra);
             if(extra != null){
                 if(extra.getString("percorso") != null)
                     showPercorso(extra.getString("percorso"));
@@ -114,6 +113,13 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        Bundle extra = getIntent().getExtras();
+        savedInstanceState.putString("percorso", extra.getString("percorso"));
     }
 
     @Override
