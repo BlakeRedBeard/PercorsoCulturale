@@ -1,32 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<TableRow android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/item_percorso"
-    android:clickable="true">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/item_percorso1">
+        <ImageView
+            android:adjustViewBounds="true"
+            android:id="@+id/image1"
+            android:layout_margin="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/puzzle_1"/>
 
-    <ImageView
-        android:layout_margin="10dp"
-        android:id="@+id/image"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/nome_percorso1"
+            android:text="Lorem Ipsum sit dolore"
+            android:layout_below="@id/image1"
+            android:layout_alignStart="@id/image1"
+            android:layout_alignEnd="@+id/image1"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:maxLines="3"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="italic"
+            android:paddingStart="10dp"
+            android:paddingEnd="20dp"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+    <RelativeLayout android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/item_percorso2">
+        <ImageView
+            android:adjustViewBounds="true"
+            android:id="@+id/image2"
+            android:layout_margin="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/puzzle_1"/>
 
-    <TextView
-        android:layout_centerVertical="true"
-        android:layout_alignBottom="@id/image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="sans-serif-black"
-        android:textStyle="italic"
-        android:paddingStart="10dp"
-        android:paddingEnd="20dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
-
-</RelativeLayout>
+        <TextView
+            android:id="@+id/nome_percorso2"
+            android:text="Lorem Ipsum sit dolore"
+            android:layout_below="@id/image2"
+            android:layout_alignStart="@id/image2"
+            android:layout_alignEnd="@+id/image2"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:maxLines="3"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="italic"
+            android:paddingStart="10dp"
+            android:paddingEnd="20dp"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+</TableRow>
