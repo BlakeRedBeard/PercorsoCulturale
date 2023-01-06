@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,8 +41,8 @@ public class MostraAttrazioni extends AppCompatActivity {
     private TextView nomeAttrazione,
             descrizioneAttrazione;
     private Button btnIndietro,
-                   btnAttivita,
-                   btnAvanti;
+            btnAttivita,
+            btnAvanti;
     private ImageView immagineAttrazione;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
@@ -51,11 +52,11 @@ public class MostraAttrazioni extends AppCompatActivity {
     private static ArrayList<Boolean> isSvolta;
     private String nomePercorso = "";
 
-    public static void setAttrazioni(Collection<String> lista){
+    public static void setAttrazioni(Collection<String> lista) {
         attrazioni = new ArrayList<String>(lista);
     }
 
-    public static void setAttivita(Collection<String> lista){
+    public static void setAttivita(Collection<String> lista) {
         attivita = new ArrayList<String>(lista);
     }
 
@@ -66,7 +67,7 @@ public class MostraAttrazioni extends AppCompatActivity {
         int orientation = this.getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_attrazione_landscape);
-        }else{
+        } else {
             setContentView(R.layout.activity_attrazione);
         }
 
@@ -80,14 +81,14 @@ public class MostraAttrazioni extends AppCompatActivity {
         btnAttivita = (Button) findViewById(R.id.btnAttivita);
         btnAvanti = (Button) findViewById(R.id.btnAvanti);
 
-        if(savedInstanceState != null){
-           nomeAttrazione.setText(savedInstanceState.getString("nomeAttrazione"));
+        if (savedInstanceState != null) {
+            nomeAttrazione.setText(savedInstanceState.getString("nomeAttrazione"));
 
             Bundle extra = getIntent().getExtras();
             if (extra != null) {
                 id = extra.getInt("attrazione");
                 nomePercorso = extra.getString("nomePercorso");
-                if(id < 0){
+                if (id < 0) {
                     //TODO generare eccezione (non è possibile identificare l'attrazione)
                 }
                 //setIsSvolta();
@@ -100,17 +101,19 @@ public class MostraAttrazioni extends AppCompatActivity {
 
                         int cont = attrazioni.size();
 
-                        if (id+1 >= cont) {
-                            if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-                                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                        if (id + 1 >= cont) {
+                            if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("user@guest.com")) {
+                                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoUtente.class);
+                                intent.putExtra("nomePercorso", nomePercorso);
                                 startActivity(intent);
-                            }else{
+                            } else {
                                 Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                                intent.putExtra("nomePercorso", nomePercorso);
                                 startActivity(intent);
                             }
-                        }else {
+                        } else {
                             Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                            intent.putExtra("attrazione", id+1);
+                            intent.putExtra("attrazione", id + 1);
                             intent.putExtra("nomePercorso", nomePercorso);
                             startActivity(intent);
                         }
@@ -134,62 +137,66 @@ public class MostraAttrazioni extends AppCompatActivity {
         }
 
 
-
         //serve per recuperare l'attrazione specifica al percorso stabilito
-        if(savedInstanceState == null) {
-           Bundle extra = getIntent().getExtras();
-           if (extra != null) {
-               id = extra.getInt("attrazione");
-               nomePercorso = extra.getString("nomePercorso");
-               if(id < 0){
-                   //TODO generare eccezione (non è possibile identificare l'attrazione)
-               }
+        if (savedInstanceState == null) {
+            Bundle extra = getIntent().getExtras();
+            if (extra != null) {
+                id = extra.getInt("attrazione");
+                nomePercorso = extra.getString("nomePercorso");
+                if (id < 0) {
+                    //TODO generare eccezione (non è possibile identificare l'attrazione)
+                }
                 //setIsSvolta();
-               showAttrazione(attrazioni.get(id));
-               checkAttivita(attivita.get(id));
+                showAttrazione(attrazioni.get(id));
+                if(attivita != null)
+                    checkAttivita(attivita.get(id));
                 //Inizializzazione bottoni
-               btnAvanti.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
+                btnAvanti.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                       int cont = attrazioni.size();
+                        int cont = attrazioni.size();
 
-                       if (id+1 >= cont) {
-                           Intent intent2 = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
-                           intent2.putExtra("nomePercorso", nomePercorso);
-                           startActivity(intent2);
-                       }else {
-                           Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                           intent.putExtra("attrazione", id+1);
-                           intent.putExtra("nomePercorso", nomePercorso);
-                           startActivity(intent);
-                       }
-
-
-                   }
-               });
-               btnIndietro.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       finish();
-                   }
-               });
+                        if (id + 1 >= cont) {
+                            if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("user@guest.com")) {
+                                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoUtente.class);
+                                intent.putExtra("nomePercorso", nomePercorso);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                                intent.putExtra("nomePercorso", nomePercorso);
+                                startActivity(intent);
+                            }
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                            intent.putExtra("attrazione", id + 1);
+                            intent.putExtra("nomePercorso", nomePercorso);
+                            startActivity(intent);
+                        }
 
 
-               //TODO se presente bisogna settarlo
+                    }
+                });
+                btnIndietro.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
-           } else {
-               //TODO generare eccezione (non è possibile identificare l'attrazione)
-           }
+
+                //TODO se presente bisogna settarlo
+
+            } else {
+                //TODO generare eccezione (non è possibile identificare l'attrazione)
+            }
         }
-
-
 
 
     }
 
 
-    public void showAttrazione(String search){
+    public void showAttrazione(String search) {
         db.collection("attrazione")
                 .document(search)
                 .get()
@@ -198,12 +205,12 @@ public class MostraAttrazioni extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
-                        for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-                            if(entry.getKey().equals("nome")){
+                        for (Map.Entry<String, Object> entry : document.getData().entrySet()) {
+                            if (entry.getKey().equals("nome")) {
                                 nomeAttrazione.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("descrizione")){
+                            } else if (entry.getKey().equals("descrizione")) {
                                 descrizioneAttrazione.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("immagine")){
+                            } else if (entry.getKey().equals("immagine")) {
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 1024 * 1024;
                                 gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -228,8 +235,8 @@ public class MostraAttrazioni extends AppCompatActivity {
     }
 
     public void checkAttivita(String search) {
-        if(isSvolta.get(id) == false) {
-            if(search != null) {
+        if (isSvolta.get(id) == false) {
+            if (search != null) {
 
                 btnAttivita.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -243,10 +250,9 @@ public class MostraAttrazioni extends AppCompatActivity {
                         btnAttivita.setEnabled(false);
                     }
                 });
-            }else
+            } else
                 btnAttivita.setEnabled(false);
-        }
-        else{
+        } else {
             btnAttivita.setEnabled(false);
 
         }
@@ -256,17 +262,17 @@ public class MostraAttrazioni extends AppCompatActivity {
     public static void setIsSvolta() {
 
         int cont = attrazioni.size();
-        isSvolta=new ArrayList<Boolean>(Collections.nCopies(cont, false));
+        isSvolta = new ArrayList<Boolean>(Collections.nCopies(cont, false));
 
     }
 
     public static void setTrue(int id) {
 
-            isSvolta.set(id,true);
+        isSvolta.set(id, true);
 
     }
 
-    public void onSaveInstanceState(Bundle savedInstanceState){
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString("nomeAttrazione", nomeAttrazione.getText().toString());
 

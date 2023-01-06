@@ -129,11 +129,12 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String email = firebaseUser.getEmail();
 
 
         LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
 
-        if (firebaseUser == null) {
+        if (email.equals("user@guest.com")) {
             BProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -157,29 +158,19 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         }
 
         LinearLayout BDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
-        if (firebaseUser == null) {
-            BDisconnettiti.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                    String messaggio = "Non puoi disconnetterti in quanto non hai effettuato l'accesso";
-                    showMessage(messaggio);
-                }
-            });
-        }
-        else {
-            BDisconnettiti.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        BDisconnettiti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                    String messaggio = "Hai effettuato la disconnessione";
-                    showMessage(messaggio);
-                    FirebaseAuth.getInstance().signOut();
-                    Intent home=new Intent(RicercaPercorsiActivity.this,LoginActivity.class);
-                    startActivity(home);
-                }
-            });
-        }
+                String messaggio = "Hai effettuato la disconnessione";
+                showMessage(messaggio);
+                FirebaseAuth.getInstance().signOut();
+                Intent home=new Intent(RicercaPercorsiActivity.this,LoginActivity.class);
+                startActivity(home);
+            }
+        });
+
 //GPS
         fusedLocationClient= LocationServices.getFusedLocationProviderClient(this);
      getLocation();

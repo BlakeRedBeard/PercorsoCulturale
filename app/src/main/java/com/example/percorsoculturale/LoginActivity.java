@@ -98,9 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //effettua il login come ospite con credenziali predefinite
-                //signIn("user@guest.com", "userguest");
-                Intent i = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
-                startActivity(i);
+                signIn("user@guest.com", "userguest");
             }
         });
 

@@ -33,6 +33,7 @@ import java.util.Map;
 
 public class MostraPercorsiActivity extends AppCompatActivity {
 
+    private String idPercorso;
     private TextView nomePercorso,
                      descrizionePercorso,
                      regionePercorso,
@@ -62,11 +63,13 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         immaginePercorso = (ImageView) findViewById(R.id.immaginePercorso);
         avvia = (Button) findViewById(R.id.avviaButton);
         avvia.setEnabled(false);
+
         if(savedInstanceState == null){
             Bundle extra = getIntent().getExtras();
             if(extra != null){
                 if(extra.getString("percorso") != null)
-                    showPercorso(extra.getString("percorso"));
+                    idPercorso = extra.getString("percorso");
+                    showPercorso(idPercorso);
                     Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
                     btnShare.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -83,7 +86,8 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                 //TODO generare eccezione (id percorso non reperito)
             }
         }else {
-            showPercorso((String) savedInstanceState.getSerializable("percorso"));
+            idPercorso = savedInstanceState.getString("percorso");
+            showPercorso(idPercorso);
             Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
             btnShare.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,11 +107,10 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         avvia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nomePercorsoo = nomePercorso.getText().toString();
                 //passa alla sezione attrazione relativa al percorso
                 Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
                 intent.putExtra("attrazione", 0);
-                intent.putExtra("nomePercorso", nomePercorsoo);
+                intent.putExtra("nomePercorso", idPercorso);
                 MostraAttrazioni.setIsSvolta();
                 startActivity(intent);
             }
