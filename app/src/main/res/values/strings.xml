@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">PercorsoCulturale</string>
-    <string name="action_settings" translatable="false">Settings</string>
     <string name="next" translatable="false">Next</string>
     <string name="previous" translatable="false">Previous</string>
 
@@ -19,5 +18,11 @@
     <string name= "oppureText">Oppure</string>
     <string name= "accediComeOspite">Accedi come ospite</string>
     <string name= "nextButton">Avanti</string>
+    <string name="profilo">Profilo</string>
+    <string name="avviaButton">Avvia</string>
+    <string name="compila">Compila i campi per modificare i dati</string>
+    <string name="badge">Livello</string>
+    <string name="badge2">Punti</string>
+    <string name="invia">Invia</string>
 
 </resources>

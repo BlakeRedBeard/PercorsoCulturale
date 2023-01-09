@@ -9,4 +9,11 @@
     <string name= "oppureText">O</string>
     <string name= "accediComeOspite">Iniciar sesión como invitado</string>
     <string name= "nextButton">Adelante!</string>
+    <string name="profilo">" Perfil"</string>
+    <string name="avviaButton">Comienzo</string>
+    <string name="compila">"Rellena los campos para modificar los datos "</string>
+    <string name="badge">Nivel</string>
+    <string name="badge2">" Puntos"</string>
+    <string name="invia">" Entregar"</string>
+
 </resources>

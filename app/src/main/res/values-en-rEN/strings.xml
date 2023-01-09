@@ -10,4 +10,12 @@
     <string name= "oppureText">Or</string>
     <string name= "accediComeOspite">Log in as a guest</string>
     <string name= "nextButton">Next</string>
+    <string name ="profilo">Profile</string>
+    <string name ="avviaButton">Start</string>
+    <string name="compila">Fill in the fields to modify the data</string>
+    <string name="badge">Level</string>
+    <string name="badge2">Points</string>
+    <string name="invia">" Submit"</string>
+
+
 </resources>

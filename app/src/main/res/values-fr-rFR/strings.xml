@@ -9,4 +9,10 @@
     <string name= "oppureText">Ou</string>
     <string name= "accediComeOspite">Démarrer la session en tant qu\'invité</string>
     <string name= "nextButton">Avantree</string>
+    <string name="profilo">Profil</string>
+    <string name="avviaButton">Début</string>
+    <string name="compila">Remplissez les champs pour modifier les données</string>
+    <string name="badge">" Niveau"</string>
+    <string name="badge2">" Points"</string>
+    <string name="invia">" Soumettre"</string>
 </resources>

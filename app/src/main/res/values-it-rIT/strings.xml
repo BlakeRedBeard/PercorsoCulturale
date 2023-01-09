@@ -9,4 +9,10 @@
     <string name="oppureText">Oppure</string>
     <string name="accediComeOspite">Accedi come ospite</string>
     <string name="nextButton">Avanti</string>
+    <string name="profilo">Profilo</string>
+    <string name="avviaButton">Avvia</string>
+    <string name="compila">Compila i campi per modificare i dati</string>
+    <string name="badge">Livello</string>
+    <string name="badge2">Punti</string>
+    <string name="invia">Invia</string>
 </resources>

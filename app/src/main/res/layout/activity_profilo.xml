@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfiloActivity"
     android:background="@color/color_background"
-    android:theme="@style/Theme.PercorsoCulturale.NoActionBar">
-
-
-
+    android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
+    tools:context=".ProfiloActivity">
 
 
     <LinearLayout
@@ -21,34 +17,25 @@
 
         tools:ignore="MissingConstraints">
 
-<RelativeLayout
+        <RelativeLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-   android:background="@color/color_primary">
-
-
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-
-        android:textStyle="bold"
-
-        />
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/color_primary">
 
 
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
-
-
-
-</RelativeLayout>
-
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -57,67 +44,67 @@
         android:id="@+id/LinearProfile2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/LinearProfile"
-        android:padding="20dp"
-        android:orientation="horizontal"
         android:layout_marginTop="-100dp"
-      >
-
-   <com.google.android.material.card.MaterialCardView
-       android:layout_width="match_parent"
-       android:layout_height="125dp"
-       android:layout_weight="1"
-       android:layout_margin="10dp"
-       android:backgroundTint="@color/color_primary"
-       app:cardElevation="6dp"
-
-       >
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:padding="5dp">
-
-           <ImageView
-               android:layout_width="30dp"
-               android:layout_height="30dp"
-               android:src="@drawable/custom_key"
-               android:layout_centerHorizontal="true">
-
-
-           </ImageView>
-
-           <TextView
-               android:id="@+id/badge"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_centerInParent="true"
-               android:includeFontPadding="false"
-               android:text="Livello"
-
-               android:textColor="@color/white"
-               android:textSize="20sp"
-               android:textStyle="bold"></TextView>
-
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/badge"
-               android:layout_centerInParent="true"
-               android:text="Badge"
-               android:textColor="@color/white"
-               android:textSize="14sp"></TextView>
-
-
-       </RelativeLayout>
-
-   </com.google.android.material.card.MaterialCardView>
+        android:orientation="horizontal"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/LinearProfile">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:layout_weight="1"
             android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_primary"
+            app:cardElevation="6dp"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/custom_key">
+
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:text="Livello"
+
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/badge"
+                    android:layout_centerInParent="true"
+                    android:text="Badge"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"></TextView>
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
             android:backgroundTint="@color/color_primary"
             app:cardElevation="6dp">
 
@@ -129,8 +116,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/custom_key"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/custom_key">
 
 
                 </ImageView>
@@ -141,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:includeFontPadding="false"
-                    android:text=""
+                    android:text="Punti"
                     android:textColor="@color/white"
 
                     android:textSize="20sp"
@@ -164,110 +151,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/LinearProfile2">
+        tools:ignore="MissingConstraints">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Compila i campi per modificare i dati"
-            android:textAlignment="center"
-            android:layout_marginBottom="10dp"/>
-
-
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome"
-            android:layout_marginBottom="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/color_primary"
-
-
-
-            app:hintTextColor="@color/color_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                app:startIconTint="#000000"
-                android:inputType="text"
-                android:id="@+id/nome"
-                />
-
-
-          </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Cognome"
-            android:layout_marginBottom="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/color_primary"
-
-
-
-            app:hintTextColor="@color/color_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                app:startIconTint="#000000"
-                android:inputType="text"
-                android:id="@+id/cognome"
-                />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/color_primary"
-
-
-
-            app:hintTextColor="@color/color_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="12345678"
-                app:startIconTint="#000000"
-                android:inputType="textPassword"
-                android:id="@+id/password"
-                />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Invia"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:backgroundTint="@color/color_primary"
-            android:id="@+id/invia"
-            app:elevation="5dp" />
 
     </LinearLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
@@ -275,17 +165,83 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        tools:ignore="MissingConstraints"
+        android:elevation="6dp"
+        android:onClick="backHome"
+        app:backgroundTint="@color/color_primary"
+        app:hoveredFocusedTranslationZ="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:backgroundTint="@color/color_primary"
-        android:elevation="6dp"
-        app:hoveredFocusedTranslationZ="2dp"
         app:pressedTranslationZ="6dp"
         app:srcCompat="@drawable/arrow"
         app:tint="@color/white"
-        android:onClick="backHome"/>
+        tools:ignore="MissingConstraints" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="415dp"
+        android:layout_height="206dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/LinearProfile"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="293dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="335dp"
+            android:padding="50dp">
+
+
+            <ImageButton
+
+                android:id="@+id/deleteAccount"
+                android:layout_width="106dp"
+                android:layout_height="106dp"
+                android:background="@drawable/delete_profile"
+                tools:layout_editor_absoluteX="254dp"
+                tools:layout_editor_absoluteY="360dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deleteAccount"
+                android:layout_centerInParent="true"
+                android:text="Elimina Profilo"
+                android:textColor="@color/black"
+                android:textSize="16sp">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="335dp"
+            android:padding="50dp">
+
+            <ImageButton
+
+                android:id="@+id/editProfile"
+                android:layout_width="105dp"
+                android:layout_height="103dp"
+                android:background="@drawable/edit_profile"
+                tools:layout_editor_absoluteX="254dp"
+                tools:layout_editor_absoluteY="360dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/editProfile"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="4dp"
+                android:text="Modifica Profilo"
+                android:textColor="@color/black"
+                android:textSize="16sp">
+
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

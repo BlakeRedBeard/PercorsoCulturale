@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,29 +35,39 @@ public class ProfiloActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView textNomeCognome;
     private TextView puntiUtente;
-    private TextInputEditText inputNome;
-    private TextInputEditText inputCognome;
-    private TextInputEditText inputPassword;
     private Button invia;
+    private ImageButton modificaProfilo;
+    private ImageButton eliminaProfilo;
     private String mailUtente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilo);
-
-        textNomeCognome = (TextView) findViewById(R.id.txt);
-        inputNome= (TextInputEditText) findViewById(R.id.nome);
-        inputCognome= (TextInputEditText) findViewById(R.id.cognome);
-        inputPassword= (TextInputEditText) findViewById(R.id.password);
-        puntiUtente = (TextView) findViewById(R.id.badge2);
-        invia = (Button) findViewById(R.id.invia);
-
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        mailUtente = firebaseUser.getEmail();
+        mailUtente = firebaseAuth.getCurrentUser().getEmail();
+        puntiUtente = (TextView) findViewById(R.id.badge2);
+        textNomeCognome = (TextView) findViewById(R.id.txt);
+        modificaProfilo = (ImageButton) findViewById(R.id.editProfile);
+        eliminaProfilo = (ImageButton) findViewById(R.id.deleteAccount);
+
 
         searchUser(mailUtente);
+        eliminaProfilo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EliminaProfilo.class);
+                startActivity(intent);
+            }
+        });
+
+        modificaProfilo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), ModificaProfilo.class);
+                    startActivity(intent);
+            }
+        });
 
         LinearLayout rl = (LinearLayout) findViewById(R.id.LinearProfile2);
         rl.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +77,7 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
 
-        invia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateInfo(mailUtente);
-            }
-        });
+
    
    
     }
@@ -104,9 +110,6 @@ public class ProfiloActivity extends AppCompatActivity {
                         int punti = document.getLong("punti").intValue();
 
                         textNomeCognome.setText(nome+"  "+cognome);
-                        inputNome.setText(nome);
-                        inputCognome.setText(cognome);
-                        inputPassword.setText(password);
                         puntiUtente.setText(Integer.toString(punti));
 
 
@@ -120,27 +123,6 @@ public class ProfiloActivity extends AppCompatActivity {
         });
     }
 
-    public void updateInfo(String mail) {
-                Map<String, Object> user = new HashMap<>();
-                user.put("nome", inputNome.getText().toString());
-                user.put("cognome", inputCognome.getText().toString());
-                user.put("password", inputPassword.getText().toString());
-
-                db.collection("utente").document(mail)
-                        .set(user, SetOptions.merge())
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully written!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writing document", e);
-                            }
-                        });
-            }
 
 
 }
