@@ -51,11 +51,14 @@
         <entry key="app/src/main/res/layout/activity_mostra_percorso_landscape.xml" value="0.20909090909090908" />
         <entry key="app/src/main/res/layout/activity_puzzle.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_qrcode.xml" value="0.11" />
-        <entry key="app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.2795580110497238" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.2717391304347826" />
         <entry key="app/src/main/res/layout/content_ricerca_percorsi.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/home.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/iscriviti.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/item_percorso_image.xml" value="0.13072916666666667" />
+        <entry key="app/src/main/res/layout/item_percorso_name.xml" value="0.13072916666666667" />
+        <entry key="app/src/main/res/layout/item_row.xml" value="0.13072916666666667" />
         <entry key="app/src/main/res/layout/layout_item_percorso.xml" value="0.2717391304347826" />
         <entry key="app/src/main/res/layout/login.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/signin.xml" value="0.20416666666666666" />

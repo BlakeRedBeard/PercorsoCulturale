@@ -148,7 +148,8 @@ public class JSONParser {
                     provincia = percorsoJson.isNull("provincia") ? null : percorsoJson.getString("provincia"),
                     regione = percorsoJson.isNull("regione") ? null : percorsoJson.getString("regione"),
                     stato = percorsoJson.isNull("stato") ? null : percorsoJson.getString("stato"),
-                    descrizione = percorsoJson.isNull("descrizione") ? null : percorsoJson.getString("descrizione");
+                    descrizione = percorsoJson.isNull("descrizione") ? null : percorsoJson.getString("descrizione"),
+                    immagine = percorsoJson.isNull("immagine") ? null : percorsoJson.getString("immagine");
             ArrayList<Attrazione> attrazioni = new ArrayList<Attrazione>();
 
             JSONArray attrazioniJson = percorsoJson.isNull("attrazioni") ? null : percorsoJson.getJSONArray("attrazioni");
@@ -161,7 +162,7 @@ public class JSONParser {
                     attrazioni.add(attrazione);
                 }
             }
-            Percorso percorso = new Percorso(idP, nome, comune, provincia, regione, stato, descrizione, attrazioni);
+            Percorso percorso = new Percorso(idP, nome, comune, provincia, regione, stato, descrizione, immagine, attrazioni);
             percorsi.add(percorso);
         } catch (JSONException e) {
             e.printStackTrace();

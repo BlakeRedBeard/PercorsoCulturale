@@ -6,21 +6,18 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -33,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.percorsoculturale.tables.ItemPercorsoFactory;
 import com.example.percorsoculturale.tables.Percorso;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -53,11 +51,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
     private android.widget.SearchView searchView;
-    private ArrayList<String> id_percorsi;
-    private ArrayList<String> id_attrazioni;
-    private ArrayList<String> nomi_percorsi;
-    private ArrayList<String> nomi_attrazioni;
-    private ArrayAdapter<String> arrayAdapter;
     private FirebaseFirestore db;
     private LinearLayout mBottomSheet;
     private BottomSheetBehavior mBottomSheetBehavior;
@@ -74,12 +67,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         tableLayout = findViewById(R.id.lista_percorsi);
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        TableRow row = (TableRow)inflater.inflate(R.layout.layout_item_percorso, null);
-        TableRow row2 = (TableRow)inflater.inflate(R.layout.layout_item_percorso, null);
-        ((ImageView) row.findViewById(R.id.image1)).setImageResource(R.drawable.puzzle_8);
-        tableLayout.addView(row);
-        tableLayout.addView(row2);
 
         searchView = findViewById(R.id.searchView);
         //imposta la casella di ricerca fissa
@@ -105,19 +92,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 return true;
-            }
-        });
-        /*
-        id_percorsi = new ArrayList<String>();
-        nomi_percorsi = new ArrayList<String>();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nomi_percorsi);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), MostraPercorsiActivity.class);
-                intent.putExtra("percorso", id_percorsi.get(i));
-                startActivity(intent);
             }
         });
 
@@ -186,7 +160,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         //GPS
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
-        */
+
     }
 
 
@@ -329,13 +303,40 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             }
         }
         if (parser != null) {
-            id_percorsi.clear();
-            nomi_percorsi.clear();
+            tableLayout.removeAllViews();
+            int columns = 0;
+            ItemPercorsoFactory factory = new ItemPercorsoFactory(this);
+            TableRow row = new TableRow(this);
             for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
-                id_percorsi.add(percorso.getId());
-                nomi_percorsi.add(percorso.getNome());
+                RelativeLayout item = factory.generateLayout(percorso.getImmagine(), percorso.getNome());
+                item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), MostraPercorsiActivity.class);
+                        intent.putExtra("percorso", percorso.getId());
+                        startActivity(intent);
+                    }
+                });
+                row = new TableRow(this);
+                row.addView(item);
+                tableLayout.addView(row);
+                /*
+                if(columns<=0) {
+                    columns = 1;
+                    row = new TableRow(this);
+                    row.addView(item);
+                }else if(columns == 1){
+                    columns = 0;
+                    row.addView(item);
+                    tableLayout.addView(row);
+                }
+                */
             }
-            arrayAdapter.notifyDataSetChanged();
+            /*
+            if(columns == 1){
+                tableLayout.addView(row);
+            }*/
+
         } else {
             throw new FileNotFoundException();
         }
