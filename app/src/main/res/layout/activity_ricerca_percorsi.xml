@@ -9,8 +9,6 @@
     >
 
 
-
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -23,39 +21,47 @@
         >
 
 
-<androidx.appcompat.widget.Toolbar
-    android:id="@+id/Toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="@color/color_primary"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/color_primary"
 
-    app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-   >
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay">
 
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="350dp"
-        android:layout_height="match_parent"
-        android:inputType="textAutoComplete"
-        android:visibility="invisible"
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:inputType="textAutoComplete"
+                android:visibility="invisible"
 
-        />
+                />
 
-</androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ListView
-        android:id="@+id/listview"
+    <ScrollView
+        android:fillViewport="false"
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        ></ListView>
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*"
+            android:orientation="vertical"
+            android:id="@+id/lista_percorsi">
+
+        </TableLayout>
+    </ScrollView>
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

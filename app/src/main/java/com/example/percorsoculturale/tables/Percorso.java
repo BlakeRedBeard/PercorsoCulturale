@@ -13,10 +13,11 @@ public class Percorso {
                     provincia,
                     regione,
                     stato,
-                    descrizione;
+                    descrizione,
+                    immagine;
     private ArrayList<Attrazione> attrazioni;
 
-    public Percorso(String id, String nome, String comune, String provincia, String regione, String stato, String descrizione) {
+    public Percorso(String id, String nome, String comune, String provincia, String regione, String stato, String descrizione, String immagine) {
         this.id = id;
         this.nome = nome;
         this.comune = comune;
@@ -24,10 +25,11 @@ public class Percorso {
         this.regione = regione;
         this.stato = stato;
         this.descrizione = descrizione;
+        this.immagine = immagine;
         this.attrazioni = new ArrayList<Attrazione>();
     }
 
-    public Percorso(String id, String nome, String comune, String provincia, String regione, String stato, String descrizione, List<Attrazione> attrazioni) {
+    public Percorso(String id, String nome, String comune, String provincia, String regione, String stato, String descrizione, String immagine, List<Attrazione> attrazioni) {
         this.id = id;
         this.nome = nome;
         this.comune = comune;
@@ -35,6 +37,7 @@ public class Percorso {
         this.regione = regione;
         this.stato = stato;
         this.descrizione = descrizione;
+        this.immagine = immagine;
         this.attrazioni = new ArrayList<Attrazione>(attrazioni);
     }
 
@@ -49,6 +52,8 @@ public class Percorso {
     public String getNome() {
         return nome;
     }
+
+    public String getImmagine() { return immagine; }
 
     public String getComune() {
         return comune;

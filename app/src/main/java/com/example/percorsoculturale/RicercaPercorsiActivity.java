@@ -6,19 +6,21 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.percorsoculturale.tables.ItemPercorsoFactory;
 import com.example.percorsoculturale.tables.Percorso;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -46,13 +49,8 @@ import java.util.Locale;
 
 public class RicercaPercorsiActivity extends AppCompatActivity {
 
-    private ListView listView;
+    private TableLayout tableLayout;
     private android.widget.SearchView searchView;
-    private ArrayList<String> id_percorsi;
-    private ArrayList<String> id_attrazioni;
-    private ArrayList<String> nomi_percorsi;
-    private ArrayList<String> nomi_attrazioni;
-    private ArrayAdapter<String> arrayAdapter;
     private FirebaseFirestore db;
     private LinearLayout mBottomSheet;
     private BottomSheetBehavior mBottomSheetBehavior;
@@ -63,12 +61,13 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ricerca_percorsi);
         db = FirebaseFirestore.getInstance();
 
-        listView = findViewById(R.id.listview);
+        tableLayout = findViewById(R.id.lista_percorsi);
+
         searchView = findViewById(R.id.searchView);
         //imposta la casella di ricerca fissa
 
@@ -95,26 +94,14 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                 return true;
             }
         });
-        id_percorsi = new ArrayList<String>();
-        nomi_percorsi = new ArrayList<String>();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nomi_percorsi);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), MostraPercorsiActivity.class);
-                intent.putExtra("percorso", id_percorsi.get(i));
-                startActivity(intent);
-            }
-        });
 
         //Implementazione App bar
-        Toolbar toolbar=findViewById(R.id.Toolbar);
+        Toolbar toolbar = findViewById(R.id.Toolbar);
         setSupportActionBar(toolbar);
         //implementazione bottom sheet
 
-        mBottomSheet=findViewById(R.id.bottom_sheet);
-        BottomSheetBehavior=BottomSheetBehavior.from(mBottomSheet);
+        mBottomSheet = findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
         BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
         searchView.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +119,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         String email = firebaseUser.getEmail();
 
 
-        LinearLayout BProfile=findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
+        LinearLayout BProfile = findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
 
         if (email.equals("user@guest.com")) {
             BProfile.setOnClickListener(new View.OnClickListener() {
@@ -145,13 +132,12 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             });
 
 
-        }
-        else {
+        } else {
             BProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    Intent IBProfile=new Intent(RicercaPercorsiActivity.this,ProfiloActivity.class);
+                    Intent IBProfile = new Intent(RicercaPercorsiActivity.this, ProfiloActivity.class);
                     startActivity(IBProfile);
                 }
             });
@@ -166,30 +152,28 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                 String messaggio = "Hai effettuato la disconnessione";
                 showMessage(messaggio);
                 FirebaseAuth.getInstance().signOut();
-                Intent home=new Intent(RicercaPercorsiActivity.this,LoginActivity.class);
+                Intent home = new Intent(RicercaPercorsiActivity.this, LoginActivity.class);
                 startActivity(home);
             }
         });
 
-//GPS
-        fusedLocationClient= LocationServices.getFusedLocationProviderClient(this);
-     getLocation();
+        //GPS
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        getLocation();
 
     }
 
 
-
-
     private void getLocation() {
-        if(PackageManager.PERMISSION_GRANTED== ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
+        if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             if (location != null) {
-                            geocoder=new Geocoder(RicercaPercorsiActivity.this, Locale.getDefault());
+                                geocoder = new Geocoder(RicercaPercorsiActivity.this, Locale.getDefault());
                                 try {
-                                    List<Address> addresses=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                                     //TODO Passare la regione a MostraPercorsi
                                     String regione = addresses.get(0).getAdminArea();
                                     showJSON(regione);
@@ -197,7 +181,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
-                            }else{
+                            } else {
                                 new AlertDialog.Builder(RicercaPercorsiActivity.this)
                                         .setTitle("Attivare posizione")
                                         .setMessage("Per utilizzare le funzionalità del gps bisogna attivarlo").create().show();
@@ -206,7 +190,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     });
 
 
-        }else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
             new AlertDialog.Builder(this)
                     .setTitle("Permesso posizione")
@@ -214,7 +198,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            ActivityCompat.requestPermissions(RicercaPercorsiActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_CODE);
+                            ActivityCompat.requestPermissions(RicercaPercorsiActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
                         }
                     })
                     .setNegativeButton("Non accetto", new DialogInterface.OnClickListener() {
@@ -227,23 +211,22 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         } else {
             // You can directly ask for the permission.
             // The registered ActivityResultCallback gets the result of this request.
-          ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
         }
 
 
-
     }
+
     //gps
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode==REQUEST_CODE){
-            if(grantResults.length>0 &&grantResults[0] ==PackageManager.PERMISSION_GRANTED)
-            {
-            getLocation();
-            }else{
-                Toast.makeText(this,"Permesso negato", Toast.LENGTH_SHORT).show();
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocation();
+            } else {
+                Toast.makeText(this, "Permesso negato", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -263,13 +246,13 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.home_menu,menu);
+        getMenuInflater().inflate(R.menu.home_menu, menu);
         return true;
     }
 
 
     @Override
-    public boolean onOptionsItemSelected (@NonNull MenuItem item){
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         mBottomSheet = findViewById(R.id.bottom_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 
@@ -299,36 +282,62 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
 
         MenuItem item = menu.findItem(R.id.searchView);
-item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        item.setVisible(false);
-        searchView.setVisibility(View.VISIBLE);
-        return false;
-    }
-});
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                item.setVisible(false);
+                searchView.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
 
         return true;
     }
 
 
-
-    private void showJSON(String filter) throws FileNotFoundException{
+    private void showJSON(String filter) throws FileNotFoundException {
         JSONParser parser = null;
-        for(File fileLocale : getApplicationContext().getFilesDir().listFiles()) {
+        for (File fileLocale : getApplicationContext().getFilesDir().listFiles()) {
             if (fileLocale.getName().contains("Versione")) {
                 parser = new JSONParser(fileLocale);
             }
         }
-        if(parser != null) {
-            id_percorsi.clear();
-            nomi_percorsi.clear();
+        if (parser != null) {
+            tableLayout.removeAllViews();
+            int columns = 0;
+            ItemPercorsoFactory factory = new ItemPercorsoFactory(this);
+            TableRow row = new TableRow(this);
             for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
-                id_percorsi.add(percorso.getId());
-                nomi_percorsi.add(percorso.getNome());
+                RelativeLayout item = factory.generateLayout(percorso.getImmagine(), percorso.getNome());
+                item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), MostraPercorsiActivity.class);
+                        intent.putExtra("percorso", percorso.getId());
+                        startActivity(intent);
+                    }
+                });
+                row = new TableRow(this);
+                row.addView(item);
+                tableLayout.addView(row);
+                /*
+                if(columns<=0) {
+                    columns = 1;
+                    row = new TableRow(this);
+                    row.addView(item);
+                }else if(columns == 1){
+                    columns = 0;
+                    row.addView(item);
+                    tableLayout.addView(row);
+                }
+                */
             }
-            arrayAdapter.notifyDataSetChanged();
-        }else{
+            /*
+            if(columns == 1){
+                tableLayout.addView(row);
+            }*/
+
+        } else {
             throw new FileNotFoundException();
         }
     }
