@@ -41,122 +41,73 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearProfile2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-100dp"
-        android:orientation="horizontal"
-        android:padding="20dp"
+        android:id="@+id/linearLayoutOne"
+        android:layout_width="415dp"
+        android:layout_height="206dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/LinearProfile">
+        app:layout_constraintTop_toBottomOf="@+id/LinearProfile"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="293dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/color_primary"
-            app:cardElevation="6dp"
-
-            >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/custom_key">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="335dp"
+            android:padding="50dp">
 
 
-                </ImageView>
+            <ImageView
 
-                <TextView
-                    android:id="@+id/badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:includeFontPadding="false"
-                    android:text="Livello"
+                android:id="@+id/puntiTotalizzati"
+                android:layout_width="106dp"
+                android:layout_height="106dp"
+                android:background="@drawable/visto"
+                tools:layout_editor_absoluteX="360dp"
+                tools:layout_editor_absoluteY="254dp" />
 
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></TextView>
+            <TextView
+                android:id="@+id/punti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deleteAccount"
+                android:layout_centerInParent="true"
+                android:text="Punti Ottenuti"
+                android:textColor="@color/black"
+                android:textSize="16sp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/badge"
-                    android:layout_centerInParent="true"
-                    android:text="Badge"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"></TextView>
+            </TextView>
 
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="335dp"
+            android:padding="50dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/color_primary"
-            app:cardElevation="6dp">
+            <ImageButton
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
+                android:id="@+id/badgeButton"
+                android:layout_width="106dp"
+                android:layout_height="106dp"
+                android:background="@drawable/badge"
+                tools:layout_editor_absoluteX="254dp"
+                tools:layout_editor_absoluteY="360dp" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/custom_key">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editProfile"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="4dp"
+                android:text="Badge Ottenuti"
+                android:textColor="@color/black"
+                android:textSize="16sp">
 
-
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/badge2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:includeFontPadding="false"
-                    android:text="Punti"
-                    android:textColor="@color/white"
-
-                    android:textSize="20sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/badge2"
-                    android:layout_centerInParent="true"
-                    android:text="Punti"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"></TextView>
-
-
-            </RelativeLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
+            </TextView>
+        </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-
-
-    </LinearLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -231,7 +182,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/editProfile"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="4dp"

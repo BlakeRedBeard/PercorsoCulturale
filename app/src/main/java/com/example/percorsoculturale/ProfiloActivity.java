@@ -46,7 +46,7 @@ public class ProfiloActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profilo);
         firebaseAuth = FirebaseAuth.getInstance();
         mailUtente = firebaseAuth.getCurrentUser().getEmail();
-        puntiUtente = (TextView) findViewById(R.id.badge2);
+        puntiUtente = (TextView) findViewById(R.id.punti);
         textNomeCognome = (TextView) findViewById(R.id.txt);
         modificaProfilo = (ImageButton) findViewById(R.id.editProfile);
         eliminaProfilo = (ImageButton) findViewById(R.id.deleteAccount);
@@ -69,7 +69,7 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout rl = (LinearLayout) findViewById(R.id.LinearProfile2);
+        LinearLayout rl = (LinearLayout) findViewById(R.id.LinearProfile);
         rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
