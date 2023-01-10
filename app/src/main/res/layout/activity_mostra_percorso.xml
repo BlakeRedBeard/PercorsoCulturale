@@ -7,100 +7,230 @@
     android:layout_height="match_parent"
     tools:context=".MostraPercorsiActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="400px"
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:background="@drawable/shape2"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay" />
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            android:backgroundTint="@color/color_primary"
+            app:title="Percorso"
+            app:navigationIcon="@drawable/arrow"
+            android:layout_gravity="top"
+            />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
-    <ImageView
-        android:id="@+id/immaginePercorso"
-        android:layout_width="332dp"
-        android:layout_height="229dp"
-        android:layout_marginTop="40dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/immaginePercorsoCard"
+        android:layout_width="250dp"
+        android:layout_height="160dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="-70dp"
+       >
 
-    <TextView
-        android:id="@+id/nomePercorso"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
+        <ImageView
+            android:id="@+id/immaginePercorso"
+            android:layout_width="300dp"
+            android:layout_height="170dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:srcCompat="@drawable/ic_baseline_person_outline_24"
+            android:layout_gravity="center"/>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/firstCard"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/immaginePercorso" />
+        app:layout_constraintTop_toBottomOf="@+id/immaginePercorsoCard"
+        android:elevation="20dp"
+        >
 
-    <TextView
-        android:id="@+id/descrizionePercorso"
-        android:layout_width="330dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomePercorso" />
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/regionePercorso"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descrizionePercorso" />
+            <LinearLayout
+                android:layout_width="340dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    <TextView
-        android:id="@+id/comunePercorso"
-        android:layout_width="330dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regionePercorso" />
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+                <TextView
+                    android:id="@+id/nomePercorso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Text view"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+                <ImageView
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/tracciato_7"/>
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descrizione"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+                <TextView
+                    android:id="@+id/descrizionePercorso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Text view"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+                <ImageView
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/tracciato_7"/>
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regione"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+                <TextView
+                    android:id="@+id/regionePercorso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Text view"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+
+                <ImageView
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/tracciato_7"/>
+
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comune"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+                <TextView
+                    android:id="@+id/comunePercorso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Text view"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+
+
 
     <Button
         android:id="@+id/avviaButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="7dp"
+        android:elevation="5dp"
         android:text="Avvia"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comunePercorso"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/firstCard"
+        tools:ignore="MissingConstraints"
+        android:textStyle="bold"
+        app:backgroundTint="@color/color_primary"
+        />
 
-    <com.google.android.material.button.MaterialButton
+
+    <Button
         android:id="@+id/btnCondividiPercorso"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="36dp"
-        android:background="@drawable/rounded_button"
-        android:gravity="center_vertical|center_horizontal"
-        app:icon="@android:drawable/ic_menu_share"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/avviaButton" />
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circle_shape"
+        android:drawableTop="@drawable/icon_feather_share_2"
+        app:backgroundTint="@color/color_primary"
+        app:elevation="6dp"
+        app:layout_constraintStart_toStartOf="@id/firstCard"
+
+        app:layout_constraintTop_toBottomOf="@+id/firstCard"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
