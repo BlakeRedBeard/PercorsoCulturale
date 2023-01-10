@@ -37,6 +37,7 @@ public class ProfiloActivity extends AppCompatActivity {
     private TextView puntiUtente;
     private Button invia;
     private ImageButton modificaProfilo;
+    private ImageButton badge;
     private ImageButton eliminaProfilo;
     private String mailUtente;
 
@@ -69,8 +70,8 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout rl = (LinearLayout) findViewById(R.id.LinearProfile);
-        rl.setOnClickListener(new View.OnClickListener() {
+        badge = (ImageButton) findViewById(R.id.badgeButton);
+        badge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ProfiloActivity.this, BadgeActivity.class));
