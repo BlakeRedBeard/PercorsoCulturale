@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -310,6 +312,11 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             TableRow.LayoutParams params = new TableRow.LayoutParams();
             params.width = TableRow.LayoutParams.MATCH_PARENT;
             params.height = TableRow.LayoutParams.WRAP_CONTENT;
+            Animation animation;
+            animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.comparsa);
+            animation.setStartOffset(500);
+            int nAnimation = 0;
             for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
                 RelativeLayout item = factory.generateLayout(percorso.getImmagine(), percorso.getNome(), row);
                 item.setOnClickListener(new View.OnClickListener() {
@@ -322,6 +329,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                 });
                 row.setLayoutParams(params);
                 row.addView(item);
+                if(nAnimation < 6)
+                    row.startAnimation(animation);
                 tableLayout.addView(row);
                 row = new TableRow(this);
                 /*
