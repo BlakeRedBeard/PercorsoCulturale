@@ -5,10 +5,12 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -40,10 +42,10 @@ public class ItemPercorsoFactory extends View {
         return bottone;
     }
 
-    public RelativeLayout generateLayout(String idImmagine, String nome){
+    public RelativeLayout generateLayout(String idImmagine, String nome, TableRow row){
         RelativeLayout bottone = null;
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        bottone = (RelativeLayout) inflater.inflate(R.layout.item_percorso, null);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        bottone = (RelativeLayout) inflater.inflate(R.layout.item_percorso, row, false);
         StorageReference storage = FirebaseStorage.getInstance().getReferenceFromUrl(idImmagine);
         int ONE_MEGABYTE = 1024*1024;
         ImageView immagine = bottone.findViewById(R.id.item_percorso_image);

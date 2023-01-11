@@ -307,8 +307,11 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             int columns = 0;
             ItemPercorsoFactory factory = new ItemPercorsoFactory(this);
             TableRow row = new TableRow(this);
+            TableRow.LayoutParams params = new TableRow.LayoutParams();
+            params.width = TableRow.LayoutParams.MATCH_PARENT;
+            params.height = TableRow.LayoutParams.WRAP_CONTENT;
             for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
-                RelativeLayout item = factory.generateLayout(percorso.getImmagine(), percorso.getNome());
+                RelativeLayout item = factory.generateLayout(percorso.getImmagine(), percorso.getNome(), row);
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -317,9 +320,10 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                row = new TableRow(this);
+                row.setLayoutParams(params);
                 row.addView(item);
                 tableLayout.addView(row);
+                row = new TableRow(this);
                 /*
                 if(columns<=0) {
                     columns = 1;
