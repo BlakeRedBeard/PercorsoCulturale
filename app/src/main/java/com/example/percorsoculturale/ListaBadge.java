@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -69,6 +70,17 @@ public class ListaBadge extends AppCompatActivity {
                 startActivity(new Intent(ListaBadge.this, RicercaPercorsiActivity.class));
             }
 
+        });
+
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backHome=new Intent(getApplicationContext(),BadgeActivity.class);
+                startActivity(backHome);
+
+            }
         });
 
     }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -113,15 +114,6 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         });
 
 
-        Button btnBadge = (Button) findViewById(R.id.badgeButton);
-        btnBadge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ValutazionePercorsoActivity.this, BadgeActivity.class));
-            }
-
-        });
-
 
         Button btnContinua = (Button) findViewById(R.id.continuaButton);
         btnContinua.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +124,17 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
+        });
+
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backHome=new Intent(getApplicationContext(),RicercaPercorsiActivity.class);
+                startActivity(backHome);
+
+            }
         });
 
     }
