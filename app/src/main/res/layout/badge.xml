@@ -18,13 +18,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            android:backgroundTint="@color/color_primary"
-            app:title="Badge"
-            app:navigationIcon="@drawable/arrow"
             android:layout_gravity="top"
-            />
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/color_primary"
+            app:navigationIcon="@drawable/arrow"
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            app:title="Badge" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -151,6 +150,21 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="372dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Non hai ancora conquistato nessun badge"
+        android:textAllCaps="true"
+        android:textColor="#F8000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

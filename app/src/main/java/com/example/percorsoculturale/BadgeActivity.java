@@ -44,6 +44,7 @@ public class BadgeActivity extends AppCompatActivity {
     private DocumentReference noteRef;
     private FirebaseStorage storage;
     private FirebaseAuth firebaseAuth;
+    TextView nienteBadge;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +90,9 @@ public class BadgeActivity extends AppCompatActivity {
 
             }
         });
+
+        nienteBadge = (TextView) findViewById(R.id.textView17);
+        nienteBadge.setVisibility(View.INVISIBLE);
 
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -154,6 +158,7 @@ public class BadgeActivity extends AppCompatActivity {
                                         mostraBadge("5punti",badge1);
                                     }
                                     else {
+                                        nienteBadge.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }
