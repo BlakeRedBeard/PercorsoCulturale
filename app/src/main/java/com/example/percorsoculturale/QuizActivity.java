@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +26,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity {
@@ -100,17 +104,25 @@ public Attivita attivita;
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        quiz=documentSnapshot.toObject(Quiz.class);
+                        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+                        String language = pref.getString("My_Lang", "");
+                        ArrayList<String> risposte = new ArrayList<>();
+                        risposte.add(documentSnapshot.getString("risposta_corretta"+language));
+                        risposte.add(documentSnapshot.getString("risposta_errata1"+language));
+                        risposte.add(documentSnapshot.getString("risposta_errata2"+language));
+                        risposte.add(documentSnapshot.getString("risposta_errata3"+language));
+                        Collections.shuffle(risposte);
+                        quiz = new Quiz(documentSnapshot.getString("domanda"+language),
+                                        risposte.get(0),
+                                        risposte.get(1),
+                                        risposte.get(2),
+                                        risposte.get(3),
+                                        Integer.parseInt(documentSnapshot.getString("tempo")),
+                                        Integer.parseInt(documentSnapshot.getString("punti")));
                         binding.setQuiz(quiz);
                     }
                 });
 
     }
-
-    private void getQuizId(String quizId) {
-        // Quiz quiz=new Quiz(attivita,domanda,risposta_corretta,risposta_errata1,risposta_errata2,risposta_errata3,10);
-        binding.setQuiz(quiz);
-    }
-
 
 }

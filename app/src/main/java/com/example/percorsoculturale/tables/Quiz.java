@@ -2,7 +2,6 @@ package com.example.percorsoculturale.tables;
 
 public class Quiz {
 
-    private Attivita attivita;
     private String domanda;
     private String risposta_corretta;
     private String risposta_errata1;
@@ -12,8 +11,7 @@ public class Quiz {
     private int punti;
 
 
-    public Quiz( Attivita attivita,String domanda, String risposta_corretta, String risposta_errata1, String risposta_errata2, String risposta_errata3, int tempo, int punti) {
-        this.attivita = attivita;
+    public Quiz(String domanda, String risposta_corretta, String risposta_errata1, String risposta_errata2, String risposta_errata3, int tempo, int punti) {
         this.domanda = domanda;
         this.risposta_corretta = risposta_corretta;
         this.risposta_errata1 = risposta_errata1;
@@ -22,11 +20,10 @@ public class Quiz {
         this.tempo = tempo;
         this.punti = punti;
     }
-public Quiz(){
 
-}
+    public Quiz(){
 
-    public Attivita getAttivita() { return attivita; }
+    }
 
     public String getDomanda() {
         return domanda;
