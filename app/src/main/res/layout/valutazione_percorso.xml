@@ -18,13 +18,13 @@
 
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             android:backgroundTint="@color/color_primary"
-            app:title="Valutazione Percorso"
+            app:title="@string/toolbar2"
             app:navigationIcon="@drawable/arrow"
             android:layout_gravity="top"
             />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="184dp"
-        android:text="Continua"
+        android:text="@string/continuaButton"
         app:backgroundTint="@color/color_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="308dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Complimenti"
+        android:text="@string/textview3"
         android:textAllCaps="true"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -108,7 +108,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="392dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Hai ottenuto i seguenti punti per aver completato il percorso:"
+        android:text="@string/textview5"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"

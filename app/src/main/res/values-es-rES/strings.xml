@@ -15,5 +15,31 @@
     <string name="badge">Nivel</string>
     <string name="badge2">" Puntos"</string>
     <string name="invia">" Entregar"</string>
+    <string name="profiloText">" Perfil"</string>
+    <string name="Lingua">" Lengua"</string>
+    <string name="Disconnetti">" Cerrar sesión"</string>
+    <string name="Aiuto">Ayudar</string>
+    <string name="toolbar">" Camino"</string>
+    <string name="nomeP">" Nombre"</string>
+    <string name="descrizione">Descripción</string>
+    <string name="regione">" Región"</string>
+    <string name="comune">Municipio</string>
+    <string name="btnIndietro">Hacia Atrás</string>
+    <string name="btnAttivita">Actividades</string>
+    <string name="toolbar1">Atracción</string>
+    <string name="toolbar2">" Evaluación de ruta"</string>
+    <string name="textview3">Felicidades</string>
+    <string name="textview5">" Has obtenido los siguientes puntos por completar el curso:"</string>
+    <string name="continuaButton">Continúa</string>
+    <string name="textView15">¿Con cuántas estrellas calificas la ruta?</string>
+    <string name="textView16">Introduzca un comentario para la evaluación de la ruta.</string>
+    <string name="btnInvia">" Entregar"</string>
+    <string name="modifica">Elija si desea modificar el nombre o el apellido o la contraseña, o los tres campos</string>
+    <string name="punti">Puntos totales:</string>
+    <string name="modificaP">Editar perfil</string>
+    <string name="eliminaP">Borrar perfil</string>
+    <string name="eliminaProfilo">Para eliminar tu perfil ingresa la contraseña de tu cuenta</string>
+    <string name="rspCorretta">SELECCIONA LA RESPUESTA CORRECTA</string>
+    <string name="Verifica">Verificar</string>
 
 </resources>

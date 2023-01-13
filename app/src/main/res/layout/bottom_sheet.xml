@@ -47,10 +47,11 @@
             app:tint="#2B3D9F"/>
 
         <TextView
+            android:id="@+id/profiloText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Profilo"
+            android:text="@string/profiloText"
             android:fontFamily="sans-serif-medium"
             android:textColor="#000000"
             android:textSize="16dp"/>
@@ -92,10 +93,11 @@
             />
 
         <TextView
+            android:id="@+id/Lingua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Lingua"
+            android:text="@string/Lingua"
             android:fontFamily="sans-serif-medium"
             android:textColor="#000000"
             android:textSize="16dp"/>
@@ -134,10 +136,11 @@
             app:tint="#2B3D9F"/>
 
         <TextView
+            android:id="@+id/Disconnetti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Disconnettiti"
+            android:text="@string/Disconnetti"
             android:fontFamily="sans-serif-medium"
             android:textColor="#000000"
             android:textSize="16dp"/>
@@ -176,10 +179,11 @@
             app:tint="#2B3D9F"/>
 
         <TextView
+            android:id="@+id/Aiuto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Aiuto"
+            android:text="@string/Aiuto"
             android:fontFamily="sans-serif-medium"
             android:textColor="#000000"
             android:textSize="16dp"/>

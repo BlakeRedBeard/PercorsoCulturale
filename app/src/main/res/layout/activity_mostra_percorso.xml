@@ -28,7 +28,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             android:backgroundTint="@color/color_primary"
-            app:title="Percorso"
+            app:title="@string/toolbar"
             app:navigationIcon="@drawable/arrow"
             />
 
@@ -95,10 +95,11 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/nomeP"
                     android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
+                    android:text="@string/nomeP"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     />
 
@@ -119,11 +120,12 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
                     android:src="@drawable/tracciato_7"/>
                 <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/descrizione"
                     android:textSize="18dp"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descrizione"
+                    android:text="@string/descrizione"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     />
 
@@ -144,11 +146,12 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
                     android:src="@drawable/tracciato_7"/>
                 <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/regione"
                     android:textSize="18dp"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Regione"
+                    android:text="@string/regione"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     />
 
@@ -171,11 +174,12 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/comune"
                     android:textSize="18dp"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Comune"
+                    android:text="@string/comune"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     />
 
@@ -212,7 +216,7 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         android:layout_height="60dp"
         android:layout_marginTop="7dp"
         android:elevation="5dp"
-        android:text="Avvia"
+        android:text="@string/avviaButton"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

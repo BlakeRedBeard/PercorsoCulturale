@@ -16,6 +16,32 @@
     <string name="badge">Level</string>
     <string name="badge2">Points</string>
     <string name="invia">" Submit"</string>
+    <string name="profiloText">Profile</string>
+    <string name="Lingua">Language</string>
+    <string name="Disconnetti">" Log out"</string>
+    <string name="Aiuto">Help</string>
+    <string name="toolbar">" Path"</string>
+    <string name="nomeP">Name</string>
+    <string name="descrizione">Description</string>
+    <string name="regione">Region</string>
+    <string name="comune">Municipality</string>
+    <string name="btnIndietro">Back</string>
+    <string name="btnAttivita">Activity</string>
+    <string name="toolbar1">Attraction</string>
+    <string name="toolbar2">Path evaluation</string>
+    <string name="textview3">Congratulations</string>
+    <string name="textview5">" You have obtained the following points for completing the course:"</string>
+    <string name="continuaButton">Continues</string>
+    <string name="textView15">How many stars do you rate the route?</string>
+    <string name="textView16">" Enter a comment for the evaluation of the path"</string>
+    <string name="btnInvia">Submit</string>
+    <string name="modifica">" Choose whether to modify the first or last name or the password, or all three fields"</string>
+    <string name="punti">" Total points:"</string>
+    <string name="modificaP">" Edit profile"</string>
+    <string name="eliminaP">Delete Profile</string>
+    <string name="eliminaProfilo">To delete your profile enter your account password</string>
+    <string name="rspCorretta">SELECT THE CORRECT ANSWER</string>
+    <string name="Verifica">" Verify"</string>
 
 
 </resources>

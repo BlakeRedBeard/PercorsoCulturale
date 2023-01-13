@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -25,7 +25,7 @@
             android:backgroundTint="@color/color_primary"
             app:navigationIcon="@drawable/arrow"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            app:title="Valutazione Percorso" />
+            app:title="@string/toolbar2" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -66,7 +66,7 @@
         android:layout_marginTop="236dp"
         android:layout_marginEnd="76dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Quante stelle valuti il percorso?"
+        android:text="@string/textView15"
         android:textAllCaps="true"
         android:textColor="#FA000000"
         android:textSize="16sp"
@@ -196,7 +196,7 @@
         android:layout_marginStart="37dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Inserisci un commento per la valutazione del percorso"
+        android:text="@string/textView16"
         android:textAllCaps="true"
         android:textColor="#F7000000"
         android:textSize="16sp"
@@ -213,7 +213,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Invia"
+        android:text="@string/btnInvia"
         app:backgroundTint="@color/color_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"

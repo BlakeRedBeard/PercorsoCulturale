@@ -22,7 +22,7 @@
         android:elevation="6dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -30,7 +30,7 @@
             android:backgroundTint="@color/color_primary"
             app:navigationIcon="@drawable/arrow"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            app:title="Attrazione" />
+            app:title="@string/toolbar1" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -89,10 +89,11 @@
 
             <!-- Title, secondary and supporting text -->
             <TextView
+                android:id="@+id/nomeP"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome"
+                android:text="@string/nomeP"
                 android:textAppearance="?attr/textAppearanceHeadline6"
 
 
@@ -144,10 +145,11 @@
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/descrizione"
                     android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descrizione Attrazione"
+                    android:text="@string/descrizione"
                     android:textAppearance="?attr/textAppearanceHeadline6"
 
 
@@ -179,7 +181,7 @@
         android:id="@+id/btnIndietro"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:text="Indietro"
+        android:text="@string/btnIndietro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +192,6 @@
         app:backgroundTint="@color/color_primary"
         android:textColor="@color/white"
         android:textStyle="bold"
-
         app:iconTint="@color/white"
         app:iconGravity="start"
         />
@@ -199,7 +200,7 @@
         android:id="@+id/btnAttivita"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:text="Attivita"
+        android:text="@string/btnAttivita"
         app:layout_constraintEnd_toStartOf="@+id/btnAvanti"
         app:layout_constraintStart_toEndOf="@+id/btnIndietro"
         app:layout_constraintTop_toTopOf="@+id/btnAvanti"

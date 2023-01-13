@@ -9,24 +9,23 @@
     >
 
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
+        android:background="@drawable/shape2"
         >
 
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/color_primary"
-
+            android:background="#F0F0F0"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay">
 
 
@@ -36,13 +35,11 @@
                 android:layout_height="match_parent"
                 android:inputType="textAutoComplete"
                 android:visibility="invisible"
-
                 />
 
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.MaterialToolbar>
 
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:fillViewport="false"
@@ -67,6 +64,7 @@
         android:id="@+id/viewBottomSheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         app:layout_constraintBottom_toBottomOf="parent"
 
         >

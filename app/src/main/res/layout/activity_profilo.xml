@@ -72,11 +72,12 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp">
         <TextView
+            android:id="@+id/punti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="6dp"
             android:includeFontPadding="false"
-            android:text="Punti totali:"
+            android:text="@string/punti"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="normal">
@@ -131,9 +132,8 @@
 
 
                     android:layout_centerInParent="true"
-
                     android:includeFontPadding="false"
-                    android:text="Livello"
+                    android:text="Badge"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"></TextView>
@@ -171,14 +171,14 @@
                 </ImageView>
 
                 <TextView
-                    android:id="@+id/badge4"
+                    android:id="@+id/modificaP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:layout_centerInParent="true"
                     android:layout_marginTop="12dp"
                     android:includeFontPadding="false"
-                    android:text="Modifica profilo"
+                    android:text="@string/modificaP"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"></TextView>
@@ -214,14 +214,14 @@
                 </ImageView>
 
                 <TextView
-                    android:id="@+id/badge3"
+                    android:id="@+id/eliminaP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:layout_centerInParent="true"
                     android:layout_marginTop="12dp"
                     android:includeFontPadding="false"
-                    android:text="Elimina Profilo"
+                    android:text="@string/eliminaP"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"></TextView>
