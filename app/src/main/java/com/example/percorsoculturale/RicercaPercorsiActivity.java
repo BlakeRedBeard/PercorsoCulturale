@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -44,6 +46,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -88,8 +91,10 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         loadLocale();
         //imposta la casella di ricerca fissa
-
         searchView.setIconifiedByDefault(false);
+        EditText e = (EditText)searchView.findViewById(searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null));
+        e.setBackgroundColor(getColor(R.color.color_primary_allodole));
+        e.setTextColor(Color.WHITE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -126,10 +131,10 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                String messaggio = "La ricerca avviene per comune e attrazione";
-                showMessage(messaggio);
+
             }
         });
+
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -321,18 +326,25 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.menuIcon:
-                Toast.makeText(this, "Hai cliccato il menu", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Hai cliccato il menu", Toast.LENGTH_SHORT).show();
 
 
-                if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                } else {
-                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                }
+                                if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                                } else {
+                                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                                }
 
                 return true;
 
             case R.id.searchView:
+                                    if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                                    } else {
+                                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                                    }
+                                    return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);

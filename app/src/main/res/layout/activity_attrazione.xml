@@ -49,13 +49,13 @@
 
         <ImageView
             android:id="@+id/immagineAttrazione"
-            android:layout_width="332dp"
-            android:layout_height="229dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+            app:srcCompat="@drawable/ic_baseline_person_outline_24"
+            android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>
 
