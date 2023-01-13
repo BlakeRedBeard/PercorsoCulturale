@@ -188,7 +188,7 @@ public class MostraAttrazioni extends AppCompatActivity {
             }
         }
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
