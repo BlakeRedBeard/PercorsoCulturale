@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -340,8 +341,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             case R.id.searchView:
                                     if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                                         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                                    } else {
-                                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                                     }
                                     return true;
 
