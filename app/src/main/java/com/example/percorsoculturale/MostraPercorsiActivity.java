@@ -1,6 +1,8 @@
 package com.example.percorsoculturale;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -152,12 +154,14 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+                        String language = pref.getString("My_Lang", "");
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-                            if(entry.getKey().equals("nome")){
+                            if(entry.getKey().equals("nome"+language)){
                                 nomePercorso.setText((String) entry.getValue());
-                            }else if(entry.getKey().equals("descrizione")){
+                            }else if(entry.getKey().equals("descrizione"+language)){
                                 descrizionePercorso.setText((String) entry.getValue());
                             }else if(entry.getKey().equals("regione")){
                                 regionePercorso.setText((String) entry.getValue());
@@ -166,6 +170,8 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                             }else if(entry.getKey().equals("attrazioni")) {
                                 attrazioni = (List<String>) entry.getValue();
                                 MostraAttrazioni.setAttrazioni(attrazioni);
+                            }else if(entry.getKey().equals("gmaps")){
+                                //TODO aggiungere bottone che va su google maps
                             }else if(entry.getKey().equals("attivita")){
                                 attivita = (List<String>) entry.getValue();
                                 MostraAttrazioni.setAttivita(attivita);

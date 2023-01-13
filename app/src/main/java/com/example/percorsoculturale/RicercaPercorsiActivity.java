@@ -1,11 +1,16 @@
 package com.example.percorsoculturale;
 
+import static com.example.percorsoculturale.PuzzleActivity.storage;
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Address;
@@ -36,14 +41,21 @@ import com.example.percorsoculturale.tables.ItemPercorsoFactory;
 import com.example.percorsoculturale.tables.Percorso;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +72,9 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FusedLocationProviderClient fusedLocationClient;
     private Geocoder geocoder;
+    private final String JSONFILENAME = "Versione";
+    private final String CONFIGURL = "gs://percorsoculturale.appspot.com/PortableDB";
+    public int loadImage;
 
 
     @Override
@@ -71,6 +86,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         tableLayout = findViewById(R.id.lista_percorsi);
 
         searchView = findViewById(R.id.searchView);
+        loadLocale();
         //imposta la casella di ricerca fissa
 
         searchView.setIconifiedByDefault(false);
@@ -120,34 +136,73 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String email = firebaseUser.getEmail();
 
+        LinearLayout bLingua = findViewById(R.id.lingua);
+        FloatingActionButton lbtn = findViewById(R.id.btnLingua);
+
+        View.OnClickListener onClickLanguage = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLanguage();
+            }
+        };
+        lbtn.setOnClickListener(onClickLanguage);
+        bLingua.setOnClickListener(onClickLanguage);
+        if(savedInstanceState != null) {
+            int flags = savedInstanceState.getInt("loadImage");
+            FloatingActionButton lingua = findViewById(R.id.btnLingua);
+            if (flags == 0) {
+                lingua.setImageDrawable(getDrawable(R.drawable.england));
+            } else if (flags == 1) {
+                lingua.setImageDrawable(getDrawable(R.drawable.france));
+            } else if (flags == 2) {
+                lingua.setImageDrawable(getDrawable(R.drawable.spain));
+            } else if (flags == 3) {
+                lingua.setImageDrawable(getDrawable(R.drawable.italy));
+            }
+        }else{
+            SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+            String language = pref.getString("My_Lang", "");
+            FloatingActionButton lingua = findViewById(R.id.btnLingua);
+            if (language.equals("en")) {
+                lingua.setImageDrawable(getDrawable(R.drawable.england));
+            } else if (language.equals("fr")) {
+                lingua.setImageDrawable(getDrawable(R.drawable.france));
+            } else if (language.equals("es")) {
+                lingua.setImageDrawable(getDrawable(R.drawable.spain));
+            } else{
+                lingua.setImageDrawable(getDrawable(R.drawable.italy));
+            }
+        }
 
         LinearLayout BProfile = findViewById(R.id.viewBottomSheet).findViewById(R.id.profilo);
+        FloatingActionButton btnProfile = findViewById(R.id.viewBottomSheet).findViewById(R.id.btnProfilo);
 
         if (email.equals("user@guest.com")) {
-            BProfile.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener onClickProfile = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     String messaggio = "Non puoi accedere al profilo in quanto non hai effettuato l'accesso";
                     showMessage(messaggio);
                 }
-            });
+            };
+            BProfile.setOnClickListener(onClickProfile);
+            btnProfile.setOnClickListener(onClickProfile);
 
 
         } else {
-            BProfile.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener onClickProfile = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     Intent IBProfile = new Intent(RicercaPercorsiActivity.this, ProfiloActivity.class);
                     startActivity(IBProfile);
                 }
-            });
+            };
+            BProfile.setOnClickListener(onClickProfile);
+            btnProfile.setOnClickListener(onClickProfile);
         }
-
-        LinearLayout BDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
-
-        BDisconnettiti.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener onClickLogOut = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -157,7 +212,12 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                 Intent home = new Intent(RicercaPercorsiActivity.this, LoginActivity.class);
                 startActivity(home);
             }
-        });
+        };
+        LinearLayout BDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
+        FloatingActionButton btnDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.btnDisconnettiti);
+
+        BDisconnettiti.setOnClickListener(onClickLogOut);
+        btnDisconnettiti.setOnClickListener(onClickLogOut);
 
         //GPS
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -333,26 +393,161 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     row.startAnimation(animation);
                 tableLayout.addView(row);
                 row = new TableRow(this);
-                /*
-                if(columns<=0) {
-                    columns = 1;
-                    row = new TableRow(this);
-                    row.addView(item);
-                }else if(columns == 1){
-                    columns = 0;
-                    row.addView(item);
-                    tableLayout.addView(row);
-                }
-                */
             }
-            /*
-            if(columns == 1){
-                tableLayout.addView(row);
-            }*/
+
 
         } else {
             throw new FileNotFoundException();
         }
     }
 
+    public void setLocale(String lang) {
+        //oggetto che specifica la lingua di riferimento in base al contesto scelto
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale= locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+        loadConfiguration();
+    }
+
+    private void loadLocale() {
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My_Lang", "");
+        //questa condizione serve se non si imposta alcuna lingua all'interno dell'app
+        //e quindi viene utilizzata quella selezionata nelle impostazioni del dispositivo
+        if (language != "") {
+            setLocale(language);
+        }
+    }
+
+    private void loadConfiguration(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My_Lang", "");
+        JSONParser parser = new JSONParser();
+        boolean fileExists = false;
+        for(File fileLocale : getApplicationContext().getFilesDir().listFiles()){
+            if(fileLocale.getName().contains(JSONFILENAME)){
+                fileExists = true;
+                storage = FirebaseStorage.getInstance();
+                StorageReference reference = storage.getReferenceFromUrl(CONFIGURL);
+                reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<ListResult> task) {
+                        ListResult res = task.getResult();
+                        for(StorageReference fileOnline : res.getItems()){
+                            if(fileOnline.getName().contains(JSONFILENAME)){
+                                if(parser.getFileLanguage(fileOnline.getName()).equals(language))
+                                    if(parser.getFileVersion(fileLocale.getName()).compareTo(parser.getFileVersion(fileOnline.getName())) < 0 || !parser.getFileLanguage(fileLocale.getName()).equals(language)){   //se la versione del file salvato è inferiore sarà ritornato un numero negativo
+                                        final long ONE_MEGABYTE = 1024 * 1024;
+                                        fileOnline.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                            @Override
+                                            public void onSuccess(byte[] bytes) {
+                                                String filename = fileOnline.getName();
+                                                try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
+                                                    fos.write(bytes);
+                                                    fos.flush();
+                                                    fileLocale.delete();
+                                                } catch (FileNotFoundException e) {
+                                                    e.printStackTrace();
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                            }
+                        }
+                    }
+                });
+
+
+            }
+        }
+        if(!fileExists){
+            storage = FirebaseStorage.getInstance();
+            StorageReference reference = storage.getReferenceFromUrl(CONFIGURL);
+            reference.listAll().addOnCompleteListener(new OnCompleteListener<ListResult>() {
+                @Override
+                public void onComplete(@NonNull Task<ListResult> task) {
+                    ListResult res = task.getResult();
+                    for(StorageReference fileOnline : res.getItems()){
+                        if(fileOnline.getName().contains(JSONFILENAME) && parser.getFileLanguage(fileOnline.getName()).equals(language)){
+                            final long ONE_GIGABYTE = 1024 * 1024 * 1024;
+                            fileOnline.getBytes(ONE_GIGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                @Override
+                                public void onSuccess(byte[] bytes) {
+                                    String filename = fileOnline.getName();
+                                    try (FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE)) {
+                                        fos.write(bytes);
+                                    } catch (FileNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+
+    public void showLanguage(){
+
+        //Array che contiene le lingue previste per l'app
+        final String list[] = {"Spanish", "French", "English","Italian"};
+        android.app.AlertDialog.Builder mBulider = new android.app.AlertDialog.Builder(RicercaPercorsiActivity.this);
+        mBulider.setTitle("Chose language");
+        mBulider.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+
+                if(i == 0){
+
+                    loadImage=2;
+                    setLocale("es");
+                    recreate();
+
+
+                }else if(i == 1){
+                    loadImage=1;
+                    setLocale("fr");
+
+                    recreate();
+
+                }else if(i == 2){
+                    loadImage=0;
+                    setLocale("en");
+
+                    recreate();
+
+                }else if(i == 3){
+                    loadImage=3;
+                    setLocale("");
+
+                    recreate();
+
+                }
+
+                dialog.dismiss();
+
+            }
+        });
+
+        android.app.AlertDialog mDialog = mBulider.create();
+        mDialog.show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("loadImage", loadImage);
+    }
 }

@@ -15,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/linea_4"
-
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
 
@@ -28,23 +27,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
-
-
-
-        >
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/btnProfilo"
             android:src="@drawable/icon_material_account_circle"
-            android:layout_margin="20dp"/>
+            android:layout_margin="16dp"
+            android:layout_gravity="top|right"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/white"
+            android:elevation="6dp"
+            app:hoveredFocusedTranslationZ="2dp"
+            app:pressedTranslationZ="6dp"
+            app:maxImageSize="30dp"
+            app:tint="#2B3D9F"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Profilo"
-            android:textColor="#333333"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
             android:textSize="16dp"/>
 
     </LinearLayout>
@@ -58,21 +66,38 @@
         android:src="@drawable/tracciato_7"/>
 
     <LinearLayout
+        android:id="@+id/lingua"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_feather_settings"
-            android:layout_margin="20dp"/>
+            android:id="@+id/btnLingua"
+            android:layout_gravity="top|right"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/white"
+            android:elevation="6dp"
+            app:hoveredFocusedTranslationZ="2dp"
+            app:pressedTranslationZ="6dp"
+            app:srcCompat="@drawable/italy"
+            app:maxImageSize="20dp"
+            app:tint="@null"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Impostazioni"
-            android:textColor="#333333"
+            android:text="Lingua"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
             android:textSize="16dp"/>
 
     </LinearLayout>
@@ -85,21 +110,36 @@
 
     <LinearLayout
         android:id="@+id/disconnettiti"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/btnDisconnettiti"
             android:src="@drawable/icon_metro_exit"
-            android:layout_margin="20dp"/>
+            android:layout_margin="16dp"
+            android:layout_gravity="top|right"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/white"
+            android:elevation="6dp"
+            app:hoveredFocusedTranslationZ="2dp"
+            app:pressedTranslationZ="6dp"
+            app:maxImageSize="30dp"
+            app:tint="#2B3D9F"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Disconnettiti"
-            android:textColor="#333333"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
             android:textSize="16dp"/>
 
     </LinearLayout>
@@ -111,21 +151,37 @@
         android:src="@drawable/tracciato_7"/>
 
     <LinearLayout
+        android:id="@+id/aiuto"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/btnAiuto"
             android:src="@drawable/icon_metro_help"
-            android:layout_margin="20dp"/>
+            android:layout_margin="16dp"
+            android:layout_gravity="top|right"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/white"
+            android:elevation="6dp"
+            app:hoveredFocusedTranslationZ="2dp"
+            app:pressedTranslationZ="6dp"
+            app:maxImageSize="30dp"
+            app:tint="#2B3D9F"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Aiuto"
-            android:textColor="#333333"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
             android:textSize="16dp"/>
 
     </LinearLayout>

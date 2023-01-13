@@ -121,15 +121,28 @@ public class LoginActivity extends AppCompatActivity {
         });
         if(savedInstanceState != null) {
             int flags = savedInstanceState.getInt("loadImage");
-            FloatingActionButton lingua = (FloatingActionButton) findViewById(R.id.bottoneLingua);
+            FloatingActionButton lingua = findViewById(R.id.bottoneLingua);
             if (flags == 0) {
-                lingua.setImageDrawable(getResources().getDrawable(R.drawable.england));
+                lingua.setImageDrawable(getDrawable(R.drawable.england));
             } else if (flags == 1) {
-                lingua.setImageDrawable(getResources().getDrawable(R.drawable.france));
+                lingua.setImageDrawable(getDrawable(R.drawable.france));
             } else if (flags == 2) {
-                lingua.setImageDrawable(getResources().getDrawable(R.drawable.spain));
+                lingua.setImageDrawable(getDrawable(R.drawable.spain));
             } else if (flags == 3) {
-                lingua.setImageDrawable(getResources().getDrawable(R.drawable.italy));
+                lingua.setImageDrawable(getDrawable(R.drawable.italy));
+            }
+        }else{
+            SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+            String language = pref.getString("My_Lang", "");
+            FloatingActionButton lingua = findViewById(R.id.bottoneLingua);
+            if (language.equals("en")) {
+                lingua.setImageDrawable(getDrawable(R.drawable.england));
+            } else if (language.equals("fr")) {
+                lingua.setImageDrawable(getDrawable(R.drawable.france));
+            } else if (language.equals("es")) {
+                lingua.setImageDrawable(getDrawable(R.drawable.spain));
+            } else{
+                lingua.setImageDrawable(getDrawable(R.drawable.italy));
             }
         }
 

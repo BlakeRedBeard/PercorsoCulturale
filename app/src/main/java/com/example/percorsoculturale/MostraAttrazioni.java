@@ -2,7 +2,9 @@ package com.example.percorsoculturale;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -203,12 +205,14 @@ public class MostraAttrazioni extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+                        String language = pref.getString("My_Lang", "");
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for (Map.Entry<String, Object> entry : document.getData().entrySet()) {
-                            if (entry.getKey().equals("nome")) {
+                            if (entry.getKey().equals("nome"+language)) {
                                 nomeAttrazione.setText((String) entry.getValue());
-                            } else if (entry.getKey().equals("descrizione")) {
+                            } else if (entry.getKey().equals("descrizione"+language)) {
                                 descrizioneAttrazione.setText((String) entry.getValue());
                             } else if (entry.getKey().equals("immagine")) {
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());

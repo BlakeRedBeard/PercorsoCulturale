@@ -10,12 +10,11 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
-        android:layout_height="400px"
+        android:layout_height="150dp"
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         android:background="@drawable/shape2"
         >
 
