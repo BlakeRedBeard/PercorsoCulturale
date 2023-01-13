@@ -1,5 +1,6 @@
 package com.example.percorsoculturale;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -42,6 +43,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     private List<String> attrazioni, attivita;
     private final String LINK = "https://www.percorsoculturale.com/";
 
+    @SuppressLint("SuspiciousIndentation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -5,31 +5,33 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MostraPercorsiActivity">
+    tools:context=".MostraPercorsiActivity"
+    android:background="#e6e4ec"
+    >
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="400px"
+        android:background="@drawable/shape2"
+        android:backgroundTint="@color/color_primary"
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
 
-        android:background="@drawable/shape2"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            android:backgroundTint="@color/color_primary"
-            app:title="Percorso"
-            app:navigationIcon="@drawable/arrow"
             android:layout_gravity="top"
-            />
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/color_primary"
+            app:navigationIcon="@drawable/arrow"
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            app:title="Percorso" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -202,7 +204,7 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="146dp"
         android:layout_height="60dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="18dp"
         android:elevation="5dp"
         android:text="Avvia"
         android:textColor="@color/white"
@@ -218,14 +220,15 @@ app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
 
     <Button
         android:id="@+id/btnCondividiPercorso"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
         android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
+        android:layout_margin="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/circle_shape"
-        android:drawableTop="@drawable/icon_feather_share_2"
+
+        app:icon="@drawable/icon_feather_share_2"
         app:backgroundTint="@color/color_primary"
         app:elevation="6dp"
         app:layout_constraintStart_toStartOf="@id/firstCard"

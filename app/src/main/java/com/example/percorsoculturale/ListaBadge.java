@@ -1,15 +1,14 @@
 package com.example.percorsoculturale;
+
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +22,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -94,8 +92,11 @@ public class ListaBadge extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 
-                        int puntiVeri = document.getLong("punti").intValue();
 
+                        int puntiVeri=0;
+                        if(document.getLong("punti")!=null) {
+                            puntiVeri = document.getLong("punti").intValue();
+                        }
 
                         if (puntiVeri >= 50 ){
                             mostraBadge("5punti",badge1,descrizioneB1);

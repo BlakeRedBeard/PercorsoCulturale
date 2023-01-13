@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,19 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProfiloActivity extends AppCompatActivity {
 
@@ -36,8 +28,8 @@ public class ProfiloActivity extends AppCompatActivity {
     private TextView textNomeCognome;
     private TextView puntiUtente;
     private Button invia;
-    private ImageButton modificaProfilo;
-    private ImageButton eliminaProfilo;
+    private MaterialCardView modificaProfilo;
+    private MaterialCardView eliminaProfilo;
     private String mailUtente;
 
     @Override
@@ -48,8 +40,8 @@ public class ProfiloActivity extends AppCompatActivity {
         mailUtente = firebaseAuth.getCurrentUser().getEmail();
         puntiUtente = (TextView) findViewById(R.id.badge2);
         textNomeCognome = (TextView) findViewById(R.id.txt);
-        modificaProfilo = (ImageButton) findViewById(R.id.editProfile);
-        eliminaProfilo = (ImageButton) findViewById(R.id.deleteAccount);
+        modificaProfilo = (MaterialCardView) findViewById(R.id.editProfile);
+        eliminaProfilo = (MaterialCardView) findViewById(R.id.deleteAccount);
 
 
         searchUser(mailUtente);
@@ -107,7 +99,11 @@ public class ProfiloActivity extends AppCompatActivity {
                         String nome = document.getString("nome");
                         String cognome = document.getString("cognome");
                         String password = document.getString("password");
-                        int punti = document.getLong("punti").intValue();
+                        int punti=0;
+                        if(document.getLong("punti")!=null) {
+                             punti = document.getLong("punti").intValue();
+                        }
+
 
                         textNomeCognome.setText(nome+"  "+cognome);
                         puntiUtente.setText(Integer.toString(punti));

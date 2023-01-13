@@ -32,7 +32,12 @@
                 android:layout_marginTop="50dp"
                 android:textColor="@color/white"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:elevation="6dp"/>
+
+
+
+
 
 
         </RelativeLayout>
@@ -40,19 +45,62 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:background="@drawable/shape3"
+        app:layout_constraintTop_toBottomOf="@id/LinearProfile"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="-50dp"
+        android:elevation="0dp">
+
+    </ImageView>
     <LinearLayout
         android:id="@+id/LinearProfile2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-100dp"
-        android:orientation="horizontal"
+
+        android:orientation="vertical"
         android:padding="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+
         app:layout_constraintTop_toBottomOf="@+id/LinearProfile">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:includeFontPadding="false"
+            android:text="Punti totali:"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/badge2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:layout_marginStart="5dp"
+            android:layout_centerInParent="true"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"></TextView>
+        </LinearLayout>
+
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_primary"
@@ -63,13 +111,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="5dp">
+                android:padding="5dp"
+              >
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/custom_key">
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/medal_solid"
+                    android:layout_marginLeft="15dp">
 
 
                 </ImageView>
@@ -78,35 +128,32 @@
                     android:id="@+id/badge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+
                     android:layout_centerInParent="true"
+
                     android:includeFontPadding="false"
                     android:text="Livello"
-
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/badge"
-                    android:layout_centerInParent="true"
-                    android:text="Badge"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"></TextView>
+
 
 
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_primary"
-            app:cardElevation="6dp">
+            app:cardElevation="6dp"
+            android:id="@+id/editProfile">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -116,47 +163,84 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/custom_key">
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/user_pen_solid">
 
 
                 </ImageView>
 
                 <TextView
-                    android:id="@+id/badge2"
+                    android:id="@+id/badge4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:includeFontPadding="false"
-                    android:text="Punti"
-                    android:textColor="@color/white"
 
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="12dp"
+                    android:includeFontPadding="false"
+                    android:text="Modifica profilo"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"></TextView>
 
+
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_primary"
+            app:cardElevation="6dp"
+            android:id="@+id/deleteAccount">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/user_minus_solid">
+
+
+                </ImageView>
+
                 <TextView
+                    android:id="@+id/badge3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/badge2"
+
                     android:layout_centerInParent="true"
-                    android:text="Punti"
+                    android:layout_marginTop="12dp"
+                    android:includeFontPadding="false"
+                    android:text="Elimina Profilo"
                     android:textColor="@color/white"
-                    android:textSize="14sp"></TextView>
+                    android:textSize="20sp"
+                    android:textStyle="bold"></TextView>
+
+
 
 
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-
 
     </LinearLayout>
+
+
+
+
+
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -175,73 +259,4 @@
         app:srcCompat="@drawable/arrow"
         app:tint="@color/white"
         tools:ignore="MissingConstraints" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="415dp"
-        android:layout_height="206dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/LinearProfile"
-        tools:ignore="MissingConstraints,NotSibling"
-        tools:layout_editor_absoluteX="-4dp"
-        tools:layout_editor_absoluteY="293dp">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="335dp"
-            android:padding="50dp">
-
-
-            <ImageButton
-
-                android:id="@+id/deleteAccount"
-                android:layout_width="106dp"
-                android:layout_height="106dp"
-                android:background="@drawable/delete_profile"
-                tools:layout_editor_absoluteX="254dp"
-                tools:layout_editor_absoluteY="360dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/deleteAccount"
-                android:layout_centerInParent="true"
-                android:text="Elimina Profilo"
-                android:textColor="@color/black"
-                android:textSize="16sp">
-
-            </TextView>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="335dp"
-            android:padding="50dp">
-
-            <ImageButton
-
-                android:id="@+id/editProfile"
-                android:layout_width="105dp"
-                android:layout_height="103dp"
-                android:background="@drawable/edit_profile"
-                tools:layout_editor_absoluteX="254dp"
-                tools:layout_editor_absoluteY="360dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_below="@+id/editProfile"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="4dp"
-                android:text="Modifica Profilo"
-                android:textColor="@color/black"
-                android:textSize="16sp">
-
-            </TextView>
-        </RelativeLayout>
-    </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

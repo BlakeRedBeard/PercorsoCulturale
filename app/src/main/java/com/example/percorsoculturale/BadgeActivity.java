@@ -109,7 +109,12 @@ public class BadgeActivity extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 
-                        int punti = document.getLong("punti").intValue();
+
+
+                        int punti=0;
+                        if(document.getLong("punti")!=null) {
+                            punti = document.getLong("punti").intValue();
+                        }
 
                         int valore = 0;
                         if (punti >= 50 ){
