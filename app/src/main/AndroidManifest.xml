@@ -37,6 +37,11 @@
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
             />
         <activity
+            android:name=".EliminaProfilo"
+            android:exported="false"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
+            />
+        <activity
             android:name=".MostraPercorsiActivity"
             android:theme="@style/Theme.PercorsoCulturale.NoActionBar"
             android:exported="true">

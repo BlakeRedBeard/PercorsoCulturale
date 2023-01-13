@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,6 +47,7 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
     ImageView treStelle;
     ImageView quattroStelle;
     ImageView cinqueStelle;
+    ImageView imgPercorso;
 
     Button invia;
 
@@ -80,6 +82,8 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         treStelle = (ImageView) findViewById(R.id.imageView14);
         quattroStelle = (ImageView) findViewById(R.id.imageView13);
         cinqueStelle = (ImageView) findViewById(R.id.imageView16);
+
+        imgPercorso = (ImageView) findViewById(R.id.immaginePercorso);
 
         commentoUtente = (EditText) findViewById(R.id.editTextTextPersonName2);
 
@@ -176,6 +180,10 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         nomePercorso = extra.getString("nomePercorso");
 
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        showPercorso(nomePercorso);
+
+
 
         unaStellaGrigia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +212,7 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         quattroStelleGrigie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               numeroStelle = "quattroStelleGrigie";
+                numeroStelle = "quattroStelleGrigie";
                 valutazioneStelle(numeroStelle);
             }
         });
@@ -272,6 +280,18 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backHome=new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
+                backHome.putExtra("nomePercorso", nomePercorso);
+                startActivity(backHome);
+
             }
         });
 
@@ -381,6 +401,39 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void showPercorso(String search){
+        db.collection("percorso")
+                .document(search)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot document = task.getResult();
+                        Log.d("DEBUG", document.getId() + " => " + document.getData());
+                        for(Map.Entry<String, Object> entry : document.getData().entrySet()){
+                            if(entry.getKey().equals("immagine")){
+                                StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
+                                final long ONE_MEGABYTE = 1024 * 1024;
+                                gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    @Override
+                                    public void onSuccess(byte[] bytes) {
+                                        // image retrieved
+                                        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        imgPercorso.setImageBitmap(bmp);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Handle any errors
+                                        Log.w("DEBUG", "Error downloading image", task.getException());
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
     }
 
     @Override
