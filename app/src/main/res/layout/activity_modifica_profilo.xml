@@ -3,23 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_background">
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/shape2"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            android:backgroundTint="@color/color_primary"
+            app:title="Modifica profilo"
+            app:navigationIcon="@drawable/arrow"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:background="@drawable/shape3"
+        android:backgroundTint="@color/color_background"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="-80dp"
+        android:elevation="0dp">
+
+    </ImageView>
 
     <LinearLayout
         android:id="@+id/LinearProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+       app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_metro_earth2"
-            android:layout_marginLeft="120dp">
 
-        </ImageView>
 
 
     </LinearLayout>
@@ -49,7 +85,7 @@
             android:hint="Nome"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
-
+android:elevation="6dp"
 
             app:hintTextColor="@color/color_primary">
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MostraPercorsiActivity"
-    android:background="#F9F9FB">
+    android:background="@color/color_background">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
