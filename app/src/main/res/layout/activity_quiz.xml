@@ -11,67 +11,57 @@
     android:layout_height="match_parent"
     tools:context=".QuizActivity"
     android:background="@color/color_background"
-    android:backgroundTint="#FFFFFF">
+    >
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/shape2"
+            >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            android:backgroundTint="@color/color_primary"
+            app:title="Quiz"
+            app:navigationIcon="@drawable/arrow"
+            tools:ignore="MissingConstraints" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="900dp"
+            android:background="@drawable/shape3"
+            android:backgroundTint="@color/color_background"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="-80dp"
+            android:elevation="0dp">
+
+        </ImageView>
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-   >
-
-
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    android:layout_marginTop="150dp"
         >
-
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/rspCorretta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="33dp"
-                android:paddingStart="10dp"
-
-
-                android:text="@string/rspCorretta"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/textView2">
-
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnBackAttivita"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/color_primary"
-                    android:src="@drawable/arrow"
-                    android:tint="#FFFFFF"
-                    app:tint="@color/white" />
-
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+           >
 
             <TextView
 
@@ -88,7 +78,8 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -176,11 +167,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
+            app:backgroundTint="@color/color_primary"
             android:padding="15dp"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:text="@string/Verifica"
+            android:text="Verifica"
+            android:elevation="6dp"
 
             />
     </LinearLayout>

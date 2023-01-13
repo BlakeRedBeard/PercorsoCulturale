@@ -64,10 +64,10 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         avvia = (Button) findViewById(R.id.avviaButton);
         avvia.setEnabled(false);
 
-        if(savedInstanceState == null){
+        if(savedInstanceState == null) {
             Bundle extra = getIntent().getExtras();
-            if(extra != null){
-                if(extra.getString("percorso") != null)
+            if (extra != null) {
+                if (extra.getString("percorso") != null) {
                     idPercorso = extra.getString("percorso");
                     showPercorso(idPercorso);
                     Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
@@ -77,55 +77,53 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                             final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
                             emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
-                            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK+extra.getString("percorso"));
+                            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK + extra.getString("percorso"));
                             emailIntent.setType("text/plain");
                             startActivity(Intent.createChooser(emailIntent, "Send to friend"));
                         }
                     });
-            }else {
-                //TODO generare eccezione (id percorso non reperito)
-            }
-        }else {
-            idPercorso = savedInstanceState.getString("percorso");
-            showPercorso(idPercorso);
-            Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
-            btnShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                } else {
+                    //TODO generare eccezione (id percorso non reperito)
+                }
+            } else {
+                idPercorso = savedInstanceState.getString("percorso");
+                showPercorso(idPercorso);
+                Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
+                btnShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-                    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
-                    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK+(String) savedInstanceState.getSerializable("percorso"));
-                    emailIntent.setType("text/plain");
-                    startActivity(Intent.createChooser(emailIntent, "Send to friend"));
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK + (String) savedInstanceState.getSerializable("percorso"));
+                        emailIntent.setType("text/plain");
+                        startActivity(Intent.createChooser(emailIntent, "Send to friend"));
+                    }
+                });
+            }
+
+
+            avvia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //passa alla sezione attrazione relativa al percorso
+                    Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
+                    intent.putExtra("attrazione", 0);
+                    intent.putExtra("nomePercorso", idPercorso);
+                    MostraAttrazioni.setIsSvolta();
+                    startActivity(intent);
+                }
+            });
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+
                 }
             });
         }
-
-
-
-        avvia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //passa alla sezione attrazione relativa al percorso
-                Intent intent = new Intent(getApplicationContext(), MostraAttrazioni.class);
-                intent.putExtra("attrazione", 0);
-                intent.putExtra("nomePercorso", idPercorso);
-                MostraAttrazioni.setIsSvolta();
-                startActivity(intent);
-            }
-        });
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent backHome=new Intent(getApplicationContext(),RicercaPercorsiActivity.class);
-                startActivity(backHome);
-
-            }
-        });
-
     }
 
     @Override

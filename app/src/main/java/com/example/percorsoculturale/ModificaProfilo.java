@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,7 +41,7 @@ public class ModificaProfilo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifica_profilo);
 
-        textNomeCognome = (TextView) findViewById(R.id.txt);
+
         inputNome= (TextInputEditText) findViewById(R.id.nome);
         inputCognome= (TextInputEditText) findViewById(R.id.cognome);
         inputPassword= (TextInputEditText) findViewById(R.id.password);
@@ -60,7 +61,15 @@ public class ModificaProfilo extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
 
+            }
+        });
     }
 
 
