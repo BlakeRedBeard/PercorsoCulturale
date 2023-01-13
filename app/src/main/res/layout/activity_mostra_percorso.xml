@@ -5,7 +5,8 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MostraPercorsiActivity">
+    tools:context=".MostraPercorsiActivity"
+    android:background="@color/color_background">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"

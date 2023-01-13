@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="900dp"
         android:background="@drawable/shape3"
+        android:backgroundTint="@color/color_background"
         app:layout_constraintTop_toBottomOf="@id/LinearProfile"
         tools:ignore="MissingConstraints"
         android:layout_marginTop="-50dp"
