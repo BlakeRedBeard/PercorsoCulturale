@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ public class ListaBadge extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
     private FirebaseAuth firebaseAuth;
+    private Animation anim=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,19 @@ public class ListaBadge extends AppCompatActivity {
         TextView descrizioneB3 = (TextView) findViewById(R.id.textView12);
         TextView descrizioneB4 = (TextView) findViewById(R.id.textView13);
 
+        anim = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.animazione);
+
+        cinquePunti.startAnimation(anim);
+        dieciPunti.startAnimation(anim);
+        venticinquePunti.startAnimation(anim);
+        cinquantaPunti.startAnimation(anim);
+
+        descrizioneB1.startAnimation(anim);
+        descrizioneB2.startAnimation(anim);
+        descrizioneB3.startAnimation(anim);
+        descrizioneB4.startAnimation(anim);
+
         mostraTuttiBadge(cinquePunti, dieciPunti, venticinquePunti, cinquantaPunti, descrizioneB1, descrizioneB2, descrizioneB3, descrizioneB4);
 
 
@@ -75,8 +91,7 @@ public class ListaBadge extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent backHome=new Intent(getApplicationContext(),BadgeActivity.class);
-                startActivity(backHome);
+                finish();
 
             }
         });
@@ -187,16 +202,6 @@ public class ListaBadge extends AppCompatActivity {
                         }
                     }
                 });
-
-        badge.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent i=new Intent(ListaBadge.this, InfoBadge.class);
-                i.putExtra("nome", search);
-
-                startActivity(i);
-            }
-        });
 
     }
 }

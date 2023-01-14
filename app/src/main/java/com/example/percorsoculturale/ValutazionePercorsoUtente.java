@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -61,6 +63,7 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
     private FirebaseStorage storage;
 
     private EditText commentoUtente;
+    private Animation anim=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,9 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         }else{
             setContentView(R.layout.valutazione_percorso_utente);
         }
+
+        TextView txt = (TextView) findViewById(R.id.textView15);
+        TextView txt2 = (TextView) findViewById(R.id.textView16);
 
         unaStellaGrigia = (ImageView) findViewById(R.id.imageView6);
         dueStelleGrigie= (ImageView) findViewById(R.id.imageView10);
@@ -87,6 +93,9 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
 
         commentoUtente = (EditText) findViewById(R.id.editTextTextPersonName2);
 
+        anim = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.animazione);
+
         unaStella.setVisibility(View.INVISIBLE);
         dueStelle.setVisibility(View.INVISIBLE);
         treStelle.setVisibility(View.INVISIBLE);
@@ -98,6 +107,15 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         treStelleGrigie.setVisibility(View.VISIBLE);
         quattroStelleGrigie.setVisibility(View.VISIBLE);
         cinqueStelleGrigie.setVisibility(View.VISIBLE);
+
+        unaStellaGrigia.startAnimation(anim);
+        dueStelleGrigie.startAnimation(anim);
+        treStelleGrigie.startAnimation(anim);
+        quattroStelleGrigie.startAnimation(anim);
+        cinqueStelleGrigie.startAnimation(anim);
+        txt.startAnimation(anim);
+        txt2.startAnimation(anim);
+        commentoUtente.startAnimation(anim);
 
         if(savedInstanceState != null){
             int stellaUno = savedInstanceState.getInt("unastella");
@@ -288,9 +306,7 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent backHome=new Intent(getApplicationContext(), ValutazionePercorsoActivity.class);
-                backHome.putExtra("nomePercorso", nomePercorso);
-                startActivity(backHome);
+                finish();
 
             }
         });

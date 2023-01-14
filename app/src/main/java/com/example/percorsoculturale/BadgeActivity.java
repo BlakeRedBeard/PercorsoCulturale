@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class BadgeActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private FirebaseAuth firebaseAuth;
     TextView nienteBadge;
+    private Animation anim=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,14 @@ public class BadgeActivity extends AppCompatActivity {
         ImageView badge2 = (ImageView) findViewById(R.id.imageView3);
         ImageView badge3 = (ImageView) findViewById(R.id.imageView4);
         ImageView badge4 = (ImageView) findViewById(R.id.imageView5);
+
+        anim = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.animazione);
+
+        badge1.startAnimation(anim);
+        badge2.startAnimation(anim);
+        badge3.startAnimation(anim);
+        badge4.startAnimation(anim);
 
         mostraBadgeSbloccati(badge1, badge2, badge3, badge4);
 
@@ -99,8 +110,7 @@ public class BadgeActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent backHome=new Intent(getApplicationContext(),ProfiloActivity.class);
-                startActivity(backHome);
+                finish();
 
             }
         });
@@ -364,15 +374,6 @@ public class BadgeActivity extends AppCompatActivity {
                         }
                     }
                 });
-        badge.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent i=new Intent(BadgeActivity.this, InfoBadge.class);
-                i.putExtra("nome", search);
-
-                startActivity(i);
-            }
-        });
     }
 
 

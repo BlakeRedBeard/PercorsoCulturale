@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,6 +52,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private String nomePercorso = "";
     ImageView img;
+    private Animation anim=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +75,22 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
         textview1 = (TextView) findViewById(R.id.textView4);
         textview2 = (TextView) findViewById(R.id.textView6);
+
+        anim = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.animazione);
+
+        ImageView spunta = (ImageView) findViewById(R.id.imageView17);
+        spunta.startAnimation(anim);
+
+        textview1.startAnimation(anim);
+
+        textview2.startAnimation(anim);
+
+        TextView textview3 = (TextView) findViewById(R.id.textView3);
+        textview3.startAnimation(anim);
+
+        TextView textview4 = (TextView) findViewById(R.id.textView5);
+        textview4.startAnimation(anim);
 
         //legge da db
         firebaseAuth = FirebaseAuth.getInstance();
@@ -120,7 +139,6 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
-                String nomePercorso = "a";
                 String body = "Ho ottenuto " + textview2.getText().toString() + " punti completando il percorso " + nomePercorso;
                 String sub = "Valutazione percorso";
                 myIntent.putExtra(Intent.EXTRA_SUBJECT, sub);
@@ -148,9 +166,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent backHome=new Intent(getApplicationContext(),RicercaPercorsiActivity.class);
-                startActivity(backHome);
-
+                finish();
             }
         });
 
