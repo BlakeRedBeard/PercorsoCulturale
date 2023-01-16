@@ -39,7 +39,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     private Button btnIndietro,
             btnAttivita,
             btnAvanti;
-
+    private FloatingActionButton btnAttivita;
     private ImageView immagineAttrazione;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
@@ -75,7 +75,7 @@ public class MostraAttrazioni extends AppCompatActivity {
         descrizioneAttrazione = (TextView) findViewById(R.id.descrizioneAttrazione);
         immagineAttrazione = (ImageView) findViewById(R.id.immagineAttrazione);
         btnIndietro = (Button) findViewById(R.id.btnIndietro);
-        btnAttivita = (Button) findViewById(R.id.btnAttivita);
+        btnAttivita = (FloatingActionButton) findViewById(R.id.btnAttivita);
         btnAvanti = (Button) findViewById(R.id.btnAvanti);
 
         if (savedInstanceState != null) {
@@ -188,17 +188,6 @@ public class MostraAttrazioni extends AppCompatActivity {
                 //TODO generare eccezione (non è possibile identificare l'attrazione)
             }
         }
-
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar1);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent back=new Intent(getApplicationContext(), MostraPercorsiActivity.class);
-                startActivity(back);
-
-            }
-        });
     }
 
 
@@ -284,6 +273,9 @@ public class MostraAttrazioni extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString("nomeAttrazione", nomeAttrazione.getText().toString());
 
+    }
+    public void backHomeAttrazione(View view) {
+        finish();
     }
 
 }
