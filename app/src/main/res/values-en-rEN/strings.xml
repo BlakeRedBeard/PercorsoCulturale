@@ -30,6 +30,7 @@
     <string name="toolbar1">Attraction</string>
     <string name="toolbar2">Path evaluation</string>
     <string name="textview3">Congratulations</string>
+    <string name="msg_consolazione">I\'m sorry</string>
     <string name="textview5">" You have obtained the following points for completing the course:"</string>
     <string name="continuaButton">Continues</string>
     <string name="textView15">How many stars do you rate the route?</string>

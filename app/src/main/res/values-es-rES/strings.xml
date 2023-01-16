@@ -29,6 +29,7 @@
     <string name="toolbar1">Atracción</string>
     <string name="toolbar2">" Evaluación de ruta"</string>
     <string name="textview3">Felicidades</string>
+    <string name="msg_consolazione">Lo siento</string>
     <string name="textview5">" Has obtenido los siguientes puntos por completar el curso:"</string>
     <string name="continuaButton">Continúa</string>
     <string name="textView15">¿Con cuántas estrellas calificas la ruta?</string>

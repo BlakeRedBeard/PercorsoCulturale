@@ -38,6 +38,7 @@
     <string name="toolbar1">Attrazione</string>
     <string name="toolbar2">Valutazione Percorso</string>
     <string name="textview3">Complimenti</string>
+    <string name="msg_consolazione">Mi dispiace</string>
     <string name="textview5">Hai ottenuto i seguenti punti per aver completato il percorso:</string>
     <string name="continuaButton">Continua</string>
     <string name="textView15">Quante stelle valuti il percorso?</string>

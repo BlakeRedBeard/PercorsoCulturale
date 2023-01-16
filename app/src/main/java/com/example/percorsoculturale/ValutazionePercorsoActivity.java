@@ -83,7 +83,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         if (QrcodeActivity.getPunti() <= 5) {
             ImageView spunta = (ImageView) findViewById(R.id.spunta_verde);
             spunta.setImageDrawable(getDrawable(R.drawable.error_failure));
-            textview3.setText("Mi dispiace");
+            textview3.setText(getString(R.string.msg_consolazione));
         }
         ImageView spunta = (ImageView) findViewById(R.id.spunta_verde);
         spunta.startAnimation(anim);

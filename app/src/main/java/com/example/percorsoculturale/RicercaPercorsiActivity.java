@@ -28,7 +28,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -36,6 +35,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -68,7 +68,7 @@ import java.util.Locale;
 public class RicercaPercorsiActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
-    private android.widget.SearchView searchView;
+    private SearchView searchView;
     private FirebaseFirestore db;
     private LinearLayout mBottomSheet;
     private BottomSheetBehavior mBottomSheetBehavior;
@@ -89,13 +89,30 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
         tableLayout = findViewById(R.id.lista_percorsi);
 
+        mBottomSheet = findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+        BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
         searchView = findViewById(R.id.searchView);
         loadLocale();
         //imposta la casella di ricerca fissa
         searchView.setIconifiedByDefault(false);
-        EditText e = (EditText)searchView.findViewById(searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null));
+        SearchView.SearchAutoComplete e = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         e.setBackgroundColor(getColor(R.color.color_primary_allodole));
         e.setTextColor(Color.WHITE);
+        e.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)
+                    mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
+        e.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -119,15 +136,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             }
         });
 
-        //Implementazione App bar
-        Toolbar toolbar = findViewById(R.id.Toolbar);
-        setSupportActionBar(toolbar);
-        //implementazione bottom sheet
-
-        mBottomSheet = findViewById(R.id.bottom_sheet);
-        BottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
-        BottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +143,13 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
             }
         });
+
+        //Implementazione App bar
+        Toolbar toolbar = findViewById(R.id.Toolbar);
+        setSupportActionBar(toolbar);
+        //implementazione bottom sheet
+
+
 
         //TODO: AL CLICK DELL'INPUT TEXT DI SEARCH VIEW IMPOSTARE BottomSheetBehavior.STATE_HIDDEN
 
@@ -377,7 +392,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         }
         if (parser != null) {
             tableLayout.removeAllViews();
-            int columns = 0;
             ItemPercorsoFactory factory = new ItemPercorsoFactory(this);
             TableRow row = new TableRow(this);
             TableRow.LayoutParams params = new TableRow.LayoutParams();

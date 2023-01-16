@@ -44,7 +44,7 @@
         android:paddingEnd="20dp"
         android:textAllCaps="false"
         android:textColor="#EDE8E8"
-        android:textSize="15sp"
+        android:textSize="25dp"
         />
 
 </RelativeLayout>
