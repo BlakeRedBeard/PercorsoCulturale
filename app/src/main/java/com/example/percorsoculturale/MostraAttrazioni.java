@@ -39,6 +39,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     private Button btnIndietro,
             btnAttivita,
             btnAvanti;
+
     private ImageView immagineAttrazione;
     private FirebaseFirestore db;
     private FirebaseStorage storage;

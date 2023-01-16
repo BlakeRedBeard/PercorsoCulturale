@@ -28,7 +28,6 @@
             android:layout_gravity="top"
             android:background="?attr/colorPrimary"
             android:backgroundTint="@color/color_primary"
-            app:navigationIcon="@drawable/arrow"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             app:title="@string/toolbar1" />
 
