@@ -33,6 +33,7 @@
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/shape2.xml" value="0.131" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/shape3.xml" value="0.1715" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/shape_profile_icon.xml" value="0.1715" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/drawable/text_color_gradient.xml" value="0.1515" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout-land/activiti_mostra_percorso_landscape.xml" value="0.12654320987654322" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout-land/activity.xml" value="0.21428571428571427" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout-land/activity_attrazione.xml" value="0.21516754850088182" />
@@ -62,7 +63,7 @@
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_quiz.xml" value="0.264" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_quiz2.xml" value="0.264" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_recupera_password.xml" value="0.2246376811594203" />
-        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.16" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/activity_ricerca_percorsi.xml" value="0.2" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/badge.xml" value="0.18984375" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/bottom_sheet.xml" value="0.16486486486486487" />
         <entry key="..\:/Users/david/AndroidStudioProjects/PercorsoCulturale/app/src/main/res/layout/button_attrazione.xml" value="0.25416666666666665" />

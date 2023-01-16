@@ -29,6 +29,7 @@
     <string name="toolbar1">Attraction</string>
     <string name="toolbar2">" Évaluation du chemin"</string>
     <string name="textview3">Toutes nos félicitations</string>
+    <string name="msg_consolazione">Désolé</string>
     <string name="textview5">Vous avez obtenu les points suivants pour avoir terminé le cours :</string>
     <string name="continuaButton">Continue</string>
     <string name="textView15">Combien d\'étoiles attribuez-vous à l\'itinéraire ?</string>
