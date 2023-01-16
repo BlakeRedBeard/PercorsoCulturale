@@ -86,7 +86,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/msg_finePercorso"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="308dp"
@@ -120,11 +120,11 @@
         app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
 
     <ImageView
-        android:id="@+id/spunta_verde"
+        android:id="@+id/imageView17"
         android:layout_width="42dp"
         android:layout_height="84dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="37dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/immaginePercorsoCard"
         app:srcCompat="@drawable/spunta_verde" />
@@ -140,7 +140,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/msg_finePercorso"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

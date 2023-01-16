@@ -52,7 +52,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private String nomePercorso = "";
     ImageView img;
-    private Animation anim=null;
+    private Animation anim = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,14 +79,20 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         anim = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.animazione);
 
-        ImageView spunta = (ImageView) findViewById(R.id.imageView17);
+        TextView textview3 = (TextView) findViewById(R.id.msg_finePercorso);
+        if (QrcodeActivity.getPunti() <= 5) {
+            ImageView spunta = (ImageView) findViewById(R.id.spunta_verde);
+            spunta.setImageDrawable(getDrawable(R.drawable.error_failure));
+            textview3.setText("Mi dispiace");
+        }
+        ImageView spunta = (ImageView) findViewById(R.id.spunta_verde);
         spunta.startAnimation(anim);
 
         textview1.startAnimation(anim);
 
         textview2.startAnimation(anim);
 
-        TextView textview3 = (TextView) findViewById(R.id.textView3);
+
         textview3.startAnimation(anim);
 
         TextView textview4 = (TextView) findViewById(R.id.textView5);
@@ -114,8 +120,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
 
         //aggiorna punti utente
-        noteRef
-                .update("punti", FieldValue.increment(puntiTotali))
+        noteRef.update("punti", FieldValue.increment(puntiTotali))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -149,7 +154,6 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         });
 
 
-
         Button btnContinua = (Button) findViewById(R.id.continuaButton);
         btnContinua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +165,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
         });
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +176,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
     }
 
-    public void showPercorso(String search){
+    public void showPercorso(String search) {
         db.collection("percorso")
                 .document(search)
                 .get()
@@ -181,8 +185,8 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
-                        for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-                            if(entry.getKey().equals("immagine")){
+                        for (Map.Entry<String, Object> entry : document.getData().entrySet()) {
+                            if (entry.getKey().equals("immagine")) {
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
                                 final long ONE_MEGABYTE = 1024 * 1024;
                                 gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
