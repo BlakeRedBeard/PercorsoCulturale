@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -67,7 +68,16 @@ public class RecuperaPassword extends AppCompatActivity {
                 });
             }
         });
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back=new Intent(getApplicationContext(), MostraPercorsiActivity.class);
+                startActivity(back);
 
+            }
+        });
 
     }
 }

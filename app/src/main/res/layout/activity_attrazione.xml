@@ -29,7 +29,8 @@
             android:background="?attr/colorPrimary"
             android:backgroundTint="@color/color_primary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            app:title="@string/toolbar1" />
+            app:title="Attrazione"
+            app:navigationIcon="@drawable/arrow"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -43,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         tools:ignore="MissingConstraints"
-        android:layout_marginTop="-70dp"
+        android:layout_marginTop="-40dp"
         >
 
         <ImageView
@@ -176,59 +177,66 @@
 
 
 
-    <Button
-        android:id="@+id/btnIndietro"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:text="@string/btnIndietro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnAvanti"
-        tools:ignore="MissingConstraints"
-        style="?attr/materialButtonOutlinedStyle"
-        android:elevation="6dp"
-        app:backgroundTint="@color/color_primary"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:iconTint="@color/white"
-        app:iconGravity="start"
-        />
+        android:layout_height="140dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/secondaCardAttr"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:elevation="12dp">
 
-    <Button
-        android:id="@+id/btnAttivita"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:text="@string/btnAttivita"
-        app:layout_constraintEnd_toStartOf="@+id/btnAvanti"
-        app:layout_constraintStart_toEndOf="@+id/btnIndietro"
-        app:layout_constraintTop_toTopOf="@+id/btnAvanti"
-        tools:ignore="MissingConstraints"
-        style="?attr/materialButtonOutlinedStyle"
-        android:elevation="6dp"
-        app:backgroundTint="@color/color_primary"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:iconGravity="end"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnIndietro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnIndietro"
+            android:layout_gravity="left|center_vertical"
 
-    <Button
-        android:id="@+id/btnAvanti"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/nextButton"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondaCardAttr"
-        tools:ignore="MissingConstraints"
-        tools:visibility="visible"
-        style="?attr/materialButtonOutlinedStyle"
-        android:elevation="6dp"
-        app:backgroundTint="@color/color_primary"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-       />
+            app:srcCompat="@drawable/angles_left_solid"
 
+            app:cornerRadius="50dp"
+            style="?attr/materialButtonOutlinedStyle"
+            android:elevation="12dp"
+            app:backgroundTint="@color/color_primary"
+            app:iconTint="@color/white"
+            app:tint="@color/white"
+            android:layout_marginRight="20dp"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAttivita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:elevation="6dp"
+
+            app:backgroundTint="@color/white"
+            app:hoveredFocusedTranslationZ="2dp"
+
+            app:pressedTranslationZ="6dp"
+            app:srcCompat="@drawable/gamepad_solid"
+            app:tint="@color/color_primary"
+            tools:ignore="MissingConstraints"
+           />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAvanti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nextButton"
+            android:visibility="visible"
+            android:layout_gravity="right|center_vertical"
+            tools:ignore="MissingConstraints"
+            tools:visibility="visible"
+            style="?attr/materialButtonOutlinedStyle"
+            android:elevation="12dp"
+            app:backgroundTint="@color/color_primary"
+            app:srcCompat="@drawable/angles_right_solid"
+            app:tint="@color/white"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

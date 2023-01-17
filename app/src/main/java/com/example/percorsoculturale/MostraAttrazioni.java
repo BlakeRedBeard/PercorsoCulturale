@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,7 +36,7 @@ public class MostraAttrazioni extends AppCompatActivity {
 
     private TextView nomeAttrazione,
             descrizioneAttrazione;
-    private Button btnIndietro,
+    private FloatingActionButton btnIndietro,
             btnAttivita,
             btnAvanti;
 
@@ -74,9 +74,9 @@ public class MostraAttrazioni extends AppCompatActivity {
         nomeAttrazione = (TextView) findViewById(R.id.nomeAttrazione);
         descrizioneAttrazione = (TextView) findViewById(R.id.descrizioneAttrazione);
         immagineAttrazione = (ImageView) findViewById(R.id.immagineAttrazione);
-        btnIndietro = (Button) findViewById(R.id.btnIndietro);
-        btnAttivita = (Button) findViewById(R.id.btnAttivita);
-        btnAvanti = (Button) findViewById(R.id.btnAvanti);
+        btnIndietro = (FloatingActionButton) findViewById(R.id.btnIndietro);
+        btnAttivita = (FloatingActionButton) findViewById(R.id.btnAttivita);
+        btnAvanti = (FloatingActionButton) findViewById(R.id.btnAvanti);
 
         if (savedInstanceState != null) {
             nomeAttrazione.setText(savedInstanceState.getString("nomeAttrazione"));
