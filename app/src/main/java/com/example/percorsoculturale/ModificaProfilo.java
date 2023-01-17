@@ -2,6 +2,7 @@ package com.example.percorsoculturale;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -55,10 +57,8 @@ public class ModificaProfilo extends AppCompatActivity {
         invia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                updateInfo(mailUtente);
-                Intent i = new Intent(getApplicationContext(),ProfiloActivity.class);
-                startActivity(i);
+                String messaggio =  "Sei sicuro di voler salvare le modifiche?";
+                showMessage(messaggio);
             }
         });
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
@@ -75,9 +75,16 @@ public class ModificaProfilo extends AppCompatActivity {
 
     public void updateInfo(String mail) {
         Map<String, Object> user = new HashMap<>();
-        user.put("nome", inputNome.getText().toString());
-        user.put("cognome", inputCognome.getText().toString());
-        user.put("password", inputPassword.getText().toString());
+
+        if(!inputNome.getText().toString().equals("")){
+            user.put("nome", inputNome.getText().toString());
+        }
+        if(!inputCognome.getText().toString().equals("")){
+            user.put("cognome", inputCognome.getText().toString());
+        }
+        if(!inputPassword.getText().toString().equals("12345678")){
+            user.put("password", inputPassword.getText().toString());
+        }
 
         db.collection("utente").document(mail)
                 .set(user, SetOptions.merge())
@@ -93,6 +100,28 @@ public class ModificaProfilo extends AppCompatActivity {
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
+    }
+    private void showMessage(String messaggio) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ModificaProfilo.this);
+        builder.setMessage(messaggio)
+                .setTitle("Modifica profilo");
+// Add the buttons
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+                updateInfo(mailUtente);
+                Intent i = new Intent(getApplicationContext(),ProfiloActivity.class);
+                startActivity(i);
+            }
+        });
+        builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+// Set other dialog properties
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

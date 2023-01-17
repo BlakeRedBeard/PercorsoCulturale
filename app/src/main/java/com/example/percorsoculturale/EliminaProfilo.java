@@ -1,6 +1,7 @@
 package com.example.percorsoculturale;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +33,8 @@ public class EliminaProfilo extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    TextInputEditText inputPwd;
+    private int authenticated;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,22 +44,48 @@ public class EliminaProfilo extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         invia = (Button) findViewById(R.id.invia);
-        TextInputEditText inputPwd = (TextInputEditText) findViewById(R.id.password);
+        inputPwd = (TextInputEditText) findViewById(R.id.password);
+        authenticated = 0;
 
         invia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AuthCredential credential = EmailAuthProvider
-                        .getCredential(user.getEmail(), inputPwd.getText().toString());
+                if(inputPwd.getText().toString().equals("")){
+                    Toast.makeText(EliminaProfilo.this, "La password non può essere vuota", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    AuthCredential credential = EmailAuthProvider
+                    .getCredential(user.getEmail(), inputPwd.getText().toString());
+                    user.reauthenticate(credential)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Log.d("DEBUG", "User re-authenticated.");
+                                    authenticated = 1;
+                                }
+                            });
+                    //
+                    if(authenticated == 1) {
+                        String messaggio =  "Sei sicuro di voler eliminare il profilo?";
+                        showMessage(messaggio);
+                    }
+                    else{
+                        Toast.makeText(EliminaProfilo.this, "Password inserita non valida", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
-                // Prompt the user to re-provide their sign-in credentials
-                user.reauthenticate(credential)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Log.d("DEBUG", "User re-authenticated.");
-                            }
-                        });
+
+    }
+    private void showMessage(String messaggio) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EliminaProfilo.this);
+        builder.setMessage(messaggio)
+                .setTitle("Elimina profilo");
+// Add the buttons
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
                 user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -76,11 +106,17 @@ public class EliminaProfilo extends AppCompatActivity {
                         Log.e("DEBUG: error ", e.getMessage());
                     }
                 });
+
             }
         });
+        builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
-
+            }
+        });
+// Set other dialog properties
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
-
 
 }

@@ -1,6 +1,7 @@
 package com.example.percorsoculturale;
 
 import static com.example.percorsoculturale.PuzzleActivity.storage;
+import static com.google.android.material.internal.ContextUtils.getActivity;
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
 import android.Manifest;
@@ -25,6 +26,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -227,13 +230,14 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String messaggio = "Hai effettuato la disconnessione";
+                String messaggio = "Vuoi effettuare la disconnessione?";
                 showMessage(messaggio);
-                FirebaseAuth.getInstance().signOut();
-                Intent home = new Intent(RicercaPercorsiActivity.this, LoginActivity.class);
-                startActivity(home);
+
             }
+
         };
+
+
         LinearLayout BDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.disconnettiti);
         FloatingActionButton btnDisconnettiti = findViewById(R.id.viewBottomSheet).findViewById(R.id.btnDisconnettiti);
 
@@ -265,9 +269,38 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                                 }
 
                             } else {
-                                new AlertDialog.Builder(RicercaPercorsiActivity.this)
-                                        .setTitle("Attivare posizione")
-                                        .setMessage("Per utilizzare le funzionalità del gps bisogna attivarlo").create().show();
+                                AlertDialog.Builder mBuilder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
+                                View mView = getLayoutInflater().inflate(R.layout.dialog, null);
+                                CheckBox mCheckBox = mView.findViewById(R.id.checkBox);
+                                mBuilder.setTitle("Attivare posizione");
+                                mBuilder.setMessage("Per utilizzare le funzionalità del gps bisogna attivarlo");
+                                mBuilder.setView(mView);
+                                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+
+                                AlertDialog mDialog = mBuilder.create();
+                                mDialog.show();
+                                mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                    @Override
+                                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                        if(compoundButton.isChecked()){
+                                            storeDialogStatus(true);
+                                        }else{
+                                            storeDialogStatus(false);
+                                        }
+                                    }
+                                });
+
+                                if(getDialogStatus()){
+                                    mDialog.hide();
+                                }else{
+                                    mDialog.show();
+                                }
+                                //
                             }
                         }
                     });
@@ -300,6 +333,18 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
     }
 
+    private void storeDialogStatus(boolean isChecked){
+        SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("item", isChecked);
+        mEditor.apply();
+    }
+
+    private boolean getDialogStatus(){
+        SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("item", false);
+    }
+
     //gps
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -316,10 +361,23 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
 
     private void showMessage(String messaggio) {
         AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
-
         builder.setMessage(messaggio)
-                .setTitle("Info");
+                .setTitle("Disconnetti profilo");
+// Add the buttons
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent home = new Intent(RicercaPercorsiActivity.this, LoginActivity.class);
+                startActivity(home);
+            }
+        });
+        builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
+            }
+        });
+// Set other dialog properties
         AlertDialog dialog = builder.create();
         dialog.show();
     }

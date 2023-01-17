@@ -2,6 +2,7 @@ package com.example.percorsoculturale;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -288,15 +289,13 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
             public void onClick(View view) {
                 if(numeroStelle.equals("")) {
                     String messaggio = "Non hai selezionato un numero di stelle valido";
-                    mostraMessaggio(messaggio);
+                    showMessage(messaggio);
                 }
                 else {
                     commento = commentoUtente.getText().toString();
                     aggiungiValutazione(nomePercorso, numeroStelle, commento);
                     String messaggio = "Grazie per la tua valutazione";
-                    mostraMessaggio(messaggio);
-                    Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
-                    startActivity(intent);
+                    showMessage(messaggio);
                 }
             }
         });
@@ -409,12 +408,23 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
                 });
     }
 
-    private void mostraMessaggio(String messaggio) {
+    private void showMessage(String messaggio) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ValutazionePercorsoUtente.this);
-
         builder.setMessage(messaggio)
-                .setTitle("Info");
+                .setTitle("Informazione");
+// Add the buttons
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if(messaggio.equals("Grazie per la tua valutazione")) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
+                    startActivity(intent);
+                }
 
+            }
+        });
+
+// Set other dialog properties
         AlertDialog dialog = builder.create();
         dialog.show();
     }
