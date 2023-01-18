@@ -90,9 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="308dp"
-        android:fontFamily="sans-serif-smallcaps"
         android:text="@string/textview3"
-        android:textAllCaps="true"
+
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -107,9 +106,9 @@
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="392dp"
-        android:fontFamily="sans-serif-smallcaps"
+
         android:text="@string/textview5"
-        android:textAllCaps="true"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
         android:textSize="16sp"

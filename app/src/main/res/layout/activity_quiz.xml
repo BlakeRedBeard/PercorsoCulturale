@@ -164,7 +164,7 @@
 
         <Button
             android:id="@+id/Verifica"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:backgroundTint="@color/color_primary"

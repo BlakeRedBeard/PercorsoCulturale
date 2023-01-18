@@ -6,24 +6,44 @@
     android:layout_height="match_parent"
     android:background="@color/color_background">
 
-    <LinearLayout
-        android:id="@+id/LinearProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/shape2"
+        >
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_metro_earth2"
-            android:layout_marginLeft="120dp">
+            android:layout_gravity="top"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+            android:backgroundTint="@color/color_primary"
+            app:title="Elimina il tuo account"
+            app:navigationIcon="@drawable/arrow"
+            tools:ignore="MissingConstraints" />
 
-        </ImageView>
+    </com.google.android.material.appbar.MaterialToolbar>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:background="@drawable/shape3"
+        android:backgroundTint="@color/color_background"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="-80dp"
+        android:elevation="0dp">
 
-    </LinearLayout>
+    </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +51,7 @@
         android:layout_marginTop="48dp"
         android:orientation="vertical"
         android:padding="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/LinearProfile"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         tools:layout_editor_absoluteX="0dp">
 
         <TextView
@@ -40,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Per eliminare il tuo profilo inserisci la password del tuo account"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColor="@color/black"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +89,7 @@
         <Button
             android:id="@+id/invia"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
@@ -77,6 +98,16 @@
             android:textStyle="bold"
             app:backgroundTint="@color/color_primary"
             app:elevation="5dp" />
+        <TextView
+            android:id="@+id/eliminaProfilo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Sarai rimosso permanentemente dalla piattofaroma e perderai ogni ogni info sul tuo profilo "
+            android:textAlignment="textStart"
+
+
+            />
 
     </LinearLayout>
 

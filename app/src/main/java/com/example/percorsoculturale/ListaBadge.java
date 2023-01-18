@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -77,22 +76,14 @@ public class ListaBadge extends AppCompatActivity {
         mostraTuttiBadge(cinquePunti, dieciPunti, venticinquePunti, cinquantaPunti, descrizioneB1, descrizioneB2, descrizioneB3, descrizioneB4);
 
 
-        Button btnContinua = (Button)findViewById(R.id.continuaButton);
-        btnContinua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ListaBadge.this, RicercaPercorsiActivity.class));
-            }
 
-        });
 
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-
+                startActivity(new Intent(ListaBadge.this, RicercaPercorsiActivity.class));
             }
         });
 
