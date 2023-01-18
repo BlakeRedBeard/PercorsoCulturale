@@ -180,28 +180,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     protected void signIn(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "Authentication success.",
-                                    Toast.LENGTH_SHORT).show();
-                            //Aggiornare interfaccia, l'utente ha effettuato l'accesso
-                            Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            //TODO quando funzionante, eliminare le istruzioni di debug
-                            Log.w("DEBUG", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //TODO Aggiornare l'interfaccia, autenticazione fallita (credenziali errate o errore di sistema)
+        if(email.equals("") || password.equals("")) {
+            String messaggio = "Non hai inserito la password e/o la email";
+            showMessage(messaggio);
+        }
+        else {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(LoginActivity.this, "Hai eseguito l'accesso",
+                                        Toast.LENGTH_SHORT).show();
+                                //Aggiornare interfaccia, l'utente ha effettuato l'accesso
+                                Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
+                                startActivity(intent);
+                            } else {
+                                String messaggio = "Credenziali errate";
+                                showMessage(messaggio);
+                            }
                         }
-                    }
-                });
+                    });
+        }
+
     }
     //mostra le opzioni a disposizione
     public void showLanguage(){
@@ -354,4 +357,18 @@ public class LoginActivity extends AppCompatActivity {
         savedInstanceState.putString("password", pwdView.getEditText().getText().toString());
         savedInstanceState.putInt("loadImage", loadImage);
     }
+
+    private void showMessage(String messaggio) {
+
+            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(LoginActivity.this);
+            builder.setMessage(messaggio)
+                    .setTitle("Login");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
+
+            androidx.appcompat.app.AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 }

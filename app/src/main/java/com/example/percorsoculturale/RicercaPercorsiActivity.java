@@ -360,26 +360,39 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     }
 
     private void showMessage(String messaggio) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
-        builder.setMessage(messaggio)
-                .setTitle("Disconnetti profilo");
-// Add the buttons
-        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                Intent home = new Intent(RicercaPercorsiActivity.this, LoginActivity.class);
-                startActivity(home);
-            }
-        });
-        builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        if(messaggio.equals("Non puoi accedere al profilo in quanto non hai effettuato l'accesso")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
+            builder.setMessage(messaggio)
+                    .setTitle("Non hai effettuato il login");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
 
-            }
-        });
-// Set other dialog properties
-        AlertDialog dialog = builder.create();
-        dialog.show();
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
+            builder.setMessage(messaggio)
+                    .setTitle("Disconnetti profilo");
+            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    FirebaseAuth.getInstance().signOut();
+                    finish();
+                    Intent home = new Intent(RicercaPercorsiActivity.this, LoginActivity.class);
+                    startActivity(home);
+                }
+            });
+            builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
     }
 
 

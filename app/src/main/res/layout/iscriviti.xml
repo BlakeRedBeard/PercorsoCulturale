@@ -157,7 +157,7 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/white"
                 android:onClick="openDatePicker"
-                android:text="Data di nascita"
+                android:text="FEBBRAIO 1 2010"
 
                 android:textAlignment="textStart"
                 android:textAllCaps="false"

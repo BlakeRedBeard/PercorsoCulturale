@@ -2,6 +2,8 @@ package com.example.percorsoculturale;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -87,9 +89,7 @@ public class IscrivitiActivity extends AppCompatActivity {
                     String mail = ((TextInputEditText) findViewById(R.id.iscrivitiEmail)).getText().toString().trim().toLowerCase();
                     String password = ((TextInputEditText) findViewById(R.id.iscrivitiPassword)).getText().toString();
                     signUp(mail, password);
-                }else
-                    Toast.makeText(IscrivitiActivity.this, "Hai sbagliato tutto",
-                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -221,13 +221,64 @@ public class IscrivitiActivity extends AppCompatActivity {
         final String regMail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
         final String regName = "[^0-9\\.\\,\\\"\\?\\!\\;\\:\\#\\$\\%\\&\\(\\)\\*\\+\\-\\/\\<\\>\\=\\@\\[\\]\\\\\\^\\_\\{\\}\\|\\~]+";
 
-        //TODO messaggi di errore specifici in base al campo errato
-        if(nome != "" && nome.matches(regName))
-            if (cognome != "" && cognome.matches(regName))
-                if (email != "" && email.matches(regMail))
-                    if (password != "" && password.matches(regPwd))
-                        if(confermaPassword != "" && password.equals(confermaPassword))
+        if(cognome != "" && cognome.matches(regName)) {
+
+            if (nome != "" && nome.matches(regName)) {
+
+                if (email != "" && email.matches(regMail)) {
+                    if (password != "" && password.matches(regPwd)) {
+                        if(confermaPassword != "" && password.equals(confermaPassword)) {
                             result = true;
+                        }
+                        else if(confermaPassword.equals("")){
+                            String messaggio = "Ripeti password non può essere vuota";
+                            showMessage(messaggio);
+                        }
+                        else if(!password.equals(confermaPassword)){
+                            String messaggio = "Le 2 password non coincidono";
+                            showMessage(messaggio);
+                        }
+
+                    }
+                    else if(password.equals("")){
+                        String messaggio = "La password non può essere vuota";
+                        showMessage(messaggio);
+                    }
+                    else if(!password.matches(regPwd)){
+                        String messaggio = "La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero";
+                        showMessage(messaggio);
+                    }
+
+                }
+                else if(email.equals("")){
+                    String messaggio = "La mail non può essere vuota";
+                    showMessage(messaggio);
+                }
+                else if(!email.matches(regMail)){
+                    String messaggio = "La mail non contiene un dominio valido";
+                    showMessage(messaggio);
+                }
+
+            }
+            else if(nome.equals("")){
+                String messaggio = "Il nome non può essere vuoto";
+                showMessage(messaggio);
+            }
+            else if(!nome.matches(regName)){
+                String messaggio = "Il nome non può contenere caratteri speciali e/o numeri";
+                showMessage(messaggio);
+            }
+
+        }
+        else if(cognome.equals("")){
+            String messaggio = "Il cognome non può essere vuoto";
+            showMessage(messaggio);
+        }
+        else if(!cognome.matches(regName)){
+            String messaggio = "Il cognome non può contenere caratteri speciali e/o numeri";
+            showMessage(messaggio);
+        }
+
 
 
         return result;
@@ -277,6 +328,17 @@ public class IscrivitiActivity extends AppCompatActivity {
         savedInstanceState.putString("password", password != null ? password : "");
 
     }
+    private void showMessage(String messaggio) {
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(IscrivitiActivity.this);
+        builder.setMessage(messaggio)
+                .setTitle("Dati errati");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
+            }
+        });
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }
