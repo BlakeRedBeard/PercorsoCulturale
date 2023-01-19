@@ -121,7 +121,8 @@
         android:layout_width="300dp"
         android:layout_height="90dp"
 
-
+        android:maxHeight="90dp"
+        android:maxWidth="300dp"
         android:layout_marginTop="44dp"
         android:hint="Email"
 
@@ -148,7 +149,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="60dp"
+            android:maxHeight="60dp"
+            android:maxWidth="300dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,7 +181,8 @@
         android:layout_height="90dp"
         android:hint="Password"
 
-
+        android:maxHeight="90dp"
+        android:maxWidth="300dp"
         android:inputType="textPassword"
 
 
@@ -208,7 +212,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="60dp"
+            android:maxHeight="60dp"
+            android:maxWidth="300dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

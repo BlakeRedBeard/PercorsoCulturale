@@ -82,14 +82,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iscrizioneNome"
-            app:startIconTint="#000000">
+            app:startIconTint="#000000"
+            android:maxHeight="90dp"
+            android:maxWidth="300dp">
 
 
            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiCognome"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:inputType="text" />
+                android:inputType="text"
+               android:maxHeight="48dp"
+               android:maxWidth="300dp"
+               />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -112,13 +117,18 @@
             app:hintTextColor="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageiscriviti">
+            app:layout_constraintTop_toBottomOf="@+id/imageiscriviti"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiNome"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxHeight="48dp"
+                android:maxWidth="300dp"/>
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -140,13 +150,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iscrizioneCognome"
-            app:strokeColor="#20000000">
+            app:strokeColor="#20000000"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiEmail"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxHeight="48dp"
+                android:maxWidth="300dp"/>
 
             <Button
                 android:id="@+id/datePickerButton"
@@ -188,13 +202,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DataDiNascita"
-            app:strokeColor="#20000000">
+            app:strokeColor="#20000000"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:maxHeight="48dp"
+                android:maxWidth="300dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -217,20 +235,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iscrizionePassword"
-            app:strokeColor="#20000000">
+            app:strokeColor="#20000000"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiConfermaPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:maxHeight="48dp"
+                android:maxWidth="300dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/iscrivitiBtn"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="60dp"
 
             android:layout_gravity="center"
