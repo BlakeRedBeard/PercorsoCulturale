@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -70,7 +71,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                 if (extra.getString("percorso") != null) {
                     idPercorso = extra.getString("percorso");
                     showPercorso(idPercorso);
-                    Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
+                    FloatingActionButton btnShare = (FloatingActionButton) findViewById(R.id.btnCondividiPercorso);
                     btnShare.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

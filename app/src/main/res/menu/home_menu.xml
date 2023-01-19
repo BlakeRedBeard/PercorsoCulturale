@@ -10,6 +10,7 @@
     android:icon="@drawable/ic_search_black_24dp"
     android:title="Search"
     android:contentDescription="menu"
+    android:elevation="10dp"
     app:showAsAction="ifRoom"
 
 />
@@ -20,6 +21,7 @@
         android:id="@+id/menuIcon"
         android:icon="@drawable/hamburga"
         android:title="menu"
+        android:elevation="10dp"
         android:contentDescription="menu"
         app:showAsAction="ifRoom" />
 

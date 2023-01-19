@@ -77,6 +77,15 @@ public class BadgeActivity extends AppCompatActivity {
 
         mostraBadgeSbloccati(badge1, badge2, badge3, badge4);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
 
         Button badgeButton = (Button) findViewById(R.id.badgeButton);
         badgeButton.setOnClickListener(new View.OnClickListener(){
@@ -105,15 +114,7 @@ public class BadgeActivity extends AppCompatActivity {
         nienteBadge = (TextView) findViewById(R.id.textView17);
         nienteBadge.setVisibility(View.INVISIBLE);
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
 
-            }
-        });
 
     }
 

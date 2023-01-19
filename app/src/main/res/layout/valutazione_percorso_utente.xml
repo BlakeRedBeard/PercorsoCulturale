@@ -6,28 +6,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MostraPercorsiActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/shape2"
+        >
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:background="?attr/colorPrimary"
-            android:backgroundTint="@color/color_primary"
-            app:navigationIcon="@drawable/arrow"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            app:title="@string/toolbar2" />
+            android:backgroundTint="@color/color_primary"
+            app:title="Valutazione percorso"
+            app:navigationIcon="@drawable/arrow"
+            tools:ignore="MissingConstraints" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:background="@drawable/shape3"
+        android:backgroundTint="@color/color_background"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="-80dp"
+        android:elevation="0dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/immaginePercorsoCard"
@@ -35,7 +48,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="65dp"
 
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="-25dp"
         android:layout_marginEnd="70dp"
         android:layout_marginBottom="45dp"
         app:cardCornerRadius="20dp"
@@ -63,13 +76,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="146dp"
         android:layout_marginEnd="76dp"
-        android:fontFamily="sans-serif-smallcaps"
+
         android:text="@string/textView15"
-        android:textAllCaps="true"
+
         android:textColor="#FA000000"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,11 +208,11 @@
         android:layout_height="73dp"
         android:layout_marginStart="37dp"
         android:layout_marginEnd="36dp"
-        android:fontFamily="sans-serif-smallcaps"
+
         android:text="@string/textView16"
-        android:textAllCaps="true"
+        android:gravity="center"
         android:textColor="#F7000000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -210,9 +223,9 @@
 
     <Button
         android:id="@+id/btnInvia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:text="@string/btnInvia"
         app:backgroundTint="@color/color_primary"
         app:layout_constraintEnd_toEndOf="parent"
