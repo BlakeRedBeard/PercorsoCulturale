@@ -36,7 +36,8 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginStart="-16dp"/>
 
                 <androidx.coordinatorlayout.widget.CoordinatorLayout
                     android:layout_width="wrap_content"
@@ -52,8 +53,9 @@
                         android:id="@+id/returnButtonLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:layout_marginStart="20dp"
+                     app:fabSize="mini"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="-7dp"
                         android:backgroundTint="@color/color_primary"
                         android:src="@drawable/arrow"
                         android:tint="#FFFFFF"
@@ -90,9 +92,9 @@
            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiCognome"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="55dp"
                 android:inputType="text"
-               android:maxHeight="48dp"
+               android:maxHeight="55dp"
                android:maxWidth="300dp"
                />
 
@@ -125,9 +127,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiNome"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="55dp"
                 android:inputType="text"
-                android:maxHeight="48dp"
+                android:maxHeight="55dp"
                 android:maxWidth="300dp"/>
 
 
@@ -157,9 +159,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiEmail"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="55dp"
                 android:inputType="text"
-                android:maxHeight="48dp"
+                android:maxHeight="55dp"
                 android:maxWidth="300dp"/>
 
             <Button
@@ -189,7 +191,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-3dp"
             android:hint="Password"
             android:textColorHint="#99000000"
             app:boxBackgroundMode="outline"
@@ -209,9 +211,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="55dp"
                 android:inputType="textPassword"
-                android:maxHeight="48dp"
+                android:maxHeight="55dp"
                 android:maxWidth="300dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -242,9 +244,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiConfermaPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="55dp"
                 android:inputType="textPassword"
-                android:maxHeight="48dp"
+                android:maxHeight="55dp"
                 android:maxWidth="300dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>

@@ -145,13 +145,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:maxHeight="60dp"
-            android:maxWidth="300dp"/>
+            android:maxWidth="300dp"
+            android:inputType="textEmailAddress"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,7 +198,7 @@
         app:boxStrokeColor="@color/color_primary"
         app:boxStrokeWidth="0.8dp"
         app:counterEnabled="true"
-        app:counterMaxLength="32"
+        app:counterMaxLength="12"
         app:endIconCheckable="true"
         app:endIconDrawable="@drawable/occhio"
         app:endIconMode="password_toggle"
@@ -207,14 +209,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress">
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        >
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:maxHeight="60dp"
-            android:maxWidth="300dp"/>
+            android:maxWidth="300dp"
+            android:inputType="textPassword"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
