@@ -52,16 +52,13 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="280dp"
         android:layout_height="60dp"
-
         android:layout_marginTop="20dp"
         android:elevation="5dp"
-        android:text="Visualizza tutti i badge"
+        android:text="@string/badgeButton"
         android:textColor="@color/white"
         android:textStyle="bold"
-
         app:backgroundTint="@color/color_primary"
         app:layout_constraintTop_toBottomOf="@id/linear"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
@@ -141,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="348dp"
-        android:text="Questi sono i badge che hai ottenuto:"
+        android:text="@string/textView9"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"

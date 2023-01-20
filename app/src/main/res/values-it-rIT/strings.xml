@@ -56,4 +56,10 @@
     <string name="tutorialdescr3">Una volta cliccata la lente è possibile cercare attraverso l\'apposita barra di ricerca: puoi cercare un percorso in base alle tue necessità, ad esempio: attrazioni nel percorso, caratteristiche del percorso. Una volta scelto il percorso da seguire basta cliccarlo</string>
     <string name="tutorialdescr4">Qui puoi vedere tutte le caratteristiche del percorso che hai selezionato. Per avviare il percorso premi il bottone avvia. Puoi condividere il percorso con i tuoi amici cliccando sul tasto condivisione</string>
     <string name="tutorialdescr5">In questa schermata puoi vedere le attrazioni del percorso. Clicca sulle frecce per navigare attraverso di esse e, se disponibile, puoi avviare un\'attività che se iscritto ti permette di collezionare punti</string>
+    <string name="cognome">Cognome</string>
+    <string name="nomeOutLine">Nome</string>
+    <string name="cognomeOutLine">Cognome</string>
+    <string name="titleModifica">Modifica Profilo</string>
+    <string name="msg">Sarai rimosso permanentemente dalla piattofaroma e perderai ogni ogni info sul tuo profilo</string>
+    <string name="profiloU">Profilo utente</string>
 </resources>

@@ -57,6 +57,12 @@
     <string name="tutorialdescr3">Once the magnifying glass has been clicked, it is possible to search through the appropriate search bar: you can search for a route according to your needs, for example: attractions along the route, characteristics of the route. Once you have chosen the path to follow, just click on it</string>
     <string name="tutorialdescr4">Here you can see all the characteristics of the route you have selected. To start the journey, press the start button. You can share the route with your friends by clicking on the share button</string>
     <string name="tutorialdescr5">In this screen you can see the attractions of the route. Click on the arrows to navigate through them and, if available, you can start an activity which, if registered, allows you to collect points</string>
+    <string name="cognome">Surname</string>
+    <string name="nomeOutLine">Name</string>
+    <string name="cognomeOutLine">Surname</string>
+    <string name="titleModifica">Edit Profile</string>
+    <string name="msg">" You will be permanently removed from the aromaplate and you will lose all info on your profile"</string>
+    <string name="profiloU">User profile</string>
 
 
 </resources>

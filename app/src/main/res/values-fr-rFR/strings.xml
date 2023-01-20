@@ -56,4 +56,10 @@
     <string name="tutorialdescr3">Une fois la loupe cliqué, il est possible d\'effectuer une recherche via la barre de recherche appropriée : vous pouvez rechercher un itinéraire en fonction de vos besoins, par exemple : attractions le long de l\'itinéraire, caractéristiques de l\'itinéraire. Une fois que vous avez choisi le chemin à suivre, il vous suffit de cliquer dessus</string>
     <string name="tutorialdescr4">Ici vous pouvez voir toutes les caractéristiques de l\'itinéraire que vous avez sélectionné. Pour commencer le voyage, appuyez sur le bouton de démarrage. Vous pouvez partager le parcours avec vos amis en cliquant sur le bouton partager</string>
     <string name="tutorialdescr5">Dans cet écran, vous pouvez voir les attractions de l\'itinéraire. Cliquez sur les flèches pour les parcourir et, le cas échéant, vous pouvez démarrer une activité qui, si elle est enregistrée, vous permet de collecter des points</string>
+    <string name="cognome">" Nom"</string>
+    <string name="nomeOutLine">Prénom</string>
+    <string name="cognomeOutLine">" Nom"</string>
+    <string name="titleModifica">Editer le profil</string>
+    <string name="msg">" Vous serez définitivement supprimé de l'aromaplate et vous perdrez toutes les informations de votre profil"</string>
+    <string name="profiloU">" Profil de l'utilisateur"</string>
 </resources>

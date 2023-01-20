@@ -29,7 +29,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             android:backgroundTint="@color/color_primary"
-            app:title="Modifica profilo"
+            app:title="@string/titleModifica"
             app:navigationIcon="@drawable/arrow"
             tools:ignore="MissingConstraints" />
 
@@ -75,19 +75,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Scegli se modicare il nome o il cognome o la password,oppure tutti e tre i campi"
+            android:text="@string/modifica"
             android:textAlignment="center" />
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nomeOutLine"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Nome"
+            android:hint="@string/nomeOutLine"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
-android:elevation="6dp"
+            android:elevation="6dp"
 
             app:hintTextColor="@color/color_primary">
 
@@ -96,18 +97,19 @@ android:elevation="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text=""
+                android:text="@string/nomeP"
                 app:startIconTint="#000000" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cognomeOutLine"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Cognome"
+            android:hint="@string/cognomeOutLine"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
 
@@ -119,7 +121,7 @@ android:elevation="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text=""
+                android:text="@string/cognome"
                 app:startIconTint="#000000" />
 
 
@@ -155,7 +157,7 @@ android:elevation="6dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="Invia"
+            android:text="@string/invia"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:backgroundTint="@color/color_primary"

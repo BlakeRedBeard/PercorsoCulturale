@@ -56,5 +56,11 @@
     <string name="tutorialdescr3">Una vez que se ha hecho clic en la lupa, es posible buscar a través de la barra de búsqueda correspondiente: puede buscar una ruta de acuerdo con sus necesidades, por ejemplo: atracciones a lo largo de la ruta, características de la ruta. Una vez que haya elegido el camino a seguir, simplemente haga clic en él</string>
     <string name="tutorialdescr4">Aquí puedes ver todas las características de la ruta que has seleccionado. Para iniciar el viaje, presione el botón de inicio. Puedes compartir la ruta con tus amigos haciendo clic en el botón compartir</string>
     <string name="tutorialdescr5">En esta pantalla se pueden ver los atractivos de la ruta. Haz clic en las flechas para navegar por ellas y, si está disponible, puedes iniciar una actividad que, si te registras, te permite acumular puntos</string>
+    <string name="cognome">Apellido</string>
+    <string name="nomeOutLine">Nombre</string>
+    <string name="cognomeOutLine">Apellido</string>
+    <string name="titleModifica">Editar perfil</string>
+    <string name="msg">" Serás eliminado permanentemente de la placa aromática y perderás toda la información de tu perfil."</string>
+    <string name="profiloU">Perfil del usuario</string>
 
 </resources>

@@ -65,5 +65,11 @@
     <string name="textView9">Questi sono i badge che hai ottenuto:</string>
     <string name="badgeButton">Visualizza tutti i badge</string>
     <string name="textView14">Ecco una lista dei badge ottenibili</string>
+    <string name="cognome">Cognome</string>
+    <string name="nomeOutLine">Nome</string>
+    <string name="cognomeOutLine">Cognome</string>
+    <string name="titleModifica">Modifica Profilo</string>
+    <string name="msg">Sarai rimosso permanentemente dalla piattofaroma e perderai ogni ogni info sul tuo profilo</string>
+    <string name="profiloU">Profilo utente</string>
 
 </resources>

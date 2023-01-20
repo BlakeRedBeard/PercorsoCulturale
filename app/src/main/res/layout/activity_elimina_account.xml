@@ -27,7 +27,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             android:backgroundTint="@color/color_primary"
-            app:title="Elimina il tuo account"
+            app:title="@string/eliminaP"
             app:navigationIcon="@drawable/arrow"
             tools:ignore="MissingConstraints" />
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Per eliminare il tuo profilo inserisci la password del tuo account"
+            android:text="@string/eliminaProfilo"
             android:textAlignment="textStart"
             android:textColor="@color/black"/>
 
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Sarai rimosso permanentemente dalla piattofaroma e perderai ogni ogni info sul tuo profilo "
+            android:text="@string/msg"
             android:textAlignment="textStart"
 
 
