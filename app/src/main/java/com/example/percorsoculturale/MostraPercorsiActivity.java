@@ -148,7 +148,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Uri data = intent.getData();
         if(data != null) {
-
+            idPercorso = data.getLastPathSegment();
             showPercorso(data.getLastPathSegment());
 
         }else Log.i("DEBUG: intent", "data è nullo");
@@ -185,8 +185,8 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                                 MostraAttrazioni.setAttivita(attivita);
                             }else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
-                                final long ONE_MEGABYTE = 1024 * 1024;
-                                gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                final long ONE_KILOBYTE = 1024 * 1024 * 1024;
+                                gsReference.getBytes(ONE_KILOBYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                     @Override
                                     public void onSuccess(byte[] bytes) {
                                         // image retrieved

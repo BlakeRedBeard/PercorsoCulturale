@@ -219,8 +219,8 @@ public class MostraAttrazioni extends AppCompatActivity {
                                 descrizioneAttrazione.setText((String) entry.getValue());
                             } else if (entry.getKey().equals("immagine")) {
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
-                                final long ONE_MEGABYTE = 1024 * 1024;
-                                gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                final long ONE_KILOBYTE = 1024 * 1024 * 1024;
+                                gsReference.getBytes(ONE_KILOBYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                     @Override
                                     public void onSuccess(byte[] bytes) {
                                         // image retrieved

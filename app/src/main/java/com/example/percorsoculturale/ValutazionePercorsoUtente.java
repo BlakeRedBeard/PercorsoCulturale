@@ -300,7 +300,7 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar2);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

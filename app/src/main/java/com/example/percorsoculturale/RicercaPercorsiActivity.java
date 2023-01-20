@@ -466,11 +466,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             TableRow.LayoutParams params = new TableRow.LayoutParams();
             params.width = TableRow.LayoutParams.MATCH_PARENT;
             params.height = TableRow.LayoutParams.WRAP_CONTENT;
-            Animation animation;
-            animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                    R.anim.comparsa);
-            animation.setStartOffset(500);
-            int nAnimation = 0;
             for (Percorso percorso : parser.getFilteredPercorsi(filter)) {
                 RelativeLayout item = factory.generateLayout(percorso.getImmagine(), percorso.getNome(), row);
                 item.setOnClickListener(new View.OnClickListener() {
@@ -483,8 +478,6 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                 });
                 row.setLayoutParams(params);
                 row.addView(item);
-                if(nAnimation < 6)
-                    row.startAnimation(animation);
                 tableLayout.addView(row);
                 row = new TableRow(this);
             }
@@ -537,8 +530,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                             if(fileOnline.getName().contains(JSONFILENAME)){
                                 if(parser.getFileLanguage(fileOnline.getName()).equals(language))
                                     if(parser.getFileVersion(fileLocale.getName()).compareTo(parser.getFileVersion(fileOnline.getName())) < 0 || !parser.getFileLanguage(fileLocale.getName()).equals(language)){   //se la versione del file salvato è inferiore sarà ritornato un numero negativo
-                                        final long ONE_MEGABYTE = 1024 * 1024;
-                                        fileOnline.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                        final long ONE_KILOBYTE = 1024 * 1024 * 1024;
+                                        fileOnline.getBytes(ONE_KILOBYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                             @Override
                                             public void onSuccess(byte[] bytes) {
                                                 String filename = fileOnline.getName();
