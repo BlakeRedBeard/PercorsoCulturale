@@ -27,7 +27,8 @@
             android:backgroundTint="@color/color_primary"
             app:title="Badge ottenibili"
             app:navigationIcon="@drawable/arrow"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            app:titleMarginBottom="16dp"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -167,8 +168,7 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="59dp"
-        android:text="Ecco una lista dei badge ottenibili"
-
+        android:text="@string/textView14"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"

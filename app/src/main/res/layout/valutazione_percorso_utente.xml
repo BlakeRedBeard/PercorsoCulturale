@@ -29,7 +29,8 @@
             android:backgroundTint="@color/color_primary"
             app:title="Valutazione percorso"
             app:navigationIcon="@drawable/arrow"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            app:titleMarginBottom="16dp"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
     <ImageView

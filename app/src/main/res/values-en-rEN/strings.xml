@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">PercorsoCulturale</string>
 
     <string name= "editTextTextEmailAddress">insert your email</string>
     <string name= "editTextTextPassword">Enter your password</string>
@@ -42,6 +43,10 @@
     <string name="eliminaProfilo">To delete your profile enter your account password</string>
     <string name="rspCorretta">SELECT THE CORRECT ANSWER</string>
     <string name="Verifica">" Verify"</string>
+    <string name="textView7">Hi !</string>
+    <string name="textView9">These are the badges you\'ve earned:</string>
+    <string name="badgeButton">" View all badges"</string>
+    <string name="textView14">Here is a list of obtainable badges</string>
     <string name="tutorialhead1">Login Screen</string>
     <string name="tutorialhead2">Home screen</string>
     <string name="tutorialhead3">Search for a route</string>

@@ -9,6 +9,10 @@
     tools:context=".ProfiloActivity">
 
 
+
+
+
+
     <LinearLayout
         android:id="@+id/LinearProfile"
         android:layout_width="match_parent"
@@ -23,13 +27,26 @@
             android:layout_height="200dp"
             android:background="@color/color_primary">
 
-
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
+                android:backgroundTint="@color/color_primary"
+                app:title="Profilo utente"
+                app:titleTextColor="@color/white"
+                app:navigationIcon="@drawable/arrow"
+                tools:ignore="MissingConstraints"
+                app:titleMarginBottom="16dp"
+              />
             <TextView
                 android:id="@+id/txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="80dp"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
