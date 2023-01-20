@@ -13,7 +13,6 @@
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/shape2"
@@ -29,7 +28,8 @@
             android:backgroundTint="@color/color_primary"
             app:title="@string/eliminaP"
             app:navigationIcon="@drawable/arrow"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            app:titleMarginBottom="16dp"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
 

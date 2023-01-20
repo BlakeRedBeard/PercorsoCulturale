@@ -12,7 +12,6 @@
         android:theme="@style/Theme.PercorsoCulturale.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/shape2"
@@ -28,7 +27,8 @@
             android:backgroundTint="@color/color_primary"
             app:title="Badge ottenibili"
             app:navigationIcon="@drawable/arrow"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            app:titleMarginBottom="16dp"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="40dp"
@@ -54,12 +54,16 @@
         android:textAllCaps="true"
         android:textColor="#F8000000"
         android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        android:lines="1"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="43dp"
@@ -67,12 +71,16 @@
         android:textAllCaps="true"
         android:textColor="#F8000000"
         android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        android:lines="1"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/imageView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="36dp"
@@ -80,6 +88,10 @@
         android:textAllCaps="true"
         android:textColor="#F8000000"
         android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        android:lines="1"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -134,7 +146,7 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="135dp"
         android:layout_marginEnd="40dp"
@@ -142,6 +154,10 @@
         android:textAllCaps="true"
         android:textColor="#F8000000"
         android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        android:lines="1"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView14" />
 

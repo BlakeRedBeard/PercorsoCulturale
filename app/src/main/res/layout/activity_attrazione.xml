@@ -30,7 +30,8 @@
             android:backgroundTint="@color/color_primary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             app:title="Attrazione"
-            app:navigationIcon="@drawable/arrow"/>
+            app:navigationIcon="@drawable/arrow"
+            app:titleMarginBottom="16dp"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
