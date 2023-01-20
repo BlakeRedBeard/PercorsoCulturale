@@ -52,10 +52,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
 
+        mAuth = FirebaseAuth.getInstance();
         loadLocale();
 
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        boolean isPrimoAvvio = pref.getBoolean("PrimoAvvio", true);
+        if(isPrimoAvvio){
+            Intent tutorial = new Intent(this, ActivityTutorial.class);
+            startActivity(tutorial);
+        }
         //impostazioni lingua
 
         int orientation = this.getResources().getConfiguration().orientation;
@@ -132,7 +138,6 @@ public class LoginActivity extends AppCompatActivity {
                 lingua.setImageDrawable(getDrawable(R.drawable.italy));
             }
         }else{
-            SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
             String language = pref.getString("My_Lang", "");
             FloatingActionButton lingua = findViewById(R.id.bottoneLingua);
             if (language.equals("en")) {

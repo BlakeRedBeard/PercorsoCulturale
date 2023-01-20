@@ -79,6 +79,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ActivityTutorial"
+            android:exported="false"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Tutorial"
+            android:theme="@style/Theme.PercorsoCulturale.NoActionBar"/>
         <activity android:name=".QrcodeActivity"
             android:exported="true"/>
         <activity

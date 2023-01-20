@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:flow_horizontalAlign="center">
+
+    <ImageView
+        android:id="@+id/titleImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/texttitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Lorem Ipsum"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28dp"/>
+
+    <TextView
+        android:id="@+id/textdeccription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Lorem Ipsum"
+        android:paddingTop="15dp"
+        android:layout_weight="2"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
+
+
+</LinearLayout>

@@ -245,6 +245,24 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         BDisconnettiti.setOnClickListener(onClickLogOut);
         btnDisconnettiti.setOnClickListener(onClickLogOut);
 
+
+        LinearLayout bAiuto = findViewById(R.id.viewBottomSheet).findViewById(R.id.aiuto);
+        FloatingActionButton btnAiuto = findViewById(R.id.viewBottomSheet).findViewById(R.id.btnAiuto);
+
+        View.OnClickListener onClickAiuto = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent tutorial = new Intent(getApplicationContext(), ActivityTutorial.class);
+                startActivity(tutorial);
+
+            }
+
+        };
+
+        bAiuto.setOnClickListener(onClickAiuto);
+        btnAiuto.setOnClickListener(onClickAiuto);
+
         //GPS
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
