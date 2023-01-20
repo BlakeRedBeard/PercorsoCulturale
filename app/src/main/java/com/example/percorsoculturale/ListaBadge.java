@@ -2,7 +2,9 @@ package com.example.percorsoculturale;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -169,6 +171,8 @@ public class ListaBadge extends AppCompatActivity {
     }
 
     public void salvaBadge(String search,TextView descrizione){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My_Lang", "");
         db.collection("badge")
                 .document(search)
                 .get()
@@ -178,7 +182,7 @@ public class ListaBadge extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for(Map.Entry<String, Object> entry : document.getData().entrySet()){
-                            if(entry.getKey().equals("descrizione")){
+                            if(entry.getKey().equals("descrizione"+language)){
                                 descrizione.setText((String) entry.getValue());
                             }
                             else if(entry.getKey().equals("immagine")){
