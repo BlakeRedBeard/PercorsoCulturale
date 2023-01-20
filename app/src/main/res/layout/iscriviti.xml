@@ -86,7 +86,11 @@
             app:layout_constraintTop_toBottomOf="@+id/iscrizioneNome"
             app:startIconTint="#000000"
             android:maxHeight="90dp"
-            android:maxWidth="300dp">
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="inserisci cognome">
 
 
            <com.google.android.material.textfield.TextInputEditText
@@ -110,6 +114,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="Nome"
+
             android:textColorHint="#99000000"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
@@ -122,6 +127,10 @@
             app:layout_constraintTop_toBottomOf="@+id/imageiscriviti"
             android:maxHeight="48dp"
             android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="inserisci nome"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -154,7 +163,11 @@
             app:layout_constraintTop_toBottomOf="@+id/iscrizioneCognome"
             app:strokeColor="#20000000"
             android:maxHeight="48dp"
-            android:maxWidth="300dp">
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="inserisci email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiEmail"
@@ -181,7 +194,19 @@
                 app:strokeColor="#60000000"
                 app:strokeWidth="1dp"
 
-                tools:ignore="RtlCompat" />
+                tools:ignore="RtlCompat"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleziona la tua data di nascita"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="16dp"
+                android:textSize="11dp">
+
+            </TextView>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -206,7 +231,13 @@
             app:layout_constraintTop_toBottomOf="@+id/DataDiNascita"
             app:strokeColor="#20000000"
             android:maxHeight="48dp"
-            android:maxWidth="300dp">
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="inserisci password"
+            app:errorEnabled="true"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiPassword"
@@ -239,7 +270,11 @@
             app:layout_constraintTop_toBottomOf="@+id/iscrizionePassword"
             app:strokeColor="#20000000"
             android:maxHeight="48dp"
-            android:maxWidth="300dp">
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="inserisci nuovamente la password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiConfermaPassword"
