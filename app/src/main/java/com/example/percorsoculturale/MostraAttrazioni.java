@@ -213,9 +213,9 @@ public class MostraAttrazioni extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         Log.d("DEBUG", document.getId() + " => " + document.getData());
                         for (Map.Entry<String, Object> entry : document.getData().entrySet()) {
-                            if (entry.getKey().equals("nome")) {
+                            if (entry.getKey().equals("nome"+language)) {
                                 nomeAttrazione.setText((String) entry.getValue());
-                            } else if (entry.getKey().equals("descrizione")) {
+                            } else if (entry.getKey().equals("descrizione"+language)) {
                                 descrizioneAttrazione.setText((String) entry.getValue());
                             } else if (entry.getKey().equals("immagine")) {
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
