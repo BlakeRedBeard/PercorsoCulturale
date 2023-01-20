@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -48,10 +50,21 @@ public class BadgeActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     TextView nienteBadge;
     private Animation anim=null;
+    private ArrayList<Bitmap> bmp;
+    private ArrayList<String> nomi;
+    ImageView cinquePunti;
+    ImageView dieciPunti;
+    ImageView venticinquePunti;
+    ImageView cinquantaPunti;
+    private int i = 0;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         storage = FirebaseStorage.getInstance();
+
+        bmp = new ArrayList<>(3);
+        nomi = new ArrayList<>(3);
 
         int orientation = this.getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -61,31 +74,21 @@ public class BadgeActivity extends AppCompatActivity {
         }
 
         TextView textview1 = (TextView) findViewById(R.id.textView8);
-
-        ImageView badge1 = (ImageView) findViewById(R.id.imageView2);
-        ImageView badge2 = (ImageView) findViewById(R.id.imageView3);
-        ImageView badge3 = (ImageView) findViewById(R.id.imageView4);
-        ImageView badge4 = (ImageView) findViewById(R.id.imageView5);
+        cinquePunti = (ImageView) findViewById(R.id.imageView2);
+        dieciPunti = (ImageView) findViewById(R.id.imageView3);
+        venticinquePunti = (ImageView) findViewById(R.id.imageView4);
+        cinquantaPunti = (ImageView) findViewById(R.id.imageView5);
 
         anim = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.animazione);
 
-        badge1.startAnimation(anim);
-        badge2.startAnimation(anim);
-        badge3.startAnimation(anim);
-        badge4.startAnimation(anim);
+        cinquePunti.startAnimation(anim);
+        dieciPunti.startAnimation(anim);
+        venticinquePunti.startAnimation(anim);
+        cinquantaPunti.startAnimation(anim);
 
-        mostraBadgeSbloccati(badge1, badge2, badge3, badge4);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-
-            }
-        });
+        mostraBadgeSbloccati(cinquePunti, dieciPunti, venticinquePunti, cinquantaPunti);
 
         Button badgeButton = (Button) findViewById(R.id.badgeButton);
         badgeButton.setOnClickListener(new View.OnClickListener(){
@@ -114,7 +117,15 @@ public class BadgeActivity extends AppCompatActivity {
         nienteBadge = (TextView) findViewById(R.id.textView17);
         nienteBadge.setVisibility(View.INVISIBLE);
 
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
 
+            }
+        });
 
     }
 
@@ -147,31 +158,44 @@ public class BadgeActivity extends AppCompatActivity {
                         if (punti >= 50 ){
                             valore = 4;
                             controllaBadge(mailUtente, valore);
-                            mostraBadge("5punti",badge1);
-                            mostraBadge("10punti",badge2);
-                            mostraBadge("25punti",badge3);
-                            mostraBadge("50punti",badge4);
+                            badge1.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                            salvaBadge("5punti",valore);
+                            badge2.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                            salvaBadge("10punti",valore);
+                            badge3.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                            salvaBadge("25punti",valore);
+                            badge4.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                            salvaBadge("50punti",valore);
+
                         }
                         else {
                             if (punti >= 25 ){
                                 valore = 3;
                                 controllaBadge(mailUtente, valore);
-                                mostraBadge("5punti",badge1);
-                                mostraBadge("10punti",badge2);
-                                mostraBadge("25punti",badge3);
+                                badge1.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                                salvaBadge("5punti",valore);
+                                badge2.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                                salvaBadge("10punti",valore);
+                                badge3.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                                salvaBadge("25punti",valore);
+
                             }
                             else {
                                 if (punti >= 10 ){
                                     valore = 2;
                                     controllaBadge(mailUtente, valore);
-                                    mostraBadge("5punti",badge1);
-                                    mostraBadge("10punti",badge2);
+                                    badge1.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                                    salvaBadge("5punti",valore);
+                                    badge2.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                                    salvaBadge("10punti",valore);
+
                                 }
                                 else {
                                     if (punti >= 5 ){
                                         valore = 1;
                                         controllaBadge(mailUtente, valore);
-                                        mostraBadge("5punti",badge1);
+                                        badge1.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+                                        salvaBadge("5punti",valore);
                                     }
                                     else {
                                         nienteBadge.setVisibility(View.VISIBLE);
@@ -344,7 +368,7 @@ public class BadgeActivity extends AppCompatActivity {
 
     }
 
-    public void mostraBadge(String search,ImageView badge){
+    public void salvaBadge(String search, int valore){
         db.collection("badge")
                 .document(search)
                 .get()
@@ -356,13 +380,18 @@ public class BadgeActivity extends AppCompatActivity {
                         for(Map.Entry<String, Object> entry : document.getData().entrySet()){
                             if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
-                                final long ONE_MEGABYTE = 102 * 102;
+                                final long ONE_MEGABYTE = 1024 * 1024;
                                 gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                     @Override
                                     public void onSuccess(byte[] bytes) {
                                         // image retrieved
-                                        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                        badge.setImageBitmap(bmp);
+                                        Bitmap bmp2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        bmp.add(i,bmp2);
+                                        nomi.add(search);
+                                        i = i + 1;
+                                        if(bmp.size() == valore) {
+                                            mostraBadge();
+                                        }
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -375,6 +404,36 @@ public class BadgeActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void mostraBadge() {
+        int j;
+        for(j=0; j<nomi.size(); j++) {
+            if((nomi.get(j).equals("5punti")) || (nomi.get(j).equals("5puntigrigio"))) {
+                cinquePunti.clearAnimation();
+                cinquePunti.setBackgroundColor(Color.rgb(249,249,251));
+                cinquePunti.setImageBitmap(bmp.get(j));
+            }
+
+            if((nomi.get(j).equals("10punti")) || (nomi.get(j).equals("10puntigrigio"))) {
+                dieciPunti.clearAnimation();
+                dieciPunti.setBackgroundColor(Color.rgb(249,249,251));
+                dieciPunti.setImageBitmap(bmp.get(j));
+            }
+
+            if((nomi.get(j).equals("25punti")) || (nomi.get(j).equals("25puntigrigio"))) {
+                venticinquePunti.clearAnimation();
+                venticinquePunti.setBackgroundColor(Color.rgb(249,249,251));
+                venticinquePunti.setImageBitmap(bmp.get(j));
+            }
+
+            if((nomi.get(j).equals("50punti")) || (nomi.get(j).equals("50puntigrigio"))) {
+                cinquantaPunti.clearAnimation();
+                cinquantaPunti.setBackgroundColor(Color.rgb(249,249,251));
+                cinquantaPunti.setImageBitmap(bmp.get(j));
+            }
+        }
+
     }
 
 

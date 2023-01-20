@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ListaBadge extends AppCompatActivity {
@@ -38,10 +40,20 @@ public class ListaBadge extends AppCompatActivity {
     private FirebaseStorage storage;
     private FirebaseAuth firebaseAuth;
     private Animation anim=null;
+    private ArrayList<Bitmap> bmp;
+    private ArrayList<String> nomi;
+    private int i = 0;
+    ImageView cinquePunti;
+    ImageView dieciPunti;
+    ImageView venticinquePunti;
+    ImageView cinquantaPunti;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         storage = FirebaseStorage.getInstance();
+
+        bmp = new ArrayList<>(3);
+        nomi = new ArrayList<>(3);
 
         int orientation = this.getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -50,10 +62,10 @@ public class ListaBadge extends AppCompatActivity {
             setContentView(R.layout.lista_badge);
         }
 
-        ImageView cinquePunti = (ImageView) findViewById(R.id.imageView10);
-        ImageView dieciPunti = (ImageView) findViewById(R.id.imageView15);
-        ImageView venticinquePunti = (ImageView) findViewById(R.id.imageView16);
-        ImageView cinquantaPunti = (ImageView) findViewById(R.id.imageView11);
+        cinquePunti = (ImageView) findViewById(R.id.imageView10);
+        dieciPunti = (ImageView) findViewById(R.id.imageView15);
+        venticinquePunti = (ImageView) findViewById(R.id.imageView16);
+        cinquantaPunti = (ImageView) findViewById(R.id.imageView11);
 
         TextView descrizioneB1 = (TextView) findViewById(R.id.textView10);
         TextView descrizioneB2 = (TextView) findViewById(R.id.textView11);
@@ -63,19 +75,17 @@ public class ListaBadge extends AppCompatActivity {
         anim = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.animazione);
 
+        cinquePunti.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+        dieciPunti.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+        venticinquePunti.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+        cinquantaPunti.setBackgroundResource(android.R.drawable.ic_menu_gallery);
+
         cinquePunti.startAnimation(anim);
         dieciPunti.startAnimation(anim);
         venticinquePunti.startAnimation(anim);
         cinquantaPunti.startAnimation(anim);
 
-        descrizioneB1.startAnimation(anim);
-        descrizioneB2.startAnimation(anim);
-        descrizioneB3.startAnimation(anim);
-        descrizioneB4.startAnimation(anim);
-
         mostraTuttiBadge(cinquePunti, dieciPunti, venticinquePunti, cinquantaPunti, descrizioneB1, descrizioneB2, descrizioneB3, descrizioneB4);
-
-
 
 
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
@@ -83,7 +93,7 @@ public class ListaBadge extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ListaBadge.this, RicercaPercorsiActivity.class));
+                finish();
             }
         });
 
@@ -117,31 +127,31 @@ public class ListaBadge extends AppCompatActivity {
                         }
 
                         if (puntiVeri >= 50 ){
-                            mostraBadge("5punti",badge1,descrizioneB1);
-                            mostraBadge("10punti",badge2,descrizioneB2);
-                            mostraBadge("25punti",badge3,descrizioneB3);
-                            mostraBadge("50punti",badge4,descrizioneB4);
+                            salvaBadge("5punti",descrizioneB1);
+                            salvaBadge("10punti",descrizioneB2);
+                            salvaBadge("25punti",descrizioneB3);
+                            salvaBadge("50punti",descrizioneB4);
                         }
                         else {
-                            mostraBadge("50puntigrigio",badge4,descrizioneB4);
+                            salvaBadge("50puntigrigio",descrizioneB4);
                             if (puntiVeri >= 25 ){
-                                mostraBadge("5punti",badge1,descrizioneB1);
-                                mostraBadge("10punti",badge2,descrizioneB2);
-                                mostraBadge("25punti",badge3,descrizioneB3);
+                                salvaBadge("5punti",descrizioneB1);
+                                salvaBadge("10punti",descrizioneB2);
+                                salvaBadge("25punti",descrizioneB3);
                             }
                             else {
-                                mostraBadge("25puntigrigio",badge3,descrizioneB3);
+                                salvaBadge("25puntigrigio",descrizioneB3);
                                 if (puntiVeri >= 10 ){
-                                    mostraBadge("5punti",badge1,descrizioneB1);
-                                    mostraBadge("10punti",badge2,descrizioneB2);
+                                    salvaBadge("5punti",descrizioneB1);
+                                    salvaBadge("10punti",descrizioneB2);
                                 }
                                 else {
-                                    mostraBadge("10puntigrigio",badge2,descrizioneB2);
+                                    salvaBadge("10puntigrigio",descrizioneB2);
                                     if (puntiVeri >= 5 ){
-                                        mostraBadge("5punti",badge1,descrizioneB1);
+                                        salvaBadge("5punti",descrizioneB1);
                                     }
                                     else {
-                                        mostraBadge("5puntigrigio",badge1,descrizioneB1);
+                                        salvaBadge("5puntigrigio",descrizioneB1);
                                     }
                                 }
                             }
@@ -156,10 +166,9 @@ public class ListaBadge extends AppCompatActivity {
             }
         });
 
-
     }
 
-    public void mostraBadge(String search,ImageView badge, TextView descrizione){
+    public void salvaBadge(String search,TextView descrizione){
         db.collection("badge")
                 .document(search)
                 .get()
@@ -174,14 +183,20 @@ public class ListaBadge extends AppCompatActivity {
                             }
                             else if(entry.getKey().equals("immagine")){
                                 StorageReference gsReference = storage.getReferenceFromUrl((String) entry.getValue());
-                                final long ONE_MEGABYTE = 102 * 102;
+                                final long ONE_MEGABYTE = 1024 * 1024;
                                 gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                     @Override
                                     public void onSuccess(byte[] bytes) {
                                         // image retrieved
-                                        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                        badge.setImageBitmap(bmp);
+                                        Bitmap bmp2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        bmp.add(i,bmp2);
+                                        nomi.add(search);
+                                        i = i + 1;
+                                        if(bmp.size() == 4) {
+                                            mostraBadge();
+                                        }
                                     }
+
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception exception) {
@@ -193,6 +208,36 @@ public class ListaBadge extends AppCompatActivity {
                         }
                     }
                 });
+
+    }
+
+    public void mostraBadge() {
+        int j;
+        for(j=0; j<nomi.size(); j++) {
+            if((nomi.get(j).equals("5punti")) || (nomi.get(j).equals("5puntigrigio"))) {
+                cinquePunti.clearAnimation();
+                cinquePunti.setBackgroundColor(Color.rgb(249,249,251));
+                cinquePunti.setImageBitmap(bmp.get(j));
+            }
+
+            if((nomi.get(j).equals("10punti")) || (nomi.get(j).equals("10puntigrigio"))) {
+                dieciPunti.clearAnimation();
+                dieciPunti.setBackgroundColor(Color.rgb(249,249,251));
+                dieciPunti.setImageBitmap(bmp.get(j));
+            }
+
+            if((nomi.get(j).equals("25punti")) || (nomi.get(j).equals("25puntigrigio"))) {
+                venticinquePunti.clearAnimation();
+                venticinquePunti.setBackgroundColor(Color.rgb(249,249,251));
+                venticinquePunti.setImageBitmap(bmp.get(j));
+            }
+
+            if((nomi.get(j).equals("50punti")) || (nomi.get(j).equals("50puntigrigio"))) {
+                cinquantaPunti.clearAnimation();
+                cinquantaPunti.setBackgroundColor(Color.rgb(249,249,251));
+                cinquantaPunti.setImageBitmap(bmp.get(j));
+            }
+        }
 
     }
 }
