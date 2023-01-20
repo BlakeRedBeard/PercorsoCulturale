@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,7 +47,13 @@ public class EliminaProfilo extends AppCompatActivity {
         invia = (Button) findViewById(R.id.invia);
         inputPwd = (TextInputEditText) findViewById(R.id.password);
         authenticated = 0;
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         invia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
