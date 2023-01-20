@@ -189,13 +189,12 @@ public class MostraAttrazioni extends AppCompatActivity {
             }
         }
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar1);
+        Toolbar toolbar= findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back=new Intent(getApplicationContext(), MostraPercorsiActivity.class);
-                startActivity(back);
+                finish();
 
             }
         });

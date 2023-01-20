@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RicercaPercorsiActivity"
-        >
+    >
 
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -30,9 +30,16 @@
             android:id="@+id/Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:paddingEnd="20dp"
+            android:paddingEnd="17dp"
             >
-
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/toolbartxt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Percorso culturale"
+                app:fontFamily="sans-serif-black"
+                app:autoSizeTextType="uniform"
+                android:visibility="visible"/>
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"

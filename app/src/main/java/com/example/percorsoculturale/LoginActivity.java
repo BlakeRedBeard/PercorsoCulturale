@@ -196,6 +196,12 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                                 //Aggiornare interfaccia, l'utente ha effettuato l'accesso
                                 Intent intent = new Intent(getApplicationContext(), RicercaPercorsiActivity.class);
+                                Bundle extra = getIntent().getExtras();
+                                if(extra != null){
+                                    if(extra.get("intent") != null){
+                                        intent = (Intent) extra.get("intent");
+                                    }
+                                }
                                 startActivity(intent);
                             } else {
                                 String messaggio = "Credenziali errate";

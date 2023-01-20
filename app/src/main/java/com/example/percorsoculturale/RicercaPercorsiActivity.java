@@ -38,6 +38,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -413,18 +414,15 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.menuIcon:
-                                Toast.makeText(this, "Hai cliccato il menu", Toast.LENGTH_SHORT).show();
-
-
                                 if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                                     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                                 } else {
                                     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                                 }
-
-                return true;
+                                return true;
 
             case R.id.searchView:
+                                    findViewById(R.id.toolbartxt).setVisibility(AppCompatTextView.GONE);
                                     if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                                         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                                     }

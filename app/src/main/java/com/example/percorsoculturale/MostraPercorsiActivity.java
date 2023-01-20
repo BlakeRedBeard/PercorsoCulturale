@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -33,7 +35,7 @@ import java.util.Map;
 
 public class MostraPercorsiActivity extends AppCompatActivity {
 
-    private String idPercorso;
+    private String   idPercorso;
     private TextView nomePercorso,
                      descrizionePercorso,
                      regionePercorso,
@@ -49,6 +51,12 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            //FirebaseAuth.getInstance().signInWithEmailAndPassword("user@guest.com", "userguest");
+            Intent login = new Intent(this, LoginActivity.class);
+            login.putExtra("intent", this.getIntent());
+            startActivity(login);
+        }
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         int orientation = this.getResources().getConfiguration().orientation;
@@ -71,7 +79,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                 if (extra.getString("percorso") != null) {
                     idPercorso = extra.getString("percorso");
                     showPercorso(idPercorso);
-                    FloatingActionButton btnShare = (FloatingActionButton) findViewById(R.id.btnCondividiPercorso);
+                    FloatingActionButton btnShare = findViewById(R.id.btnCondividiPercorso);
                     btnShare.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -89,14 +97,14 @@ public class MostraPercorsiActivity extends AppCompatActivity {
             } else {
                 idPercorso = savedInstanceState.getString("percorso");
                 showPercorso(idPercorso);
-                Button btnShare = (Button) findViewById(R.id.btnCondividiPercorso);
+                FloatingActionButton btnShare = findViewById(R.id.btnCondividiPercorso);
                 btnShare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
                         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
-                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK + (String) savedInstanceState.getSerializable("percorso"));
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK + savedInstanceState.getSerializable("percorso"));
                         emailIntent.setType("text/plain");
                         startActivity(Intent.createChooser(emailIntent, "Send to friend"));
                     }

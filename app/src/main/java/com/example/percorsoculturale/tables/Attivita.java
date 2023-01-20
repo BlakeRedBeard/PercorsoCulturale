@@ -2,15 +2,14 @@ package com.example.percorsoculturale.tables;
 
 public class Attivita {
 
-    private int id;
+    private String id;
     private int punteggio;
- private Puzzle puzzle;
-    public Attivita(int id, int punteggio) {
+    public Attivita(String id, int punteggio) {
         this.id = id;
         this.punteggio = punteggio;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
