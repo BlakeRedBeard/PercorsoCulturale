@@ -4,7 +4,7 @@
     <string name= "editTextTextEmailAddress">Insérez votre email</string>
     <string name= "editTextTextPassword">Tapez votre mot de passe</string>
     <string name= "cambiaPassword">Vous avez oublié votre mot de passe?</string>
-    <string name= "loginButton">Enregistrement</string>
+    <string name= "loginButton">" Entrez"</string>
     <string name= "iscrivitiButton">S\'abonner</string>
     <string name= "oppureText">Ou</string>
     <string name= "accediComeOspite">Démarrer la session en tant qu\'invité</string>
@@ -42,4 +42,8 @@
     <string name="eliminaProfilo">Pour supprimer votre profil, entrez le mot de passe de votre compte</string>
     <string name="rspCorretta">SÉLECTIONNER LA BONNE RÉPONSE</string>
     <string name="Verifica">" Vérifier"</string>
+    <string name="textView7">Salut</string>
+    <string name="textView9">" Voici les badges que vous avez gagnés :"</string>
+    <string name="badgeButton">Voir tous les badges</string>
+    <string name="textView14">" Voici une liste des badges disponibles"</string>
 </resources>

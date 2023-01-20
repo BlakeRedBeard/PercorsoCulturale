@@ -4,7 +4,7 @@
     <string name= "editTextTextEmailAddress">inserta tu correo electronico</string>
     <string name= "editTextTextPassword">Ingresa tu contraseña</string>
     <string name= "cambiaPassword">¿Olvidaste tu contraseña?</string>
-    <string name= "loginButton">Registrarse</string>
+    <string name= "loginButton">" Adelante"</string>
     <string name= "iscrivitiButton">Suscribir</string>
     <string name= "oppureText">O</string>
     <string name= "accediComeOspite">Iniciar sesión como invitado</string>
@@ -42,5 +42,9 @@
     <string name="eliminaProfilo">Para eliminar tu perfil ingresa la contraseña de tu cuenta</string>
     <string name="rspCorretta">SELECCIONA LA RESPUESTA CORRECTA</string>
     <string name="Verifica">Verificar</string>
+    <string name="textView7">Hola</string>
+    <string name="textView9">Estas son las insignias que has ganado:</string>
+    <string name="badgeButton">" Ver todas las insignias"</string>
+    <string name="textView14">Lista de insignias disponibles</string>
 
 </resources>

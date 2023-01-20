@@ -42,4 +42,8 @@
     <string name="eliminaProfilo">Per eliminare il tuo profilo inserisci la password del tuo account</string>
     <string name="rspCorretta">SELEZIONA LA RISPOSTA CORRETTA</string>
     <string name="Verifica">Verifica</string>
+    <string name="textView7">Ciao</string>
+    <string name="textView9">Questi sono i badge che hai ottenuto:</string>
+    <string name="badgeButton">Visualizza tutti i badge</string>
+    <string name="textView14">Ecco una lista dei badge ottenibili</string>
 </resources>

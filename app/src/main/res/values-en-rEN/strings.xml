@@ -43,6 +43,10 @@
     <string name="eliminaProfilo">To delete your profile enter your account password</string>
     <string name="rspCorretta">SELECT THE CORRECT ANSWER</string>
     <string name="Verifica">" Verify"</string>
+    <string name="textView7">Hi !</string>
+    <string name="textView9">These are the badges you\'ve earned:</string>
+    <string name="badgeButton">" View all badges"</string>
+    <string name="textView14">Here is a list of obtainable badges</string>
 
 
 </resources>
