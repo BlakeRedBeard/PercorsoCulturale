@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
     <string name="editTextTextEmailAddress">Inserisci la tua email</string>
     <string name="editTextTextPassword">Inserisci la tua password</string>
     <string name="cambiaPassword">Hai dimenticato la password?</string>
@@ -42,4 +41,14 @@
     <string name="eliminaProfilo">Per eliminare il tuo profilo inserisci la password del tuo account</string>
     <string name="rspCorretta">SELEZIONA LA RISPOSTA CORRETTA</string>
     <string name="Verifica">Verifica</string>
+    <string name="tutorialhead1">Schermata di Login</string>
+    <string name="tutorialhead2">Schermata Home</string>
+    <string name="tutorialhead3">Cercare un percorso</string>
+    <string name="tutorialhead4">Schermata percorso</string>
+    <string name="tutorialhead5">Schermata attrazione</string>
+    <string name="tutorialdescr1">Qui è possibile effettuare l\'accesso al proprio account, se non è stato creato basta registrasi cliccando sul bottone iscriviti. È possibile effettuare l\'accesso senza registarsi premendo il tasto accedi come ospite. Attenzione perché alcune funzionalità sono bloccate</string>
+    <string name="tutorialdescr2">"In questa schermata è possibile cercare il percorso in due modi: il primo attraverso il gps (accettare il permesso), il secondo si effettua manualmente cliccando sulla lente d'ingrandimento. "</string>
+    <string name="tutorialdescr3">Una volta cliccata la lente è possibile cercare attraverso l\'apposita barra di ricerca: puoi cercare un percorso in base alle tue necessità, ad esempio: attrazioni nel percorso, caratteristiche del percorso. Una volta scelto il percorso da seguire basta cliccarlo</string>
+    <string name="tutorialdescr4">Qui puoi vedere tutte le caratteristiche del percorso che hai selezionato. Per avviare il percorso premi il bottone avvia. Puoi condividere il percorso con i tuoi amici cliccando sul tasto condivisione</string>
+    <string name="tutorialdescr5">In questa schermata puoi vedere le attrazioni del percorso. Clicca sulle frecce per navigare attraverso di esse e, se disponibile, puoi avviare un\'attività che se iscritto ti permette di collezionare punti</string>
 </resources>

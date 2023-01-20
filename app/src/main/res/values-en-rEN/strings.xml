@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
 
     <string name= "editTextTextEmailAddress">insert your email</string>
     <string name= "editTextTextPassword">Enter your password</string>
@@ -43,6 +42,16 @@
     <string name="eliminaProfilo">To delete your profile enter your account password</string>
     <string name="rspCorretta">SELECT THE CORRECT ANSWER</string>
     <string name="Verifica">" Verify"</string>
+    <string name="tutorialhead1">Login Screen</string>
+    <string name="tutorialhead2">Home screen</string>
+    <string name="tutorialhead3">Search for a route</string>
+    <string name="tutorialhead4">Route screen</string>
+    <string name="tutorialhead5">Attraction screen</string>
+    <string name="tutorialdescr1">Here you can log in to your account, if it has not been created just register by clicking on the subscribe button. You can log in without registering by pressing the key log in as guest. Be careful because some features are blocked</string>
+    <string name="tutorialdescr2">In this screen it is possible to search for the route in two ways: the first through the gps (accept the permission), the second is done manually by clicking on the magnifying glass.</string>
+    <string name="tutorialdescr3">Once the magnifying glass has been clicked, it is possible to search through the appropriate search bar: you can search for a route according to your needs, for example: attractions along the route, characteristics of the route. Once you have chosen the path to follow, just click on it</string>
+    <string name="tutorialdescr4">Here you can see all the characteristics of the route you have selected. To start the journey, press the start button. You can share the route with your friends by clicking on the share button</string>
+    <string name="tutorialdescr5">In this screen you can see the attractions of the route. Click on the arrows to navigate through them and, if available, you can start an activity which, if registered, allows you to collect points</string>
 
 
 </resources>

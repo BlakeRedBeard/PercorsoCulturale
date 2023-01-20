@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
     <string name= "editTextTextEmailAddress">Insérez votre email</string>
     <string name= "editTextTextPassword">Tapez votre mot de passe</string>
     <string name= "cambiaPassword">Vous avez oublié votre mot de passe?</string>
@@ -42,4 +41,14 @@
     <string name="eliminaProfilo">Pour supprimer votre profil, entrez le mot de passe de votre compte</string>
     <string name="rspCorretta">SÉLECTIONNER LA BONNE RÉPONSE</string>
     <string name="Verifica">" Vérifier"</string>
+    <string name="tutorialhead1">écran de connexion</string>
+    <string name="tutorialhead2">Écran d\'accueil</string>
+    <string name="tutorialhead3">Rechercher un itinéraire</string>
+    <string name="tutorialhead4">Écran Itinéraire</string>
+    <string name="tutorialhead5">Écran d\'attraction</string>
+    <string name="tutorialdescr1">Ici, vous pouvez vous connecter à votre compte, s\'il n\'a pas été créé, il vous suffit de vous inscrire en cliquant sur le bouton d\'inscription. Vous pouvez vous connecter sans vous inscrire en appuyant sur la touche se connecter en tant qu\'invité. Attention car certaines fonctionnalités sont bloquées</string>
+    <string name="tutorialdescr2">Dans cet écran, il est possible de rechercher l\'itinéraire de deux manières : la première via le GPS (accepter l\'autorisation), la seconde se fait manuellement en cliquant sur la loupe.</string>
+    <string name="tutorialdescr3">Une fois la loupe cliqué, il est possible d\'effectuer une recherche via la barre de recherche appropriée : vous pouvez rechercher un itinéraire en fonction de vos besoins, par exemple : attractions le long de l\'itinéraire, caractéristiques de l\'itinéraire. Une fois que vous avez choisi le chemin à suivre, il vous suffit de cliquer dessus</string>
+    <string name="tutorialdescr4">Ici vous pouvez voir toutes les caractéristiques de l\'itinéraire que vous avez sélectionné. Pour commencer le voyage, appuyez sur le bouton de démarrage. Vous pouvez partager le parcours avec vos amis en cliquant sur le bouton partager</string>
+    <string name="tutorialdescr5">Dans cet écran, vous pouvez voir les attractions de l\'itinéraire. Cliquez sur les flèches pour les parcourir et, le cas échéant, vous pouvez démarrer une activité qui, si elle est enregistrée, vous permet de collecter des points</string>
 </resources>

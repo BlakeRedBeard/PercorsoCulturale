@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
     <string name= "editTextTextEmailAddress">inserta tu correo electronico</string>
     <string name= "editTextTextPassword">Ingresa tu contraseña</string>
     <string name= "cambiaPassword">¿Olvidaste tu contraseña?</string>
@@ -42,5 +41,15 @@
     <string name="eliminaProfilo">Para eliminar tu perfil ingresa la contraseña de tu cuenta</string>
     <string name="rspCorretta">SELECCIONA LA RESPUESTA CORRECTA</string>
     <string name="Verifica">Verificar</string>
+    <string name="tutorialhead1">pantalla de ingreso al sistema</string>
+    <string name="tutorialhead2">Pantalla de inicio</string>
+    <string name="tutorialhead3">Buscar una ruta</string>
+    <string name="tutorialhead4">Pantalla de ruta</string>
+    <string name="tutorialhead5">Pantalla de atracción</string>
+    <string name="tutorialdescr1">Aquí puede iniciar sesión en su cuenta, si no se ha creado, simplemente regístrese haciendo clic en el botón de suscripción. Puede iniciar sesión sin registrarse pulsando la tecla iniciar sesión como invitado. Tenga cuidado porque algunas funciones están bloqueadas</string>
+    <string name="tutorialdescr2">En esta pantalla es posible buscar la ruta de dos formas: la primera a través del gps (aceptar el permiso), la segunda se hace manualmente haciendo clic en la lupa.</string>
+    <string name="tutorialdescr3">Una vez que se ha hecho clic en la lupa, es posible buscar a través de la barra de búsqueda correspondiente: puede buscar una ruta de acuerdo con sus necesidades, por ejemplo: atracciones a lo largo de la ruta, características de la ruta. Una vez que haya elegido el camino a seguir, simplemente haga clic en él</string>
+    <string name="tutorialdescr4">Aquí puedes ver todas las características de la ruta que has seleccionado. Para iniciar el viaje, presione el botón de inicio. Puedes compartir la ruta con tus amigos haciendo clic en el botón compartir</string>
+    <string name="tutorialdescr5">En esta pantalla se pueden ver los atractivos de la ruta. Haz clic en las flechas para navegar por ellas y, si está disponible, puedes iniciar una actividad que, si te registras, te permite acumular puntos</string>
 
 </resources>
