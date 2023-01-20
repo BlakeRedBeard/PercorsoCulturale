@@ -48,6 +48,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.valutazione_percorso);
         img = findViewById(R.id.immagineePercorso);
         Bundle extra = getIntent().getExtras();
         nomePercorso = extra.getString("nomePercorso");

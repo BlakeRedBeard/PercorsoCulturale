@@ -52,6 +52,7 @@ public class ListaBadge extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.lista_badge);
         storage = FirebaseStorage.getInstance();
 
         bmp = new ArrayList<>(3);

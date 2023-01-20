@@ -60,6 +60,7 @@ public class MostraAttrazioni extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_attrazione);
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
 

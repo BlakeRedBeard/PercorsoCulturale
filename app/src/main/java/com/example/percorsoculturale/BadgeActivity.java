@@ -61,6 +61,7 @@ public class BadgeActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.badge);
         storage = FirebaseStorage.getInstance();
 
         bmp = new ArrayList<>(3);

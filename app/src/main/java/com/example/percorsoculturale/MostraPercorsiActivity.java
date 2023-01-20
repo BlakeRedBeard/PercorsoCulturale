@@ -51,6 +51,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mostra_percorso);
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
             //FirebaseAuth.getInstance().signInWithEmailAndPassword("user@guest.com", "userguest");
             Intent login = new Intent(this, LoginActivity.class);
@@ -64,7 +65,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         regionePercorso = (TextView) findViewById(R.id.regionePercorso);
         comunePercorso = (TextView) findViewById(R.id.comunePercorso);
         immaginePercorso = (ImageView) findViewById(R.id.immaginePercorso);
-        avvia = (Button) findViewById(R.id.avviaButton);
+        avvia = findViewById(R.id.avviaButton);
         avvia.setEnabled(false);
 
         if(savedInstanceState == null) {
