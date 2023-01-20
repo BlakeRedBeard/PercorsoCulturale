@@ -45,7 +45,6 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private String nomePercorso = "";
     ImageView img;
-    private Animation anim = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +68,6 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
         textview1 = (TextView) findViewById(R.id.textView4);
         textview2 = (TextView) findViewById(R.id.textView6);
 
-        anim = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.animazione);
 
         TextView textview3 = (TextView) findViewById(R.id.msg_finePercorso);
         if (QrcodeActivity.getPunti() <= 5) {
@@ -79,17 +76,8 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
             textview3.setText(getString(R.string.msg_consolazione));
         }
         ImageView spunta = (ImageView) findViewById(R.id.spunta_verde);
-        spunta.startAnimation(anim);
-
-        textview1.startAnimation(anim);
-
-        textview2.startAnimation(anim);
-
-
-        textview3.startAnimation(anim);
 
         TextView textview4 = (TextView) findViewById(R.id.textView5);
-        textview4.startAnimation(anim);
 
         //legge da db
         firebaseAuth = FirebaseAuth.getInstance();
