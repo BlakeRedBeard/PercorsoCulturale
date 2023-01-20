@@ -64,7 +64,6 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
     private FirebaseStorage storage;
 
     private EditText commentoUtente;
-    private Animation anim=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +93,6 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
 
         commentoUtente = (EditText) findViewById(R.id.editTextTextPersonName2);
 
-        anim = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.animazione);
 
         unaStella.setVisibility(View.INVISIBLE);
         dueStelle.setVisibility(View.INVISIBLE);
@@ -108,15 +105,6 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
         treStelleGrigie.setVisibility(View.VISIBLE);
         quattroStelleGrigie.setVisibility(View.VISIBLE);
         cinqueStelleGrigie.setVisibility(View.VISIBLE);
-
-        unaStellaGrigia.startAnimation(anim);
-        dueStelleGrigie.startAnimation(anim);
-        treStelleGrigie.startAnimation(anim);
-        quattroStelleGrigie.startAnimation(anim);
-        cinqueStelleGrigie.startAnimation(anim);
-        txt.startAnimation(anim);
-        txt2.startAnimation(anim);
-        commentoUtente.startAnimation(anim);
 
         if(savedInstanceState != null){
             int stellaUno = savedInstanceState.getInt("unastella");
