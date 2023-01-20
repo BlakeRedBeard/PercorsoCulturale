@@ -69,6 +69,13 @@
     <string name="inserisciPassword">Insert Password</string>
     <string name="ripetiPassword">Repeat Password</string>
     <string name="ripetiNuovaPassword">Confirm Password</string>
+    <string name="nonPuoiAccedereAlProfilo">You can\'t access your profile because you didn\'t log in</string>
+    <string name="vuoiDisconnettere">Are you sure you want to disconnect?</string>
+    <string name="nonAccedutoTitle">"You are not logged in "</string>
+    <string name="condividimsg">" Try this cultural journey!"</string>
+    <string name="ottenuto">"I got "</string>
+    <string name="percorsoCompletato">" points by completing the course "</string>
+    <string name="valPercorso">Route evaluation</string>
 
 
 </resources>

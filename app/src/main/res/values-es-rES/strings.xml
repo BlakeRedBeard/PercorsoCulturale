@@ -68,5 +68,12 @@
     <string name="inserisciPassword">Ingresa tu contraseña</string>
     <string name="ripetiPassword">repite la contraseña</string>
     <string name="ripetiNuovaPassword">Confirmar contraseña</string>
+    <string name="nonPuoiAccedereAlProfilo">No puedes acceder a tu perfil porque no estás logueado</string>
+    <string name="vuoiDisconnettere">¿Quieres cerrar sesión?</string>
+    <string name="nonAccedutoTitle">Usted no se ha identificado</string>
+    <string name="condividimsg">¡Prueba este viaje cultural!</string>
+    <string name="ottenuto">"Obtuve "</string>
+    <string name="percorsoCompletato">" puntos al completar el curso"</string>
+    <string name="valPercorso">Evaluación de ruta</string>
 
 </resources>

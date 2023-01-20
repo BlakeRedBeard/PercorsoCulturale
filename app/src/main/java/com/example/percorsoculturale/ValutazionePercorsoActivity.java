@@ -126,8 +126,8 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
-                String body = "Ho ottenuto " + textview2.getText().toString() + " punti completando il percorso " + nomePercorso;
-                String sub = "Valutazione percorso";
+                String body = getResources().getString(R.string.ottenuto) + textview2.getText().toString() + getResources().getString(R.string.percorsoCompletato) + nomePercorso;
+                String sub = getResources().getString(R.string.valPercorso);
                 myIntent.putExtra(Intent.EXTRA_SUBJECT, sub);
                 myIntent.putExtra(Intent.EXTRA_TEXT, body);
                 startActivity(Intent.createChooser(myIntent, "Share Using"));

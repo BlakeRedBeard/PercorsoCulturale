@@ -80,7 +80,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-                            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
+                            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.condividimsg));
                             emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK + extra.getString("percorso"));
                             emailIntent.setType("text/plain");
                             startActivity(Intent.createChooser(emailIntent, "Send to friend"));
@@ -98,7 +98,7 @@ public class MostraPercorsiActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Prova questo percorso culturale!");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.condividimsg));
                         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, LINK + savedInstanceState.getSerializable("percorso"));
                         emailIntent.setType("text/plain");
                         startActivity(Intent.createChooser(emailIntent, "Send to friend"));

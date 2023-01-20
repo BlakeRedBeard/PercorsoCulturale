@@ -68,4 +68,11 @@
     <string name="inserisciPassword">Tapez votre mot de passe</string>
     <string name="ripetiPassword">"Répétez le mot de passe "</string>
     <string name="ripetiNuovaPassword">Confirmez le mot de passe</string>
+    <string name="nonPuoiAccedereAlProfilo">Vous ne pouvez pas accéder à votre profil car vous n\'êtes pas connecté</string>
+    <string name="vuoiDisconnettere">Voulez-vous vous déconnecter ?</string>
+    <string name="nonAccedutoTitle">Vous n\'êtes pas connecté</string>
+    <string name="condividimsg">Essayez ce voyage culturel!</string>
+    <string name="ottenuto">"j'ai eu "</string>
+    <string name="percorsoCompletato">" points en complétant le cours "</string>
+    <string name="valPercorso">Évaluation de l\'itinéraire</string>
 </resources>

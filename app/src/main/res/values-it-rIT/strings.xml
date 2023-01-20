@@ -68,4 +68,11 @@
     <string name="inserisciPassword">Inserisci la Password</string>
     <string name="ripetiPassword">Ripeti Password</string>
     <string name="ripetiNuovaPassword">Conferma la Password</string>
+    <string name="nonPuoiAccedereAlProfilo">Non puoi accedere al profilo in quanto non hai effettuato l\'accesso</string>
+    <string name="vuoiDisconnettere">Vuoi effettuare la disconnessione?</string>
+    <string name="nonAccedutoTitle">Non hai effettuato il login</string>
+    <string name="condividimsg">Prova questo percorso culturale!</string>
+    <string name="ottenuto">Ho ottenuto</string>
+    <string name="percorsoCompletato">" punti completando il percorso"</string>
+    <string name="valPercorso">Valutazione percorso</string>
 </resources>

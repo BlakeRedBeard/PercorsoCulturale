@@ -207,7 +207,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    String messaggio = "Non puoi accedere al profilo in quanto non hai effettuato l'accesso";
+                    String messaggio = getResources().getString(R.string.nonPuoiAccedereAlProfilo);
                     showMessage(messaggio);
                 }
             };
@@ -231,7 +231,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String messaggio = "Vuoi effettuare la disconnessione?";
+                String messaggio = getResources().getString(R.string.vuoiDisconnettere);
                 showMessage(messaggio);
 
             }
@@ -379,10 +379,10 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
     }
 
     private void showMessage(String messaggio) {
-        if(messaggio.equals("Non puoi accedere al profilo in quanto non hai effettuato l'accesso")){
+        if(messaggio.equals(getResources().getString(R.string.nonPuoiAccedereAlProfilo))){
             AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
             builder.setMessage(messaggio)
-                    .setTitle("Non hai effettuato il login");
+                    .setTitle(getResources().getString(R.string.nonAccedutoTitle));
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                 }
@@ -394,8 +394,8 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
         else {
             AlertDialog.Builder builder = new AlertDialog.Builder(RicercaPercorsiActivity.this);
             builder.setMessage(messaggio)
-                    .setTitle("Disconnetti profilo");
-            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    .setTitle(getResources().getString(R.string.Disconnetti));
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     FirebaseAuth.getInstance().signOut();
                     finish();
@@ -403,7 +403,7 @@ public class RicercaPercorsiActivity extends AppCompatActivity {
                     startActivity(home);
                 }
             });
-            builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
                 }
