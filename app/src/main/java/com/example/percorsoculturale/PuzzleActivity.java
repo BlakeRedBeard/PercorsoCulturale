@@ -2,10 +2,12 @@ package com.example.percorsoculturale;
 
 import static com.example.percorsoculturale.QuizActivity.db;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
@@ -144,7 +146,8 @@ public class PuzzleActivity extends AppCompatActivity {
         for (int i = 0; i < tileList.length; i++) {
 
             Button button = new Button(context);
-            storageRef.child(searchPuzzle + "_" + (Integer.parseInt(tileList[i]) + 1) + ".png").getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            final long MAX_BYTES = 1024 * 1024 * 1024;
+            storageRef.child(searchPuzzle + "_" + (Integer.parseInt(tileList[i]) + 1) + ".jpg").getBytes(MAX_BYTES).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
                     ByteArrayInputStream is = new ByteArrayInputStream(bytes);
@@ -173,6 +176,13 @@ public class PuzzleActivity extends AppCompatActivity {
             //PUNTI
             Toast.makeText(context, "Hai vinto!!", Toast.LENGTH_SHORT).show();
             QrcodeActivity.aggiungiPunti(10);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    // Actions to do after 1 seconds
+                    ((Activity) context).finish();
+                }
+            }, 1000);
 
         }
     }
