@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
 
-            android:hint="Cognome"
+            android:hint="@string/cognome"
 
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
@@ -90,7 +90,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:hintEnabled="true"
-            app:helperText="inserisci cognome">
+            app:helperText="@string/inserisciCognome">
 
 
            <com.google.android.material.textfield.TextInputEditText
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:hint="Nome"
+            android:hint="@string/nomeP"
 
             android:textColorHint="#99000000"
             app:boxBackgroundMode="outline"
@@ -130,7 +130,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:hintEnabled="true"
-            app:helperText="inserisci nome"
+            app:helperText="@string/inserisciNome"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -167,7 +167,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:hintEnabled="true"
-            app:helperText="inserisci email">
+            app:helperText="@string/inserisciMail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiEmail"
@@ -235,7 +235,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:hintEnabled="true"
-            app:helperText="inserisci password"
+            app:helperText="@string/inserisciPassword"
             app:errorEnabled="true"
             >
 
@@ -255,7 +255,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:hint="Ripeti password"
+            android:hint="@string/ripetiPassword"
             android:textColorHint="#99000000"
 
             app:boxBackgroundMode="outline"
@@ -274,7 +274,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:hintEnabled="true"
-            app:helperText="inserisci nuovamente la password">
+            app:helperText="@string/ripetiNuovaPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiConfermaPassword"
@@ -294,7 +294,7 @@
 
             android:layout_gravity="center"
             android:layout_marginTop="36dp"
-            android:text="Iscriviti"
+            android:text="@string/iscrivitiButton"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:backgroundTint="@color/color_primary"

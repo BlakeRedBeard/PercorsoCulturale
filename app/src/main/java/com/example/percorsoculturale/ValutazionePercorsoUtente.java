@@ -68,12 +68,6 @@ public class ValutazionePercorsoUtente extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.valutazione_percorso_utente_landscape);
-        }else{
-            setContentView(R.layout.valutazione_percorso_utente);
-        }
-
         TextView txt = (TextView) findViewById(R.id.textView15);
         TextView txt2 = (TextView) findViewById(R.id.textView16);
 

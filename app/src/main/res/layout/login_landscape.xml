@@ -13,48 +13,51 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="134dp"
-            android:layout_height="143dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/icon_metro_earth2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
-
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.065" />
 
-        <Button
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bottoneLingua"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="239dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="16dp"
-            android:text="Change Language"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:backgroundTint="@color/color_primary"
-            app:elevation="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_margin="16dp"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accediComeOspite" />
+            app:backgroundTint="@color/white"
+            android:elevation="6dp"
+            app:hoveredFocusedTranslationZ="2dp"
+            app:pressedTranslationZ="6dp"
+            app:srcCompat="@drawable/italy"
+            app:maxImageSize="20dp"
+            app:tint="@null"
+            />
 
         <Button
             android:id="@+id/accediComeOspite"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="60dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="15dp"
             android:text="@string/accediComeOspite"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:backgroundTint="@color/color_primary"
-            app:elevation="5dp"
+            app:elevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iscrivitiButton" />
+            app:layout_constraintTop_toBottomOf="@+id/oppureText" />
 
         <TextView
             android:id="@+id/oppureText"
@@ -69,40 +72,50 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+            app:layout_constraintTop_toBottomOf="@+id/accediIScrivit" />
 
-        <Button
-            android:id="@+id/loginButton"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="146dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="208dp"
+        <LinearLayout
+            android:id="@+id/accediIScrivit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/cambiaPassword"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="10dp"
 
-            android:layout_marginTop="20dp"
-            android:elevation="5dp"
-            android:text="@string/loginButton"
-            android:textColor="@color/white"
+            >
+            <Button
+                android:id="@+id/loginButton"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:elevation="3dp"
+                android:text="@string/loginButton"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:backgroundTint="@color/color_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cambiaPassword"
+                android:layout_marginRight="15dp"/>
 
-            android:textStyle="bold"
-            app:backgroundTint="@color/color_primary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cambiaPassword" />
+            <Button
+                android:id="@+id/iscrivitiButton"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="15dp"
 
-        <Button
-            android:id="@+id/iscrivitiButton"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="146dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="204dp"
+                android:text="@string/iscrivitiButton"
+                android:textColor="@color/color_primary"
+                android:textStyle="bold"
+                app:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cambiaPassword"
+                app:strokeColor="@color/color_primary" />
+        </LinearLayout>
 
-            android:text="@string/iscrivitiButton"
-            android:textColor="@color/color_primary"
-            android:textStyle="bold"
-            app:elevation="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cambiaPassword"
-            app:strokeColor="@color/color_primary" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextTextEmailAddress"
@@ -110,7 +123,8 @@
             android:layout_width="300dp"
             android:layout_height="90dp"
 
-
+            android:maxHeight="90dp"
+            android:maxWidth="300dp"
             android:layout_marginTop="44dp"
             android:hint="Email"
 
@@ -133,13 +147,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.486"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="300dp"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
         <TextView
@@ -149,22 +169,25 @@
             android:layout_marginTop="12dp"
             android:padding="5dp"
             android:text="@string/cambiaPassword"
-            android:textColor="@color/black"
             android:textSize="15dp"
+            android:elevation="3dp"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextTextPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="304dp"
+            android:layout_width="300dp"
 
-            android:layout_height="91dp"
+            android:layout_height="90dp"
             android:hint="Password"
 
-
+            android:maxHeight="90dp"
+            android:maxWidth="300dp"
             android:inputType="textPassword"
 
 
@@ -178,7 +201,7 @@
             app:boxStrokeColor="@color/color_primary"
             app:boxStrokeWidth="0.8dp"
             app:counterEnabled="true"
-            app:counterMaxLength="32"
+            app:counterMaxLength="12"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/occhio"
             app:endIconMode="password_toggle"
@@ -187,14 +210,19 @@
             app:hintTextColor="@color/color_primary"
 
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.477"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress">
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+            >
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="300dp"
+                android:inputType="textPassword"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 

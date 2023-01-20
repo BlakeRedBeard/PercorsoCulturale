@@ -59,12 +59,6 @@ public class MostraPercorsiActivity extends AppCompatActivity {
         }
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_mostra_percorso_landscape);
-        }else{
-            setContentView(R.layout.activity_mostra_percorso);
-        }
         nomePercorso = (TextView) findViewById(R.id.nomePercorso);
         descrizionePercorso = (TextView) findViewById(R.id.descrizionePercorso);
         regionePercorso = (TextView) findViewById(R.id.regionePercorso);

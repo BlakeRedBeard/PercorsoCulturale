@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
 
     <string name= "editTextTextEmailAddress">insert your email</string>
     <string name= "editTextTextPassword">Enter your password</string>
@@ -63,6 +62,13 @@
     <string name="titleModifica">Edit Profile</string>
     <string name="msg">" You will be permanently removed from the aromaplate and you will lose all info on your profile"</string>
     <string name="profiloU">User profile</string>
+    <string name="creaAccount">Create your Account</string>
+    <string name="inserisciCognome">Insert Surname</string>
+    <string name="inserisciNome">Insert Name</string>
+    <string name="inserisciMail">Insert Email</string>
+    <string name="inserisciPassword">Insert Password</string>
+    <string name="ripetiPassword">Repeat Password</string>
+    <string name="ripetiNuovaPassword">Confirm Password</string>
 
 
 </resources>

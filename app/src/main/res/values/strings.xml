@@ -71,5 +71,12 @@
     <string name="titleModifica">Modifica Profilo</string>
     <string name="msg">Sarai rimosso permanentemente dalla piattofaroma e perderai ogni ogni info sul tuo profilo</string>
     <string name="profiloU">Profilo utente</string>
+    <string name="creaAccount">Crea il tuo Account</string>
+    <string name="inserisciCognome">Inserisci Cognome</string>
+    <string name="inserisciNome">Inserisci Nome</string>
+    <string name="inserisciMail">Inserisci Email</string>
+    <string name="inserisciPassword">Inserisci la Password</string>
+    <string name="ripetiPassword">Ripeti Password</string>
+    <string name="ripetiNuovaPassword">Conferma la Password</string>
 
 </resources>

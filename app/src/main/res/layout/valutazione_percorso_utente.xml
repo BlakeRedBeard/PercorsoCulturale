@@ -27,7 +27,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
             android:backgroundTint="@color/color_primary"
-            app:title="Valutazione percorso"
+            app:title="@string/toolbar2"
             app:navigationIcon="@drawable/arrow"
             tools:ignore="MissingConstraints"
             app:titleMarginBottom="16dp"/>

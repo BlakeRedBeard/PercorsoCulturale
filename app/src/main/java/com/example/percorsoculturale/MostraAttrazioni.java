@@ -60,14 +60,6 @@ public class MostraAttrazioni extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_attrazione_landscape);
-        } else {
-            setContentView(R.layout.activity_attrazione);
-        }
-
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
 

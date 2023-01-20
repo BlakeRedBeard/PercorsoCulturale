@@ -29,7 +29,7 @@
             android:background="?attr/colorPrimary"
             android:backgroundTint="@color/color_primary"
             app:popupTheme="@style/Theme.PercorsoCulturale.PopupOverlay"
-            app:title="Attrazione"
+            app:title="@string/toolbar1"
             app:navigationIcon="@drawable/arrow"
             app:titleMarginBottom="16dp"/>
 
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="12dp"
-                android:text="Text view"
+                android:text="Nome"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 tools:ignore="UnknownId"
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Text view"
+                android:text="Descrizione"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 tools:ignore="MissingConstraints,UnknownIdInLayout"

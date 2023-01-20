@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PercorsoCulturale</string>
     <string name= "editTextTextEmailAddress">Insérez votre email</string>
     <string name= "editTextTextPassword">Tapez votre mot de passe</string>
     <string name= "cambiaPassword">Vous avez oublié votre mot de passe?</string>
@@ -62,4 +61,11 @@
     <string name="titleModifica">Editer le profil</string>
     <string name="msg">" Vous serez définitivement supprimé de l'aromaplate et vous perdrez toutes les informations de votre profil"</string>
     <string name="profiloU">" Profil de l'utilisateur"</string>
+    <string name="creaAccount">Créez votre compte</string>
+    <string name="inserisciCognome">Entrer le nom de famille</string>
+    <string name="inserisciNome">Entrez le nom</string>
+    <string name="inserisciMail">Entrez l\'e-mail</string>
+    <string name="inserisciPassword">Tapez votre mot de passe</string>
+    <string name="ripetiPassword">"Répétez le mot de passe "</string>
+    <string name="ripetiNuovaPassword">Confirmez le mot de passe</string>
 </resources>

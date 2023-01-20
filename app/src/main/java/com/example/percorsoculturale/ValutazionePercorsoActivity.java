@@ -48,16 +48,7 @@ public class ValutazionePercorsoActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.valutazione_percorso_landscape);
-        } else {
-            setContentView(R.layout.valutazione_percorso);
-        }
-
-        img = (ImageView) findViewById(R.id.immagineePercorso);
-
+        img = findViewById(R.id.immagineePercorso);
         Bundle extra = getIntent().getExtras();
         nomePercorso = extra.getString("nomePercorso");
         db = FirebaseFirestore.getInstance();

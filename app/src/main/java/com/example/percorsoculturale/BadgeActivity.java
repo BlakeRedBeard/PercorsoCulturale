@@ -66,13 +66,6 @@ public class BadgeActivity extends AppCompatActivity {
         bmp = new ArrayList<>(3);
         nomi = new ArrayList<>(3);
 
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.badge_landscape);
-        }else{
-            setContentView(R.layout.badge);
-        }
-
         TextView textview1 = (TextView) findViewById(R.id.textView8);
         cinquePunti = (ImageView) findViewById(R.id.imageView2);
         dieciPunti = (ImageView) findViewById(R.id.imageView3);

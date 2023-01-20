@@ -16,10 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -28,49 +29,45 @@
                 <TextView
                     android:id="@+id/textView2"
 
-                    android:layout_width="271dp"
-                    android:layout_height="43dp"
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Crea il tuo account "
                     android:textColor="@color/black"
                     android:textSize="28dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-
-
+                    app:layout_constraintHorizontal_bias="0.4"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.508"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginStart="-15dp"/>
 
                 <androidx.coordinatorlayout.widget.CoordinatorLayout
-                    android:id="@+id/coordinatorLayout3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     app:layout_constraintBottom_toBottomOf="parent"
-
                     app:layout_constraintStart_toEndOf="@id/textView2"
+
                     app:layout_constraintTop_toTopOf="parent">
 
 
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/returnButtonLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:fabSize="mini"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="-7dp"
+                        android:backgroundTint="@color/color_primary"
+                        android:src="@drawable/arrow"
+                        android:tint="#FFFFFF"
+                        app:layout_anchor="@+id/returnButtonLogin"
+                        app:layout_anchorGravity="end|center"
+                        app:tint="@color/white" />
+
                 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/returnButtonLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-
-                    android:layout_marginStart="68dp"
-                    android:backgroundTint="@color/color_primary"
-                    android:src="@drawable/arrow"
-                    android:tint="#FFFFFF"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:tint="@color/white"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteY="22dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
@@ -81,24 +78,33 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
 
-            android:hint="Cognome"
+            android:hint="@string/cognome"
 
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
-
 
 
             app:hintTextColor="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iscrizioneNome"
-            app:startIconTint="#000000">
+            app:startIconTint="#000000"
+            android:maxHeight="90dp"
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="@string/inserisciCognome">
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiCognome"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="text" />
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:maxHeight="55dp"
+                android:maxWidth="300dp"
+                />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -111,24 +117,33 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:hint="Nome"
+            android:hint="@string/nomeP"
+
             android:textColorHint="#99000000"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/color_primary"
-
 
 
             app:helperTextEnabled="true"
             app:hintTextColor="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageiscriviti">
+            app:layout_constraintTop_toBottomOf="@+id/imageiscriviti"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="@string/inserisciNome"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiNome"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="text" />
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:maxHeight="55dp"
+                android:maxWidth="300dp"/>
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -144,22 +159,27 @@
             android:hint="Email"
             android:textColorHint="#99000000"
             app:boxBackgroundMode="outline"
-
             app:boxStrokeColor="@color/color_primary"
             app:boxStrokeWidth="1dp"
-
-
             app:hintTextColor="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iscrizioneCognome"
-            app:strokeColor="#20000000">
+            app:strokeColor="#20000000"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="@string/inserisciMail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiEmail"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="text" />
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:maxHeight="55dp"
+                android:maxWidth="300dp"/>
 
             <Button
                 android:id="@+id/datePickerButton"
@@ -170,7 +190,7 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/white"
                 android:onClick="openDatePicker"
-                android:text="Data di nascita"
+                android:text="FEBBRAIO 1 2010"
 
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
@@ -178,7 +198,19 @@
                 app:strokeColor="#60000000"
                 app:strokeWidth="1dp"
 
-                tools:ignore="RtlCompat" />
+                tools:ignore="RtlCompat"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleziona la tua data di nascita"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="16dp"
+                android:textSize="11dp">
+
+            </TextView>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,7 +220,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-3dp"
             android:hint="Password"
             android:textColorHint="#99000000"
             app:boxBackgroundMode="outline"
@@ -201,13 +233,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DataDiNascita"
-            app:strokeColor="#20000000">
+            app:strokeColor="#20000000"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="@string/inserisciPassword"
+            app:errorEnabled="true"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="textPassword" />
+                android:layout_height="55dp"
+                android:inputType="textPassword"
+                android:maxHeight="55dp"
+                android:maxWidth="300dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -217,7 +259,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:hint="Ripeti password"
+            android:hint="@string/ripetiPassword"
             android:textColorHint="#99000000"
 
             app:boxBackgroundMode="outline"
@@ -230,25 +272,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iscrizionePassword"
-            app:strokeColor="#20000000">
+            app:strokeColor="#20000000"
+            android:maxHeight="48dp"
+            android:maxWidth="300dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:hintEnabled="true"
+            app:helperText="@string/ripetiNuovaPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/iscrivitiConfermaPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="textPassword" />
+                android:layout_height="55dp"
+                android:inputType="textPassword"
+                android:maxHeight="55dp"
+                android:maxWidth="300dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/iscrivitiBtn"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="60dp"
 
             android:layout_gravity="center"
             android:layout_marginTop="36dp"
-            android:text="Iscriviti"
+            android:text="@string/iscrivitiButton"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:backgroundTint="@color/color_primary"
@@ -257,7 +307,7 @@
             app:elevation="5dp" />
 
 
-                </LinearLayout>
+    </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

@@ -57,13 +57,6 @@ public class ListaBadge extends AppCompatActivity {
         bmp = new ArrayList<>(3);
         nomi = new ArrayList<>(3);
 
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.lista_badge_landscape);
-        }else{
-            setContentView(R.layout.lista_badge);
-        }
-
         cinquePunti = (ImageView) findViewById(R.id.imageView10);
         dieciPunti = (ImageView) findViewById(R.id.imageView15);
         venticinquePunti = (ImageView) findViewById(R.id.imageView16);
