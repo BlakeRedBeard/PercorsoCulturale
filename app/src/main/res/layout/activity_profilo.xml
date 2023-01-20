@@ -39,6 +39,7 @@
                 app:titleTextColor="@color/white"
                 app:navigationIcon="@drawable/arrow"
                 tools:ignore="MissingConstraints"
+                app:titleMarginBottom="16dp"
               />
             <TextView
                 android:id="@+id/txt"
