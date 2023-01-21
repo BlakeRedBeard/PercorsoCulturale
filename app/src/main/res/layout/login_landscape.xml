@@ -139,7 +139,7 @@
 
             app:boxStrokeWidth="0.8dp"
             app:counterEnabled="true"
-            app:counterMaxLength="30"
+            app:counterMaxLength="64"
             app:helperText="@string/editTextTextEmailAddress"
             app:helperTextEnabled="true"
             app:hintTextColor="@color/color_primary"
@@ -201,7 +201,7 @@
             app:boxStrokeColor="@color/color_primary"
             app:boxStrokeWidth="0.8dp"
             app:counterEnabled="true"
-            app:counterMaxLength="12"
+            app:counterMaxLength="32"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/occhio"
             app:endIconMode="password_toggle"

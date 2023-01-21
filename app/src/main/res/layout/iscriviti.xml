@@ -88,7 +88,7 @@
             android:maxHeight="90dp"
             android:maxWidth="300dp"
             app:counterEnabled="true"
-            app:counterMaxLength="30"
+            app:counterMaxLength="64"
             app:hintEnabled="true"
             app:helperText="@string/inserisciCognome">
 
@@ -128,7 +128,7 @@
             android:maxHeight="48dp"
             android:maxWidth="300dp"
             app:counterEnabled="true"
-            app:counterMaxLength="30"
+            app:counterMaxLength="64"
             app:hintEnabled="true"
             app:helperText="@string/inserisciNome"
             >
@@ -165,7 +165,7 @@
             android:maxHeight="48dp"
             android:maxWidth="300dp"
             app:counterEnabled="true"
-            app:counterMaxLength="30"
+            app:counterMaxLength="64"
             app:hintEnabled="true"
             app:helperText="@string/inserisciMail">
 
@@ -233,7 +233,7 @@
             android:maxHeight="48dp"
             android:maxWidth="300dp"
             app:counterEnabled="true"
-            app:counterMaxLength="30"
+            app:counterMaxLength="32"
             app:hintEnabled="true"
             app:helperText="@string/inserisciPassword"
             app:errorEnabled="true"
@@ -272,7 +272,7 @@
             android:maxHeight="48dp"
             android:maxWidth="300dp"
             app:counterEnabled="true"
-            app:counterMaxLength="30"
+            app:counterMaxLength="32"
             app:hintEnabled="true"
             app:helperText="@string/ripetiNuovaPassword">
 
